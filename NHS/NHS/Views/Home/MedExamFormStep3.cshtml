@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "MedExamFormStep3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled">
+                    <a href="#step-1">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-2">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-3">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-4">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-5">
+                        <h4 class="list-group-item-heading">
+                            Other referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-6">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row setup-content" id="step-3">
+        <div class="col-xs-12 col-lg-12">
+            <form action="/Home/MedExamFormStep3" method="post" id="frmMedExamFormStep3">
+                <div class="col-md-12 well">
+                    <div class="form-section">
+                        <div class="lable_title">
+                            <h2>MEDICAL EXAMINER DECISION</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbMCCSIssue" name="cbMCCSIssue">
+                                    <label class="label_part" for="defaultCheck1">Issue MCCD </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <label class="label_part">Reason for coroner referral </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row" ">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferral" name="cbCoronerReferral">
+                                    <label class="label_part" for="defaultCheck1">Coroner Referral </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlCoronerReferralResonName" name="ddlCoronerReferralResonName">
+                                        <option value="-1">Select</option>
+                                        <option value="M K S">M K S</option>
+                                        <option value="P K P">P K P</option>
+                                        <option value="R T O">R T O</option>
+                                        <option value="T K T">T K T</option>
+                                        <option value="D T O">D T O</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbHospitalPostMortem" name="cbHospitalPostMortem">
+                                    <label class="label_part" for="defaultCheck1">Hospital post-mortem </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <input class="form-control" type="text" placeholder="" id="txtCouseOfDeath" name="txtCouseOfDeath">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <input class="form-control" type="text" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <input class="form-control" type="text" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <input class="form-control" type="text" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbDeathCertificate" name="cbDeathCertificate">
+                                    <label class="label_part" for="defaultCheck1">Death Certificate Complete? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferralComplete" name="cbCoronerReferralComplete">
+                                    <label class="label_part" for="defaultCheck1">Coroner's referral Complete? </label>
+                                </div>
+                            </div><br>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <label class="label_part" for="defaultCheck1">(If Applicable) Coroner's decision </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionInquest" name="cbCoronerDecisionInquest">
+                                    <label class="label_part" for="defaultCheck1">Inquest </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionPostMortem" name="cbCoronerDecisionPostMortem">
+                                    <label class="label_part" for="defaultCheck1">Post-Mortem </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecision100A" name="cbCoronerDecision100A">
+                                    <label class="label_part" for="defaultCheck1">100A </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionGPIssue" name="cbCoronerDecisionGPIssue">
+                                    <label class="label_part" for="defaultCheck1">GP Issue </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                </div>
+                </form>
+        </div>
+    </div>
+   
+</div>
+
+<script>
+    $(document).ready(function () 
+    });
+</script>
+

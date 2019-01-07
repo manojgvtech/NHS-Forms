@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="66896581c90e40f7a323c175b2f1cf32" Name="Diagram1">
+        <EntityTypeShape EntityType="NHSModel.AvoidabilityScore" Width="1.5" PointX="3.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.CarePhase" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.CareRating" Width="1.5" PointX="6.75" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.CoronerReferralReason" Width="1.5" PointX="0.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.FeedBack" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.MedicalExaminer" Width="1.5" PointX="3.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.MedicalExaminerDecision" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.MedicalExaminerReview" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.MortalitySurveillance" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.OtherReferral" Width="1.5" PointX="3" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.PatientMap" Width="1.5" PointX="0.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.ResponsePT" Width="1.5" PointX="3.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.Role" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.SJRFormInitial" Width="1.5" PointX="9" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.SJRFormProblemType" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.SJROutcomes" Width="1.5" PointX="3" PointY="47.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.SJRReview" Width="1.5" PointX="6" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.SJRReviewSpeciality" Width="1.5" PointX="3.75" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.UserInRole" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.User" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHSModel.UserSession" Width="1.5" PointX="8" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Avoid__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Asses__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Infec__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Medic__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Other__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Proce__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Treat__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormIn__CareD__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormIn__EndLi__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormIn__Initi__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormIn__Ongoi__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormIn__OverA__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__MedicalEx__Coron__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__FeedBack__Patien__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__MedicalEx__ME_ID__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__MedicalEx__Patie__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__MedicalEx__Patie__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__Mortality__Patie__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__OtherRefe__Patie__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormIn__Patie__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Patie__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJROutcom__Patie__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRReview__Patie__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Asses__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Infec__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Medic__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Monit__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Other__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Proce__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Resus__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRFormPr__Treat__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK__SJRReview__SJRRe__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="NHSModel.FK_Session_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NHSModel.DischargeConsultant" Width="1.5" PointX="6.375" PointY="7.25" />
+        <EntityTypeShape EntityType="NHSModel.PatientDetail" Width="1.5" PointX="8.625" PointY="6" />
+        <AssociationConnector Association="NHSModel.FK__PatientDe__Disch__245D67DE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "MedExamFormStep6";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled">
+                    <a href="#step-1">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-2">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-3">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-4">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-5">
+                        <h4 class="list-group-item-heading">
+                            Other referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-6">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+    <div class="row setup-content" id="step-6">
+        <div class="col-xs-12 col-lg-12">
+            <form action="/Home/MedExamFormStep6" method="post" id="frmMedExamFormStep6">
+                <div class="col-md-12 well">
+                    <div class="form-section">
+                        <div class="lable_title">
+                            <h2>POSITIVE FEEDBACK</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbFormCompleted" name="cbFormCompleted">
+                                    <label class="label_part" for="defaultCheck1">Above & Beyond form completed </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbComplimentsFedBack" name="cbComplimentsFedBack">
+                                    <label class="label_part" for="defaultCheck1">Compliments fed back to clinical team </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                    <button id="activate-step-2" type="submit" name="BtnFinish" class="btn btn-primary btn-lg">Finish</button>
+                </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        
+    });
+</script>
+

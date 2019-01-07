@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "Stage3SJRFormFirstStep";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="active">
+                    <a href="#step-1">
+                        <h4 class="list-group-item-heading">
+                            Phase of Care Assessment
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-2">
+                        <h4 class="list-group-item-heading">
+                            Assessment Of Problems in Healthcare
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="row setup-content" id="step-1">
+            <div class="col-xs-12 col-lg-12">
+                <form method="post">
+                    <div class="col-md-12 well text-center">
+                        <div class="form-section" style="text-align:left">
+                            <h3 class="stage_title">STAGE 1: STRUCTURED JUDGEMENT REVIEW </h3><br />
+                            <div class="lable_title">
+                                <h2>PHASE OF CARE: INITIAL MANAGEMENT (FIRST 24 HOURS) </h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        <textarea class="form-control" rows="5" id="taInitialManagement" name="taInitialManagement" placeholder="Please record your explicit judgements about the quality of care the patient received and whether it was in accordance with current good practice (for example, your professional standards or your professional perspective). If there is any other information that you think is important or relevant that you wish to comment on then please do so."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <select class="form-control" id="ddlInitialManagementRating" name="ddlInitialManagementRating">
+                                            <option value="-1">Select</option>
+                                            <option value="1 (Very Poor Care)">1 (Very Poor Care)</option>
+                                            <option value="2 (Poor Care)">2 (Poor Care)</option>
+                                            <option value="3 (Adequate Care)">3 (Adequate Care)</option>
+                                            <option value="4 (Good Care)">4 (Good Care)</option>
+                                            <option value="5 (Excellent Care)">5 (Excellent Care)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: ONGOING CARE</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        <textarea class="form-control" rows="5" id="taOngoingCare" name="taOngoingCare"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <select class="form-control" id="ddlOnGoingCareRating" name="ddlOnGoingCareRating">
+                                            <option value="-1">Select</option>
+                                            <option value="1 (Very Poor Care)">1 (Very Poor Care)</option>
+                                            <option value="2 (Poor Care)">2 (Poor Care)</option>
+                                            <option value="3 (Adequate Care)">3 (Adequate Care)</option>
+                                            <option value="4 (Good Care)">4 (Good Care)</option>
+                                            <option value="5 (Excellent Care)">5 (Excellent Care)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: CARE DURING A PROCEDURE (EXCLUDING IV CANNULATION)</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        <textarea class="form-control" rows="5" id="taCareDuringProcedure" name="taCareDuringProcedure"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <select class="form-control" id="ddlCareDuringProcedureCareRating" name="ddlCareDuringProcedureCareRating">
+                                            <option value="-1">Select</option>
+                                            <option value="1 (Very Poor Care)">1 (Very Poor Care)</option>
+                                            <option value="2 (Poor Care)">2 (Poor Care)</option>
+                                            <option value="3 (Adequate Care)">3 (Adequate Care)</option>
+                                            <option value="4 (Good Care)">4 (Good Care)</option>
+                                            <option value="5 (Excellent Care)">5 (Excellent Care)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: END OF LIFE CARE</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        <textarea class="form-control" rows="5" id="taEndLifeCare" name="taEndLifeCare"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <select class="form-control" id="ddlEndLifeCareRating" name="ddlEndLifeCareRating">
+                                            <option value="-1">Select</option>
+                                            <option value="1 (Very Poor Care)">1 (Very Poor Care)</option>
+                                            <option value="2 (Poor Care)">2 (Poor Care)</option>
+                                            <option value="3 (Adequate Care)">3 (Adequate Care)</option>
+                                            <option value="4 (Good Care)">4 (Good Care)</option>
+                                            <option value="5 (Excellent Care)">5 (Excellent Care)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: OVERALL ASSESSMENT</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        <textarea class="form-control" rows="5" id="taOverAllAssessment" name="taOverAllAssessment"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <select class="form-control" id="ddlOverAllAssessmentCareRating" name="ddlOverAllAssessmentCareRating">
+                                            <option value="-1">Select</option>
+                                            <option value="1 (Very Poor Care)">1 (Very Poor Care)</option>
+                                            <option value="2 (Poor Care)">2 (Poor Care)</option>
+                                            <option value="3 (Adequate Care)">3 (Adequate Care)</option>
+                                            <option value="4 (Good Care)">4 (Good Care)</option>
+                                            <option value="5 (Excellent Care)">5 (Excellent Care)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        @*<button id="" class="btn btn-primary btn-lg">Previous</button>*@
+                        <button id="BtnNext" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,128 @@
+E:\NHS-V1\NHS\NHS\bin\NHS.dll.config
+E:\NHS-V1\NHS\NHS\bin\NHS.dll
+E:\NHS-V1\NHS\NHS\bin\NHS.pdb
+E:\NHS-V1\NHS\NHS\bin\roslyn\csc.exe
+E:\NHS-V1\NHS\NHS\bin\roslyn\csc.exe.config
+E:\NHS-V1\NHS\NHS\bin\roslyn\csc.rsp
+E:\NHS-V1\NHS\NHS\bin\roslyn\csi.exe
+E:\NHS-V1\NHS\NHS\bin\roslyn\csi.rsp
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\NHS-V1\NHS\NHS\bin\roslyn\System.AppContext.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\System.Collections.Immutable.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\System.IO.FileSystem.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\System.Reflection.Metadata.dll
+E:\NHS-V1\NHS\NHS\bin\roslyn\vbc.exe
+E:\NHS-V1\NHS\NHS\bin\roslyn\vbc.exe.config
+E:\NHS-V1\NHS\NHS\bin\roslyn\vbc.rsp
+E:\NHS-V1\NHS\NHS\bin\roslyn\VBCSCompiler.exe
+E:\NHS-V1\NHS\NHS\bin\roslyn\VBCSCompiler.exe.config
+E:\NHS-V1\NHS\NHS\bin\Antlr3.Runtime.dll
+E:\NHS-V1\NHS\NHS\bin\EntityFramework.dll
+E:\NHS-V1\NHS\NHS\bin\EntityFramework.SqlServer.dll
+E:\NHS-V1\NHS\NHS\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+E:\NHS-V1\NHS\NHS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\NHS-V1\NHS\NHS\bin\Microsoft.Web.Infrastructure.dll
+E:\NHS-V1\NHS\NHS\bin\Newtonsoft.Json.dll
+E:\NHS-V1\NHS\NHS\bin\System.Diagnostics.DiagnosticSource.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.Helpers.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.Mvc.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.Optimization.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.Razor.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Deployment.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.WebPages.dll
+E:\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Razor.dll
+E:\NHS-V1\NHS\NHS\bin\WebGrease.dll
+E:\NHS-V1\NHS\NHS\bin\EntityFramework.xml
+E:\NHS-V1\NHS\NHS\bin\EntityFramework.SqlServer.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.Helpers.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.Mvc.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.Optimization.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.Razor.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.WebPages.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Deployment.xml
+E:\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Razor.xml
+E:\NHS-V1\NHS\NHS\bin\Newtonsoft.Json.xml
+E:\NHS-V1\NHS\NHS\bin\Antlr3.Runtime.pdb
+E:\NHS-V1\NHS\NHS\bin\System.Diagnostics.DiagnosticSource.xml
+E:\NHS-V1\NHS\NHS\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+E:\NHS-V1\NHS\NHS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\NHS-V1\NHS\NHS\obj\Debug\NHS.csproj.CoreCompileInputs.cache
+E:\NHS-V1\NHS\NHS\obj\Debug\NHS.csproj.CopyComplete
+E:\NHS-V1\NHS\NHS\obj\Debug\NHS.dll
+E:\NHS-V1\NHS\NHS\obj\Debug\NHS.pdb
+E:\NHS-V1\NHS\NHS\obj\Debug\NHS.csprojAssemblyReference.cache
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\NHS.dll.config
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\NHS.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\NHS.pdb
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\csc.exe
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\csc.exe.config
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\csc.rsp
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\csi.exe
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\csi.rsp
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\System.AppContext.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\System.Collections.Immutable.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\System.IO.FileSystem.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\System.Reflection.Metadata.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\vbc.exe
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\vbc.exe.config
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\vbc.rsp
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\VBCSCompiler.exe
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\roslyn\VBCSCompiler.exe.config
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Antlr3.Runtime.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\EntityFramework.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\EntityFramework.SqlServer.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Microsoft.Web.Infrastructure.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Newtonsoft.Json.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Diagnostics.DiagnosticSource.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Helpers.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Mvc.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Optimization.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Razor.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Deployment.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.WebPages.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Razor.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\WebGrease.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\EntityFramework.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\EntityFramework.SqlServer.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Helpers.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Mvc.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Optimization.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.Razor.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.WebPages.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Deployment.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Web.WebPages.Razor.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Newtonsoft.Json.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Antlr3.Runtime.pdb
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\System.Diagnostics.DiagnosticSource.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Demo NHS\NHS-V1\NHS\NHS\obj\Debug\NHS.csprojAssemblyReference.cache
+E:\Demo NHS\NHS-V1\NHS\NHS\obj\Debug\NHS.csproj.CoreCompileInputs.cache
+E:\Demo NHS\NHS-V1\NHS\NHS\obj\Debug\NHS.csproj.CopyComplete
+E:\Demo NHS\NHS-V1\NHS\NHS\obj\Debug\NHS.dll
+E:\Demo NHS\NHS-V1\NHS\NHS\obj\Debug\NHS.pdb

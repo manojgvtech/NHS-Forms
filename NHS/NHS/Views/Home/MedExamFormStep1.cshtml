@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "MedExamFormStep1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="active">
+                    <a href="#step-1">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-2">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-3">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-4">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-5">
+                        <h4 class="list-group-item-heading">
+                            Other referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-6">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row setup-content" id="step-1">
+        <div class="col-xs-12 col-lg-12">
+            <form action="/Home/MedExamFormStep1" method="post" id="frmMedExamFormStep1">
+                <div class="lable_title">
+                    <h2>Patient Details (to be pulled from EPR) </h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Patient Name </label>
+                            <input class="form-control" type="text" name="txtPatientName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">MRN</label>
+                            <input class="form-control" type="text" name="txtMRN" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Patient age at time of death </label>
+                            <input class="form-control" type="text" name="txtAge" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Gender </label>
+                            <select class="form-control" name="ddlGender">
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Ward (on discharge) </label>
+                            <input class="form-control" type="text" name="txtDischargeWard" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Consultant (on discharge)</label>
+                            <input class="form-control" type="text" name="txtDischargeConsultant" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Emergency / Planned Admission </label>
+                            <input class="form-control" type="text" name="txtEmergencyAdmission" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Day/ Date of Admission </label>
+                            <input class="form-control input_datepicker" type="text" name="txtDateOfAdmission" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Time of arrival</label>
+                            <input class="form-control input_datepicker" type="text" name="txtTimeOfAdmission" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Day/ Date of Death </label>
+                            <input class="form-control input_datepicker" type="text" name="txtDateOfDeath" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Time of death </label>
+                            <input class="form-control input_datepicker" type="text" name="txtTimeOfDeath" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            <label class="label_part">Primary Diagnosis </label>
+                            <input class="form-control" type="text" name="txtPrimaryDiagnosis" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-block" id="myBtnComorbidities">Charlson Index Comorbidities</button>
+                    </div> <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-block" id="myBtnSecondaryDiagnoses">Secondary Diagnoses</button>
+                    </div>
+                    <br />
+                    <div class="col-md-6">
+                        <label class="label_part">Comments</label>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea class="form-control" rows="5" id="taComments" name="taComments"></textarea>
+                    </div>
+                    @*<div class="col-md-6">
+                            <div class="row_bar">
+                                <label class="label_part">NoK Details: </label>
+                                <input class="form-control" type="text" placeholder="Name">
+                                <input class="form-control" type="text" placeholder="Home Phone no">
+                                <input class="form-control" type="text" placeholder="Mobile no">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row_bar">
+                                <label class="label_part">MEO Notes</label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="pull-right">
+                    <button id="BtnNext" type="submit" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalComorbidities">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Coding-Diagnosis & Procedure</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-bordered" id="assets-data-table">
+                    <tr bgcolor="blue" style="color:white;">
+                        <th>Diagnosis code</th>
+                        <th>Diagnosis description</th>
+
+                    </tr>
+                    <tbody>
+                        <tr style="color:black;color:black" bgcolor="cadetblue">
+                            <td>1</td>
+                            <td>D12.1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalSecondaryDiagnoses">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Coding-Diagnosis & Procedure</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-bordered" id="assets-data-table">
+                    <tr bgcolor="blue" style="color:white;">
+                        <th>Comorbidity flag</th>
+                        <th>Procedure code</th>
+                        <th>Procedure description</th>
+                    </tr>
+                    <tbody>
+                        <tr style="color:black;color:black" bgcolor="cadetblue">
+                            <td>0</td>
+                            <td>H123.3</td>
+                            <th>Repair of  tract</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#myBtnComorbidities").click(function () {
+            $("#myModalComorbidities").modal();
+        });
+        $("#myBtnSecondaryDiagnoses").click(function () {
+            $("#myModalSecondaryDiagnoses").modal();
+        });
+    });
+</script>
+

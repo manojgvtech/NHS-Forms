@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "MedExamFormStep2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled">
+                    <a href="#step-1">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-2">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-3">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-4">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-5">
+                        <h4 class="list-group-item-heading">
+                            Other referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-6">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row setup-content" id="step-2">
+        <div class="col-xs-12 col-lg-12">
+            <form action="/Home/MedExamFormStep2" method="post" id="frmMedExamFormStep2">
+                <div class="col-md-12 well">
+                    <div class="form-section">
+                        <div class="lable_title">
+                            <h2>MEDICAL EXAMINER REVIEW </h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <label class="label_part">Name of ME </label>
+                                    <select class="form-control" id="ddlMEName" name="ddlMEName">
+                                        <option value="-1">Select</option>
+                                        <option value="M K S">M K S</option>
+                                        <option value="P K P">P K P</option>
+                                        <option value="R T O">R T O</option>
+                                        <option value="T K T">T K T</option>
+                                        <option value="D T O">D T O</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <label class="label_part">Name of QAP </label>
+                                    <input class="form-control" type="text" placeholder="" id="txtQAP" name="txtQAP">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbQAPDiscussion" name="cbQAPDiscussion">
+                                    <label class="label_part" for="defaultCheck1">Discussion with QAP complete? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbNotesReview" name="cbNotesReview">
+                                    <label class="label_part" for="defaultCheck2">Notes review complete? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbNoK_Discussion" name="cbNoK_Discussion">
+                                    <label class="label_part" for="defaultCheck3">Discussion with NoK complete? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <label class="label_part">Comments</label>
+                                    <textarea class="form-control" id="taComment" name="taComment"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                </div>
+                </form>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    $(document).ready(function () {
+       
+
+    });
+</script>
+
