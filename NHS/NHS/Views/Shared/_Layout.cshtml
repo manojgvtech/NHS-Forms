@@ -13,6 +13,21 @@
     @Scripts.Render("~/bundles/js")
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        .navbar-nav.side-nav ul .sub-menu li:before, .navbar-nav.side-nav li .sub-menu li:before {
+            font-family: 'Font Awesome 5 Free';
+            content: none !important;
+        }
+
+        .navbar-nav.side-nav ul .sub-menu li, .navbar-nav.side-nav li .sub-menu li {
+            background-color: #d0d0d0;
+            border-bottom: 1px solid #bbbbbb;
+        }
+
+        a.ex3:hover, a.ex3:active {
+            background: grey;
+        }
+    </style>
 </head>
 <body>
     <!--== Start loader Section ==-->
@@ -35,29 +50,52 @@
                     <a href="#"><i class="fas fa-th-list"></i> Reviews <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products1">
-                    <li class="active">
-                        <a href="#">
-                            Inpatient Deaths
+                    <li data-toggle="collapse" data-target="#products4" class="nav-item collapsed active">
+                        @*<a href="/Home/MedicalExaminerDashboard">
+                                Medical Examiner Dashboard
+                            </a>*@
+                        <a href="#">Mortality <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="products4">
+                            <li>
+                                <a href="/Home/MedicalExaminerDashboard">
+                                    Inpatient
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Peads
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    A&E
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="ex3">
+                            National Audits
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            ED Deaths Review
+                        <a href="#" class="ex3">
+                            Specialty
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Pead Deaths review
+                        <a href="#" class="ex3">
+                            Procedures
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Sepsis Review
+                        <a href="#" class="ex3">
+                            Diseases/Condition
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Activity and Coding Review
+                        <a href="#" class="ex3">
+                            Activity and Coding
                         </a>
                     </li>
                 </ul>
@@ -65,33 +103,85 @@
                     <a href="#"><i class="fas fa-th-list"></i> Reports <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products2">
-                    <li class="active">
-                        <a href="/Home/MedicalExaminerDashboard">
-                            Medical Examiner Dashboard
+                    <li data-toggle="collapse" data-target="#products3" class="nav-item collapsed active">
+                        @*<a href="/Home/MedicalExaminerDashboard">
+                                Medical Examiner Dashboard
+                            </a>*@
+                        <a href="#">Mortality <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="products3">
+                            <li>
+                                <a href="/Home/MedicalExaminerDashboard">
+                                    Medical Examiner Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    SJR Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Review Status Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Mortality Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    SJR Patient Report
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="ex3">
+                            National Audits
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            SJR Dashboard
+                        <a href="#" class="ex3">
+                            Specialty
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Review Status Dashboard
+                        <a href="#" class="ex3">
+                            Procedures
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            Mortality Dashboard
+                        <a href="#" class="ex3">
+                            Diseases/Condition
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            SJR Patient Report
+                        <a href="#" class="ex3">
+                            Activity and Coding
                         </a>
                     </li>
                 </ul>
+                <li data-toggle="collapse" data-target="#UserManagementLayout" class="nav-item collapsed active">
+                    <a href="#"><i class="fas fa-th-list"></i> User Management <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="UserManagementLayout">
+                    <li data-toggle="collapse" data-target="#UserManagementScreen" class="nav-item collapsed active">
+                        @*<a href="/Home/MedicalExaminerDashboard">
+                                Medical Examiner Dashboard
+                            </a>*@
+                    <li class="active">
+                        <a href="/UserManagemet/UserDetails">
+                            User Details
+                        </a>
+                    </li>
+
+                    </li>
+                </ul>
+
             </ul>
+
 
             <ul class="navbar-nav top-nav justify-content-end">
                 <li class="nav-item active">

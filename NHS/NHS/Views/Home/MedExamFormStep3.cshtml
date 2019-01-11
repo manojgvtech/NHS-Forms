@@ -64,8 +64,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbMCCSIssue" name="cbMCCSIssue">
-                                    <label class="label_part" for="defaultCheck1">Issue MCCD </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+                                            if (sessionMedicalExaminerDecision.MCCDissue == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbMCCSIssue" name="cbMCCSIssue" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Issue MCCD </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbMCCSIssue" name="cbMCCSIssue">
+                                                <label class="label_part" for="defaultCheck1">Issue MCCD </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbMCCSIssue" name="cbMCCSIssue">
+                                            <label class="label_part" for="defaultCheck1">Issue MCCD </label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -75,92 +95,389 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row" ">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferral" name="cbCoronerReferral">
-                                    <label class="label_part" for="defaultCheck1">Coroner Referral </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+                                            if (sessionMedicalExaminerDecision.CornerReferral == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferral" name="cbCoronerReferral" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Coroner Referral </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferral" name="cbCoronerReferral">
+                                                <label class="label_part" for="defaultCheck1">Coroner Referral </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferral" name="cbCoronerReferral">
+                                            <label class="label_part" for="defaultCheck1">Coroner Referral </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar">
-                                    <select class="form-control" id="ddlCoronerReferralResonName" name="ddlCoronerReferralResonName">
-                                        <option value="-1">Select</option>
-                                        <option value="M K S">M K S</option>
-                                        <option value="P K P">P K P</option>
-                                        <option value="R T O">R T O</option>
-                                        <option value="T K T">T K T</option>
-                                        <option value="D T O">D T O</option>
-                                    </select>
+
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionCoronerReferralReason = (NHS.Models.CoronerReferralReason)Session["sessionCoronerReferralReason"];
+                                            string strCoronerReferralReasonName = sessionCoronerReferralReason.ReasonName;
+
+                                            <select class="form-control" id="ddlCoronerReferralResonName" name="ddlCoronerReferralResonName">
+                                                @{
+                                                    if ("M K S" == strCoronerReferralReasonName)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S" selected>M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+                                                    if ("P K P" == strCoronerReferralReasonName)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P" selected>P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+                                                    if ("R T O" == strCoronerReferralReasonName)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O" selected>R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+
+                                                    if ("T K T" == strCoronerReferralReasonName)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T" selected>T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+                                                    if ("D T O" == strCoronerReferralReasonName)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O" selected>D T O</option>
+                                                    }
+
+                                                }
+                                            </select>
+
+                                                    }
+                                                    else
+                                                    {
+                                            <select class="form-control" id="ddlCoronerReferralResonName" name="ddlCoronerReferralResonName">
+                                                <option value="-1">Select</option>
+                                                <option value="M K S">M K S</option>
+                                                <option value="P K P">P K P</option>
+                                                <option value="R T O">R T O</option>
+                                                <option value="T K T">T K T</option>
+                                                <option value="D T O">D T O</option>
+                                            </select>
+                                                    }
+                                    }
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbHospitalPostMortem" name="cbHospitalPostMortem">
-                                    <label class="label_part" for="defaultCheck1">Hospital post-mortem </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+                                            if (sessionMedicalExaminerDecision.HospitalPostMortem == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbHospitalPostMortem" name="cbHospitalPostMortem" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Hospital post-mortem </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbHospitalPostMortem" name="cbHospitalPostMortem">
+                                                <label class="label_part" for="defaultCheck1">Hospital post-mortem </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbHospitalPostMortem" name="cbHospitalPostMortem">
+                                            <label class="label_part" for="defaultCheck1">Hospital post-mortem </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.HospitalPostMortem == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row mb-3">
-                                    <input class="form-control" type="text" placeholder="" id="txtCouseOfDeath" name="txtCouseOfDeath">
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+                                            string strCauseOfDeath = sessionMedicalExaminerDecision.CauseOfDeath;
+                                            if (sessionMedicalExaminerDecision.HospitalPostMortem == true)
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtCouseOfDeath" name="txtCouseOfDeath" value="@strCauseOfDeath">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtCouseOfDeath" name="txtCouseOfDeath">
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="text" placeholder="" id="txtCouseOfDeath" name="txtCouseOfDeath">
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row mb-3">
-                                    <input class="form-control" type="text" placeholder="">
+                                    <input class="form-control" type="text" placeholder="" readonly="readonly">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row mb-3">
-                                    <input class="form-control" type="text" placeholder="">
+                                    <input class="form-control" type="text" placeholder="" readonly="readonly">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row mb-3">
-                                    <input class="form-control" type="text" placeholder="">
+                                    <input class="form-control" type="text" placeholder="" readonly="readonly">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbDeathCertificate" name="cbDeathCertificate">
-                                    <label class="label_part" for="defaultCheck1">Death Certificate Complete? </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.DeathCertificate == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbDeathCertificate" name="cbDeathCertificate" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Death Certificate Complete? </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbDeathCertificate" name="cbDeathCertificate">
+                                                <label class="label_part" for="defaultCheck1">Death Certificate Complete? </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbDeathCertificate" name="cbDeathCertificate">
+                                            <label class="label_part" for="defaultCheck1">Death Certificate Complete? </label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferralComplete" name="cbCoronerReferralComplete">
-                                    <label class="label_part" for="defaultCheck1">Coroner's referral Complete? </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.CornerReferralComplete == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferralComplete" name="cbCoronerReferralComplete" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Coroner's referral Complete? </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferralComplete" name="cbCoronerReferralComplete">
+                                                <label class="label_part" for="defaultCheck1">Coroner's referral Complete? </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerReferralComplete" name="cbCoronerReferralComplete">
+                                            <label class="label_part" for="defaultCheck1">Coroner's referral Complete? </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div><br>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1">(If Applicable) Coroner's decision </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.CornerReferralComplete == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1">(If Applicable) Coroner's decision </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1">(If Applicable) Coroner's decision </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1">(If Applicable) Coroner's decision </label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionInquest" name="cbCoronerDecisionInquest">
-                                    <label class="label_part" for="defaultCheck1">Inquest </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.CoronerDecisionInquest == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionInquest" name="cbCoronerDecisionInquest" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Inquest </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionInquest" name="cbCoronerDecisionInquest">
+                                                <label class="label_part" for="defaultCheck1">Inquest </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionInquest" name="cbCoronerDecisionInquest">
+                                            <label class="label_part" for="defaultCheck1">Inquest </label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionPostMortem" name="cbCoronerDecisionPostMortem">
-                                    <label class="label_part" for="defaultCheck1">Post-Mortem </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.CoronerDecisionPostMortem == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionPostMortem" name="cbCoronerDecisionPostMortem" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Post-Mortem </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionPostMortem" name="cbCoronerDecisionPostMortem">
+                                                <label class="label_part" for="defaultCheck1">Post-Mortem </label>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionPostMortem" name="cbCoronerDecisionPostMortem">
+                                            <label class="label_part" for="defaultCheck1">Post-Mortem </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecision100A" name="cbCoronerDecision100A">
-                                    <label class="label_part" for="defaultCheck1">100A </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.CoronerDecision100A == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecision100A" name="cbCoronerDecision100A" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">100A </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecision100A" name="cbCoronerDecision100A">
+                                                <label class="label_part" for="defaultCheck1">100A </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecision100A" name="cbCoronerDecision100A">
+                                            <label class="label_part" for="defaultCheck1">100A </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionGPIssue" name="cbCoronerDecisionGPIssue">
-                                    <label class="label_part" for="defaultCheck1">GP Issue </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                                            if (sessionMedicalExaminerDecision.CoronerDecisionGPissue == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionGPIssue" name="cbCoronerDecisionGPIssue" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">GP Issue </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionGPIssue" name="cbCoronerDecisionGPIssue">
+                                                <label class="label_part" for="defaultCheck1">GP Issue </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbCoronerDecisionGPIssue" name="cbCoronerDecisionGPIssue">
+                                            <label class="label_part" for="defaultCheck1">GP Issue </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                         </div>
@@ -168,16 +485,68 @@
                 </div>
                 <div class="pull-right">
                     <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
-                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                    <button class="btn btn-primary btn-lg" id="btnClose3">Close</button>
                 </div>
-                </form>
+            </form>
         </div>
     </div>
-   
-</div>
 
+</div>
+<div class="modal fade" id="modelClose3">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose3Yes">Yes</button>
+                        </div>                      
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose3" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
 <script>
-    $(document).ready(function () 
+    $(document).ready(function () {
+        $("#btnClose3").click(function () {
+            $("#modelClose3").modal();
+        });
     });
+</script>
+<script type="text/javascript">
+$(function () {
+
+     $("#btnModelClose3").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+    
+});
 </script>
 

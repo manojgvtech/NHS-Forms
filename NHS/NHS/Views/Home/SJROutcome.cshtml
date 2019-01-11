@@ -138,13 +138,13 @@
                         </div>
 
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="" id="txtDateReceived" name="txtDateReceived">
+                            <input class="form-control input_datepicker" type="text" placeholder="" id="txtDateReceived" name="txtDateReceived">
                         </div>
                         <div class="col-md-12">
                             <label class="label_part">Comments</label>
                         </div>
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="taRCAOutcomeComments" name="tacomment"></textarea>
+                            <textarea class="form-control" rows="5" id="taRCAOutcomeComments" name="taRCAOutcomeComments"></textarea>
                         </div>
                     </div><br />
                     <div class="lable_title">
@@ -193,7 +193,7 @@
                             <label class="label_part">Comments</label>
                         </div>
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="taMortalitySurveillanceComments" name="taComments"></textarea>
+                            <textarea class="form-control" rows="5" id="taMortalitySurveillanceComments" name="taMortalitySurveillanceComments"></textarea>
                         </div>
                         <div class="col-md-12">
                             <label class="label_part">Feedback to NoK</label>
@@ -203,11 +203,61 @@
                         </div>
                     </div>
                     <div class="col-md-12" align="center">
-                        <input type="button" class="btn btn-info" value="Reset">
-                        <input type="submit" name="btnSumbit" class="btn btn-info" value="Submit">
+                        @*<input type="button" class="btn btn-info" value="Reset">
+                        <input type="submit" name="btnSumbit" class="btn btn-info" value="Submit">*@
+                        <button id="btnSave" type="submit" class="btn btn-primary btn-lg" name="btnSave">Save </button>
+
                     </div>
                 </div>
             </div>
-            </form>
+        </form>
+        <button class="btn btn-primary btn-lg" id="btnClose">Close</button>
     </div>
 </div>
+<div class="modal fade" id="modelClose">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnCloseYes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose" data-dismiss="modal">NO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnClose").click(function () {
+            $("#modelClose").modal();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+$(function () {
+    $("#btnModelClose").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+});
+</script>

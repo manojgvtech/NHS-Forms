@@ -6,47 +6,67 @@
     <div class="row">
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-2">
-                    <div class="row_bar">
-                        <input class="form-control input_datepicker" type="text" placeholder="Start Date">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="row_bar">
-                        <input class="form-control input_datepicker" type="text" placeholder="End Date">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="row_bar">
-                        <select class="form-control">
-                            <option>Specialty</option>
-                            <option>cfdt</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row_bar">
-                        <select class="form-control">
-                            <option>Ward</option>
-                            <option>Ward No</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row_bar">
-                        <select class="form-control">
-                            <option>
-                                Discharge consultant
-                            </option>
-                            <option>cfdt</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 row_bar">
+                <div class="col-md-10">
                     <input class="form-control" type="text" placeholder="Search Text" style="text-align:center">
                 </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" id="BtnSearch">Search Filter</button>
+                </div>
+            </div>
+            <div class="row" id="divSearch" style="display:none;">
+                <br />
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="row_bar">
+                                <input class="form-control input_datepicker" type="text" placeholder="Start Date">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row_bar">
+                                <input class="form-control input_datepicker" type="text" placeholder="End Date">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row_bar">
+                                <select class="form-control">
+                                    <option>Specialty</option>
+                                    <option>cfdt</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row_bar">
+                                <select class="form-control">
+                                    <option>Ward</option>
+                                    <option>Ward No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row_bar">
+                                <select class="form-control">
+                                    <option>
+                                        Discharge consultant
+                                    </option>
+                                    <option>cfdt</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-left:800px">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-block" id="myBtnSearch">Search</button>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary btn-block" id="btnDivHide">Close</button>
+                    </div>
+                </div>
+                <br />
             </div>
         </div>
         <div class="col-md-2">
@@ -58,92 +78,106 @@
             </div>
         </div>
     </div>
-
-
-
-    <table class="table table-bordered" id="assets-data-table">
-        <tr bgcolor="#005db3" style="color:white;">
-            <th>Patient Id</th>
-            <th>Patient Name</th>
-            <th>DOB</th>
-            <th>Date of Admission</th>
-            <th>Date of Death</th>
-            <th>Ward of Death</th>
-            <th>Discharge Consultant</th>
-            <th>Discharge Speciality</th>
-            <th>Admission Type</th>
-            <th>Medical Examiner Triage Review</th>
-            <th>SJR Review Status</th>
-            <th>SJR Review 2 Status</th>
-            <th>Coding Review Status</th>
-        </tr>
-        <tbody>
-            <tr style="color:black;color:black" bgcolor="cadetblue">
-                @*<td><a href="~/Views/CORS/CORSPatient.cshtml">M11231</a></td>*@
-                <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>19/09/99</td>
-                <td>21/10/18</td>
-                <td>21/11/18</td>
-                <td>Abbey</td>
-                <td>B Johnson</td>
-                <td>T & O</td>
-                <td>Elective</td>
-                <td style="text-align:center"><a href="/Home/MedExamFormStep1"><img src="~/images/RedC.png" width="30" height="30"></a></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GeryImg.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-            </tr>
-
-            <tr style="color:black;color:black" bgcolor="cadetblue">
-                <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>19/09/99</td>
-                <td>21/10/18</td>
-                <td>21/11/18</td>
-                <td>Abbey</td>
-                <td>B Johnson</td>
-                <td>T & O</td>
-                <td>Elective</td>
-                <td style="text-align:center"><img src="~/images/RedC.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GeryImg.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-            </tr>
-
-            <tr style="color:black;color:black" bgcolor="cadetblue">
-                <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>19/09/99</td>
-                <td>21/10/18</td>
-                <td>21/11/18</td>
-                <td>Abbey</td>
-                <td>B Johnson</td>
-                <td>T & O</td>
-                <td>Elective</td>
-                <td style="text-align:center"><img src="~/images/RedC.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GeryImg.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-            </tr>
-
-            <tr style="color:black;color:black" bgcolor="cadetblue">
-                <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
-                <td>19/09/99</td>
-                <td>21/10/18</td>
-                <td>21/11/18</td>
-                <td>Abbey</td>
-                <td>B Johnson</td>
-                <td>T & O</td>
-                <td>Elective</td>
-                <td style="text-align:center"> <img src="~/images/RedC.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GeryImg.png" width="30" height="30"></td>
-                <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
-            </tr>
-        </tbody>
-    </table>
+    <br />
 </div>
+
+<br />
+<br />
+<table class="table table-bordered" id="assets-data-table">
+    <tr bgcolor="#005db3" style="color:white;">
+        <th>Patient Id</th>
+        <th>Patient Name</th>
+        <th>DOB</th>
+        <th>Date of Admission</th>
+        <th>Date of Death</th>
+        <th>Ward of Death</th>
+        <th>Discharge Consultant</th>
+        <th>Discharge Speciality</th>
+        <th>Admission Type</th>
+        <th>Medical Examiner Triage Review</th>
+        <th>SJR Review Status</th>
+        <th>SJR Review 2 Status</th>
+        <th>Coding Review Status</th>
+    </tr>
+    <tbody>
+        <tr style="color:black;color:black" bgcolor="cadetblue">
+            @*<td><a href="~/Views/CORS/CORSPatient.cshtml">M11231</a></td>*@
+            <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>19/09/99</td>
+            <td>21/10/18</td>
+            <td>21/11/18</td>
+            <td>Abbey</td>
+            <td>B Johnson</td>
+            <td>T & O</td>
+            <td>Elective</td>
+            <td style="text-align:center"><a href="/Home/MedExamForm"><img src="~/images/RedC.png" width="27" height="27"></a></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+            <td style="text-align:center"><img src="~/images/GeryImg.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+        </tr>
+
+        <tr style="color:black;color:black" bgcolor="cadetblue">
+            <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>19/09/99</td>
+            <td>21/10/18</td>
+            <td>21/11/18</td>
+            <td>Abbey</td>
+            <td>B Johnson</td>
+            <td>T & O</td>
+            <td>Elective</td>
+            <td style="text-align:center"><img src="~/images/RedC.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+            <td style="text-align:center"><img src="~/images/GeryImg.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+        </tr>
+
+        <tr style="color:black;color:black" bgcolor="cadetblue">
+            <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>19/09/99</td>
+            <td>21/10/18</td>
+            <td>21/11/18</td>
+            <td>Abbey</td>
+            <td>B Johnson</td>
+            <td>T & O</td>
+            <td>Elective</td>
+            <td style="text-align:center"><img src="~/images/RedC.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+            <td style="text-align:center"><img src="~/images/GeryImg.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+        </tr>
+
+        <tr style="color:black;color:black" bgcolor="cadetblue">
+            <td>@Html.ActionLink("M11231", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>@Html.ActionLink("John Brown", "CORSPatient", new { Id = "M11231", PName = "John Brown", DOB = "19/09/99" })</td>
+            <td>19/09/99</td>
+            <td>21/10/18</td>
+            <td>21/11/18</td>
+            <td>Abbey</td>
+            <td>B Johnson</td>
+            <td>T & O</td>
+            <td>Elective</td>
+            <td style="text-align:center"> <img src="~/images/RedC.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+            <td style="text-align:center"><img src="~/images/GeryImg.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready(function () {
+        $("#btnDivHide").click(function () {
+            document.getElementById("divSearch").style.display = "none";
+        });
+        $("#BtnSearch").click(function () {
+            document.getElementById("divSearch").style.display = "block";
+
+        });
+    });
+</script>
 
 

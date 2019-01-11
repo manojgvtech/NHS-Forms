@@ -939,7 +939,7 @@
     </AssociationSet>
     <EntitySet Name="DischargeConsultants" EntityType="NHSModel.DischargeConsultant" />
     <EntitySet Name="PatientDetails" EntityType="NHSModel.PatientDetail" />
-    <AssociationSet Name="FK__PatientDe__Disch__245D67DE" Association="NHSModel.FK__PatientDe__Disch__245D67DE">
+    <AssociationSet Name="FK__PatientDe__Disch__2B0A656D" Association="NHSModel.FK__PatientDe__Disch__2B0A656D">
       <End Role="DischargeConsultant" EntitySet="DischargeConsultants" />
       <End Role="PatientDetail" EntitySet="PatientDetails" />
     </AssociationSet>
@@ -954,7 +954,7 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__PatientDe__Disch__245D67DE" FromRole="DischargeConsultant" ToRole="PatientDetail" />
+    <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="DischargeConsultant" ToRole="PatientDetail" />
   </EntityType>
   <EntityType Name="PatientDetail">
     <Key>
@@ -973,14 +973,15 @@
     <Property Name="DateofDeath" Type="DateTime" Precision="3" />
     <Property Name="TimeofDeath" Type="DateTime" Precision="3" />
     <Property Name="PrimaryDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CodingIssueIdentified" Type="Boolean" />
     <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="DischargeConsultant" Relationship="NHSModel.FK__PatientDe__Disch__245D67DE" FromRole="PatientDetail" ToRole="DischargeConsultant" />
+    <NavigationProperty Name="DischargeConsultant" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="PatientDetail" ToRole="DischargeConsultant" />
   </EntityType>
-  <Association Name="FK__PatientDe__Disch__245D67DE">
+  <Association Name="FK__PatientDe__Disch__2B0A656D">
     <End Type="NHSModel.DischargeConsultant" Role="DischargeConsultant" Multiplicity="0..1" />
     <End Type="NHSModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
     <ReferentialConstraint>

@@ -1,5 +1,7 @@
-﻿
+﻿@model NHS.Models.PatientDetail
 @{
+    /**/
+
     ViewBag.Title = "MedExamFormStep1";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -55,97 +57,336 @@
     </div>
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12 col-lg-12">
-            <form action="/Home/MedExamFormStep1" method="post" id="frmMedExamFormStep1">
+            <form action="/Home/MedExamFormStep1" method="post" id="frmMedExamFormStep1" >
                 <div class="lable_title">
                     <h2>Patient Details (to be pulled from EPR) </h2>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Patient Name </label>
-                            <input class="form-control" type="text" name="txtPatientName" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strPatientName = sessionPatientDetails.PatientName;
+                                    <label class="label_part">Patient Name </label>
+                                    <input class="form-control" type="text" name="txtPatientName" placeholder="" value="@strPatientName">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Patient Name </label>
+                                    <input class="form-control" type="text" name="txtPatientName" placeholder="">
+                                }
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">MRN</label>
-                            <input class="form-control" type="text" name="txtMRN" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strMRN = sessionPatientDetails.MRN;
+                                    <label class="label_part">MRN</label>
+                                    <input class="form-control" type="text" name="txtMRN" placeholder="" value="@strMRN">
+                                }
+                                else
+                                {
+                                    <label class="label_part">MRN</label>
+                                    <input class="form-control" type="text" name="txtMRN" placeholder="">
+                                }
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Patient age at time of death </label>
-                            <input class="form-control" type="text" name="txtAge" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    int intAge = Convert.ToInt32(sessionPatientDetails.Age);
+                                    <label class="label_part">Patient age at time of death </label>
+                                    <input class="form-control" type="text" name="txtAge" placeholder="" value="@intAge">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Patient age at time of death </label>
+                                    <input class="form-control" type="text" name="txtAge" placeholder="">
+                                }
+                            }
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
                             <label class="label_part">Gender </label>
-                            <select class="form-control" name="ddlGender">
-                                <option value="1">Male</option>
-                                <option value="0">Female</option>
-                            </select>
+
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    int intGender = Convert.ToInt32(sessionPatientDetails.Gender);
+
+                                    <select class="form-control" name="ddlGender">
+                                        @{
+                                            if (1 == intGender)
+                                            {
+                                                <option value="1" selected>Male</option>
+                                                <option value="0">Female</option>
+                                            }
+                                            if (0 == intGender)
+                                            {
+                                                <option value="1">Male</option>
+                                                <option value="0" selected>Female</option>
+                                            }
+                                        }
+                                    </select>
+                                            }
+                                            else
+                                            {
+                                    <select class="form-control" name="ddlGender">
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+                                    </select>
+                                            }
+                            }
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Ward (on discharge) </label>
-                            <input class="form-control" type="text" name="txtDischargeWard" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strDischargeWard = sessionPatientDetails.DischargeWard;
+                                    <label class="label_part">Ward (on discharge) </label>
+                                    <input class="form-control" type="text" name="txtDischargeWard" placeholder="" value="@strDischargeWard">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Ward (on discharge) </label>
+                                    <input class="form-control" type="text" name="txtDischargeWard" placeholder="">
+                                }
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Consultant (on discharge)</label>
-                            <input class="form-control" type="text" name="txtDischargeConsultant" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionDischargeConsultant = (NHS.Models.DischargeConsultant)Session["sessionDischargeConsultant"];
+                                    string strDischargeConsultantName = sessionDischargeConsultant.DischargeConsultantName;
+                                    <label class="label_part">Consultant (on discharge)</label>
+                                    <input class="form-control" type="text" name="txtDischargeConsultant" placeholder="" value="@strDischargeConsultantName">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Consultant (on discharge)</label>
+                                    <input class="form-control" type="text" name="txtDischargeConsultant" placeholder="">
+                                }
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Emergency / Planned Admission </label>
-                            <input class="form-control" type="text" name="txtEmergencyAdmission" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strEmergencyAdmission = sessionPatientDetails.EmergencyAdmission;
+                                    <label class="label_part">Emergency / Planned Admission </label>
+                                    <input class="form-control" type="text" name="txtEmergencyAdmission" placeholder="" value="@strEmergencyAdmission">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Emergency / Planned Admission </label>
+                                    <input class="form-control" type="text" name="txtEmergencyAdmission" placeholder="">
+                                }
+                            }
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Day/ Date of Admission </label>
-                            <input class="form-control input_datepicker" type="text" name="txtDateOfAdmission" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strDateofAdmission = Convert.ToString(sessionPatientDetails.DateofAdmission);
+                                    <label class="label_part">Day/ Date of Admission </label>
+                                    <input class="form-control" type="text" name="txtDateOfAdmission" placeholder="" value="@strDateofAdmission">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Day/ Date of Admission </label>
+                                    <input class="form-control input_datepicker" type="text" name="txtDateOfAdmission" placeholder="">
+                                }
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Time of arrival</label>
-                            <input class="form-control input_datepicker" type="text" name="txtTimeOfAdmission" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strTimeofAdmission = Convert.ToString(sessionPatientDetails.TimeofAdmission);
+                                    <label class="label_part">Time of arrival</label>
+                                    <input class="form-control" type="time" name="txtTimeOfAdmission" placeholder="" value="@strTimeofAdmission">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Time of arrival</label>
+                                    <input class="form-control" type="time" name="txtTimeOfAdmission" placeholder="">
+                                }
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Day/ Date of Death </label>
-                            <input class="form-control input_datepicker" type="text" name="txtDateOfDeath" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strDateofDeath = Convert.ToString(sessionPatientDetails.DateofDeath);
+
+                                    <label class="label_part">Day/ Date of Death </label>
+                                    <input class="form-control" type="text" name="txtDateOfDeath" placeholder="" value="@strDateofDeath">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Day/ Date of Death </label>
+                                    <input class="form-control input_datepicker" type="text" name="txtDateOfDeath" placeholder="">
+                                }
+                            }
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Time of death </label>
-                            <input class="form-control input_datepicker" type="text" name="txtTimeOfDeath" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strTimeofDeath = Convert.ToString(sessionPatientDetails.TimeofDeath);
+
+                                    <label class="label_part">Time of death </label>
+                                    <input class="form-control" type="time" name="txtTimeOfDeath" placeholder="" value="@strTimeofDeath">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Time of death </label>
+                                    <input class="form-control" type="time" name="txtTimeOfDeath" placeholder="">
+                                }
+                            }
+
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row_bar">
-                            <label class="label_part">Primary Diagnosis </label>
-                            <input class="form-control" type="text" name="txtPrimaryDiagnosis" placeholder="">
+                            @{
+                                if (Session["BtnPrevious"] != null)
+                                {
+                                    var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                    string strPrimaryDiagnosis = sessionPatientDetails.PrimaryDiagnosis;
+                                    <label class="label_part">Primary Diagnosis </label>
+                                    <input class="form-control" type="text" name="txtPrimaryDiagnosis" placeholder="" value="@strPrimaryDiagnosis">
+                                }
+                                else
+                                {
+                                    <label class="label_part">Primary Diagnosis </label>
+                                    <input class="form-control" type="text" name="txtPrimaryDiagnosis" placeholder="">
+                                }
+                            }
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <button type="button" class="btn btn-primary btn-block" id="myBtnComorbidities">Charlson Index Comorbidities</button>
-                    </div> <div class="col-md-6">
-                        <button type="button" class="btn btn-primary btn-block" id="myBtnSecondaryDiagnoses">Secondary Diagnoses</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-block" id="myBtnSecondaryDiagnoses">Secondary Diagnoses(1)</button>
                     </div>
                     <br />
+                    <br />
+                    <div class="col-md-4">
+                        <label class="label_part">Coding issue identified?</label>
+                    </div>
+
+                    <div class="col-md-0">
+                        @{
+                            if (Session["BtnPrevious"] != null)
+                            {
+                                var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                if (sessionPatientDetails.CodingIssueIdentified == true)
+                                {
+                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbCodingIssueIdentifiedYes" name="cbCodingIssueIdentifiedYes" checked="checked">
+                                }
+                            }
+                            else
+                            {
+                                <input class="form-checkbox-input" type="checkbox" value="" id="cbCodingIssueIdentifiedYes" name="cbCodingIssueIdentifiedYes">
+                            }
+                        }
+
+                    </div>
+                    <div class="col-md-1">
+                        @{
+                            if (Session["BtnPrevious"] != null)
+                            {
+                                var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                if (sessionPatientDetails.CodingIssueIdentified == true)
+                                {
+                                    <label class="label_part" for="defaultCheck1">Yes</label>
+                                }
+                            }
+                            else
+                            {
+                                <label class="label_part" for="defaultCheck1">Yes</label>
+                            }
+                        }
+
+                    </div>
+
+                    <div class="col-md-0">
+                        <input class="form-checkbox-input" type="checkbox" value="" id="cbCodingIssueIdentifiedNo" name="cbCodingIssueIdentifiedNo">
+                    </div>
+                    <div class="col-md-1">
+                        <label class="label_part" for="defaultCheck1">No</label>
+                    </div>
+                    <br /><br />
+
                     <div class="col-md-6">
-                        <label class="label_part">Comments</label>
+                        <label class="label_part">Comments on coding</label>
                     </div>
                     <div class="col-md-12">
-                        <textarea class="form-control" rows="5" id="taComments" name="taComments"></textarea>
+                        @{
+                            if (Session["BtnPrevious"] != null)
+                            {
+                                var sessionPatientDetails = (NHS.Models.PatientDetail)Session["sessionPatientDetails"];
+                                string strComments = sessionPatientDetails.Comments;
+                                <textarea class="form-control" rows="5" id="taComments" name="taComments">@strComments</textarea>
+                            }
+                            else
+                            {
+                                <textarea class="form-control" rows="5" id="taComments" name="taComments" placeholder=""></textarea>
+                            }
+                        }
+
                     </div>
                     @*<div class="col-md-6">
                             <div class="row_bar">
@@ -163,7 +404,8 @@
                         </div>*@
                 </div>
                 <div class="pull-right">
-                    <button id="BtnNext" type="submit" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                    <button id="BtnNext" type="submit" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                    <button class="btn btn-primary btn-lg" id="btnClose1">Close</button>
                 </div>
             </form>
         </div>
@@ -242,9 +484,47 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modelClose1">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose1Yes">Yes</button>
+                        </div>                        
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose1" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
 <script>
-
     $(document).ready(function () {
         $("#myBtnComorbidities").click(function () {
             $("#myModalComorbidities").modal();
@@ -252,6 +532,123 @@
         $("#myBtnSecondaryDiagnoses").click(function () {
             $("#myModalSecondaryDiagnoses").modal();
         });
+        $("#btnClose1").click(function () {
+            $("#modelClose1").modal();
+        });
     });
 </script>
+
+@*<script>
+    function validate(form) {
+        var returnValue = true;
+        var vPatientName = form.txtPatientName.value;
+        var vMRN = form.txtMRN.value;
+        var vAge = form.txtAge.value;
+        var vDischargeWard = form.txtDischargeWard.value;
+        var vDischargeConsultant = form.txtDischargeConsultant.value;
+        var vEmergencyAdmission = form.txtEmergencyAdmission.value;
+        var vDateOfAdmission = form.txtDateOfAdmission.value;
+        var vTimeOfAdmission = form.txtTimeOfAdmission.value;
+        var vDateOfDeath = form.txtDateOfDeath.value;
+        var vTimeOfDeath = form.txtTimeOfDeath.value;
+        var vPrimaryDiagnosis = form.txtPrimaryDiagnosis.value;      
+        var vComments = form.taComments.value;
+      
+        if (vPatientName.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk patient name");
+            document.frmMedExamFormStep1.txtPatientName.focus();
+            return returnValue;
+        }
+
+        if (vMRN.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk MRN");
+            document.frmMedExamFormStep1.txtMRN.focus();
+            return returnValue;
+        }
+
+        if (vAge.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk age");
+            document.frmMedExamFormStep1.txtAge.focus();
+            return returnValue;
+        }
+
+        if (vDischargeWard.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk discharge ward");
+            document.frmMedExamFormStep1.txtDischargeWard.focus();
+            return returnValue;
+        }
+
+        if (vDischargeConsultant.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk discharge consultant ");
+            document.frmMedExamFormStep1.txtDischargeConsultant.focus();
+            return returnValue;
+        }
+
+        if (vEmergencyAdmission.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk emergency admission ");
+            document.frmMedExamFormStep1.txtDateOfAdmission.focus();
+            return returnValue;
+        }
+
+        if (vDateOfAdmission.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk date of admission ");
+            document.frmMedExamFormStep1.txtTimeOfAdmission.focus();
+            return returnValue;
+        }
+
+        if (vTimeOfAdmission.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk time of admission ");
+            document.frmMedExamFormStep1.txtTimeOfAdmission.focus();
+            return returnValue;
+        }
+
+        if (vDateOfDeath.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk date of death");
+            document.frmMedExamFormStep1.txtDateOfDeath.focus();
+            return returnValue;
+        }
+
+        if (vTimeOfDeath.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk time of death");
+            document.frmMedExamFormStep1.txtTimeOfDeath.focus();
+            return returnValue;
+        }
+
+        if (vPrimaryDiagnosis.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk primary diagnosis");
+            document.frmMedExamFormStep1.txtPrimaryDiagnosis.focus();
+            return returnValue;
+        }
+
+        if (vComments.length == 0) {
+            returnValue = false;
+            alert("Cannot be balnk comment");
+            document.frmMedExamFormStep1.taComments.focus();
+            return returnValue;
+        }
+
+        return returnValue;
+    }
+</script>*@
+<script type="text/javascript">
+$(function () {
+
+    $("#btnModelClose1").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+   
+});
+</script>
+
 

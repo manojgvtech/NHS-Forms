@@ -181,6 +181,7 @@
           <Property Name="DateofDeath" Type="datetime" />
           <Property Name="TimeofDeath" Type="datetime" />
           <Property Name="PrimaryDiagnosis" Type="varchar(max)" />
+          <Property Name="CodingIssueIdentified" Type="bit" />
           <Property Name="Comments" Type="varchar(max)" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreateDate" Type="datetime" />
@@ -444,7 +445,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientDe__Disch__245D67DE">
+        <Association Name="FK__PatientDe__Disch__2B0A656D">
           <End Role="DischargeConsultant" Type="Self.DischargeConsultant" Multiplicity="0..1" />
           <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -820,7 +821,7 @@
             <End Role="PatientMap" EntitySet="PatientMap" />
             <End Role="OtherReferral" EntitySet="OtherReferral" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientDe__Disch__245D67DE" Association="Self.FK__PatientDe__Disch__245D67DE">
+          <AssociationSet Name="FK__PatientDe__Disch__2B0A656D" Association="Self.FK__PatientDe__Disch__2B0A656D">
             <End Role="DischargeConsultant" EntitySet="DischargeConsultant" />
             <End Role="PatientDetails" EntitySet="PatientDetails" />
           </AssociationSet>
@@ -1872,7 +1873,7 @@
           </AssociationSet>
           <EntitySet Name="DischargeConsultants" EntityType="NHSModel.DischargeConsultant" />
           <EntitySet Name="PatientDetails" EntityType="NHSModel.PatientDetail" />
-          <AssociationSet Name="FK__PatientDe__Disch__245D67DE" Association="NHSModel.FK__PatientDe__Disch__245D67DE">
+          <AssociationSet Name="FK__PatientDe__Disch__2B0A656D" Association="NHSModel.FK__PatientDe__Disch__2B0A656D">
             <End Role="DischargeConsultant" EntitySet="DischargeConsultants" />
             <End Role="PatientDetail" EntitySet="PatientDetails" />
           </AssociationSet>
@@ -1887,7 +1888,7 @@
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__PatientDe__Disch__245D67DE" FromRole="DischargeConsultant" ToRole="PatientDetail" />
+          <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="DischargeConsultant" ToRole="PatientDetail" />
         </EntityType>
         <EntityType Name="PatientDetail">
           <Key>
@@ -1906,14 +1907,15 @@
           <Property Name="DateofDeath" Type="DateTime" Precision="3" />
           <Property Name="TimeofDeath" Type="DateTime" Precision="3" />
           <Property Name="PrimaryDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CodingIssueIdentified" Type="Boolean" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="DischargeConsultant" Relationship="NHSModel.FK__PatientDe__Disch__245D67DE" FromRole="PatientDetail" ToRole="DischargeConsultant" />
+          <NavigationProperty Name="DischargeConsultant" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="PatientDetail" ToRole="DischargeConsultant" />
         </EntityType>
-        <Association Name="FK__PatientDe__Disch__245D67DE">
+        <Association Name="FK__PatientDe__Disch__2B0A656D">
           <End Type="NHSModel.DischargeConsultant" Role="DischargeConsultant" Multiplicity="0..1" />
           <End Type="NHSModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2293,6 +2295,7 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CodingIssueIdentified" ColumnName="CodingIssueIdentified" />
                 <ScalarProperty Name="PrimaryDiagnosis" ColumnName="PrimaryDiagnosis" />
                 <ScalarProperty Name="TimeofDeath" ColumnName="TimeofDeath" />
                 <ScalarProperty Name="DateofDeath" ColumnName="DateofDeath" />

@@ -176,6 +176,7 @@
     <Property Name="DateofDeath" Type="datetime" />
     <Property Name="TimeofDeath" Type="datetime" />
     <Property Name="PrimaryDiagnosis" Type="varchar(max)" />
+    <Property Name="CodingIssueIdentified" Type="bit" />
     <Property Name="Comments" Type="varchar(max)" />
     <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
     <Property Name="CreateDate" Type="datetime" />
@@ -439,7 +440,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PatientDe__Disch__245D67DE">
+  <Association Name="FK__PatientDe__Disch__2B0A656D">
     <End Role="DischargeConsultant" Type="Self.DischargeConsultant" Multiplicity="0..1" />
     <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
     <ReferentialConstraint>
@@ -815,7 +816,7 @@
       <End Role="PatientMap" EntitySet="PatientMap" />
       <End Role="OtherReferral" EntitySet="OtherReferral" />
     </AssociationSet>
-    <AssociationSet Name="FK__PatientDe__Disch__245D67DE" Association="Self.FK__PatientDe__Disch__245D67DE">
+    <AssociationSet Name="FK__PatientDe__Disch__2B0A656D" Association="Self.FK__PatientDe__Disch__2B0A656D">
       <End Role="DischargeConsultant" EntitySet="DischargeConsultant" />
       <End Role="PatientDetails" EntitySet="PatientDetails" />
     </AssociationSet>

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Demo NHS\NHS-V1\NHS\NHS\Models\NHSDbContext.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\NHS Forms\NHS\NHS\Models\NHSDbContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

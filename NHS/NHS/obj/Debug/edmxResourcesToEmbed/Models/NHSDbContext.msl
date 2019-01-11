@@ -363,6 +363,7 @@
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="CodingIssueIdentified" ColumnName="CodingIssueIdentified" />
           <ScalarProperty Name="PrimaryDiagnosis" ColumnName="PrimaryDiagnosis" />
           <ScalarProperty Name="TimeofDeath" ColumnName="TimeofDeath" />
           <ScalarProperty Name="DateofDeath" ColumnName="DateofDeath" />

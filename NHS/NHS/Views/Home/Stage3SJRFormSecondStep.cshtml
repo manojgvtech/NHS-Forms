@@ -30,308 +30,362 @@
     <div>
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12 col-lg-12">
+                <form action="/Home/Stage3SJRFormSecondStep" method="post">
+                    <div class="col-md-12 well">
+                        <div class="form-section">
+                            <div class="col-md-12">
+                                <div class="lable_title">
+                                    <h2>ASSESSMENT OF PROBLEMS IN HEALTHCARE  </h2>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <label class="label_part">Were there any problems with the care of the patient?</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="lable_title">
+                                    <h2>PROBLEM TYPES </h2>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">1. Problem in assessment, investigation or diagnosis (including assessment of pressure ulcer risk, venous thromboembolism (VTE) risk, history of falls)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlAssessmentResponse" name="ddlAssessmentResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar">
+                                    <label class="label_part">In which phase(s) did the problem occur? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlAssessmentCarePhase" name="ddlAssessmentCarePhase">
+                                        <option value="Admission and initial assessment">Admission and initial assessment</option>
+                                        <option value="Ongoing care">Ongoing care</option>
+                                        <option value="Care during procedure3">Care during procedure</option>
+                                        <option value="Perioperative care">Perioperative care</option>
+                                        <option value="End-of-life care">End-of-life care</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">2. Problem with medication / IV fluids / electrolytes / oxygen (other than anaesthetic) </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlMedicationResponse" name="ddlMedicationResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar">
+                                    <label class="label_part">In which phase(s) did the problem occur? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlMedicationCarePhase" name="ddlMedicationCarePhase">
+                                        <option value="Admission and initial assessment">Admission and initial assessment</option>
+                                        <option value="Ongoing care">Ongoing care</option>
+                                        <option value="Care during procedure3">Care during procedure</option>
+                                        <option value="Perioperative care">Perioperative care</option>
+                                        <option value="End-of-life care">End-of-life care</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">3. Problem related to treatment and management plan (including prevention of pressure ulcers, falls, VTE) </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlTreatmentResponse" name="ddlTreatmentResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar">
+                                    <label class="label_part">In which phase(s) did the problem occur? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlTretmentCarePhase" name="ddlTretmentCarePhase">
+                                        <option value="Admission and initial assessment">Admission and initial assessment</option>
+                                        <option value="Ongoing care">Ongoing care</option>
+                                        <option value="Care during procedure3">Care during procedure</option>
+                                        <option value="Perioperative care">Perioperative care</option>
+                                        <option value="End-of-life care">End-of-life care</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">4. Problem with infection management </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlInfectionResponse" name="ddlInfectionResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar">
+                                    <label class="label_part">In which phase(s) did the problem occur? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlInfectionCarePhase" name="ddlInfectionCarePhase">
+                                        <option value="Admission and initial assessment">Admission and initial assessment</option>
+                                        <option value="Ongoing care">Ongoing care</option>
+                                        <option value="Care during procedure3">Care during procedure</option>
+                                        <option value="Perioperative care">Perioperative care</option>
+                                        <option value="End-of-life care">End-of-life care</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">5. Problem related to operation / invasive procedure other than infection control) </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlProcedureResponse" name="ddlProcedureResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar">
+                                    <label class="label_part">In which phase(s) did the problem occur? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlProcedureCarePhase" name="ddlProcedureCarePhase">
+                                        <option value="Admission and initial assessment">Admission and initial assessment</option>
+                                        <option value="Ongoing care">Ongoing care</option>
+                                        <option value="Care during procedure3">Care during procedure</option>
+                                        <option value="Perioperative care">Perioperative care</option>
+                                        <option value="End-of-life care">End-of-life care</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">6. Problem in clinical monitoring (including failure to plan, to undertake, or to recognise and respond to changes)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlMonitoringResponse" name="ddlMonitoringResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">7. Problem in resuscitation following a cardiac or respiratory arrest (including cardiopulmonary resuscitation) </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlResuscitationResponse" name="ddlResuscitationResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">8. Problem in any other type not fitting the categories above (including communication and organisational issues)  </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row_bar checkbox-row mb-3">
+                                    <select class="form-control" id="ddlOtherTypeResponse" name="ddlOtherTypeResponse">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Probably">Probably</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                <div class="col-md-12 well">
-                    <div class="form-section">
-                        <div class="col-md-12">
-                            <div class="lable_title">
-                                <h2>ASSESSMENT OF PROBLEMS IN HEALTHCARE  </h2>
+                            <div class="col-md-5">
+                                <div class="row_bar">
+                                    <label class="label_part">In which phase(s) did the problem occur? </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row_bar">
-                                <label class="label_part">Were there any problems with the care of the patient?</label>
+                            <div class="col-md-7">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlOtherTypeCarePhase" name="ddlOtherTypeCarePhase">
+                                        <option value="Admission and initial assessment">Admission and initial assessment</option>
+                                        <option value="Ongoing care">Ongoing care</option>
+                                        <option value="Care during procedure3">Care during procedure</option>
+                                        <option value="Perioperative care">Perioperative care</option>
+                                        <option value="End-of-life care">End-of-life care</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="lable_title">
-                                <h2>PROBLEM TYPES </h2>
+                            <div class="col-md-4">
+                                <div class="row_bar">
+                                    <label class="label_part">AVOIDABILITY SCORE</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">1. Problem in assessment, investigation or diagnosis (including assessment of pressure ulcer risk, venous thromboembolism (VTE) risk, history of falls)</label>
+                            <div class="col-md-8">
+                                <div class="row_bar">
+                                    <select class="form-control" id="ddlAvoidabilityScore" name="ddlAvoidabilityScore">
+                                        <option value="Grade 0">Grade 0: No suboptimal care (unavoidable</option>
+                                        <option value="Grade 1">Grade 1: Suboptimal care, but different management would have made no difference to the outcome (unavoidable)</option>
+                                        <option value="Grade 2">Grade 2: Suboptimal care, different care MIGHT have made a difference (possible avoidable death)</option>
+                                        <option value="Grade 3">Grade 3: Suboptimal care, different care WOULD REASONABLY BE EXPECTED to have made a difference (probable avoidable death)</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
+                            <div class="col-md-6">
+                                <div class="row_bar">
+                                    <label class="label_part">key learning/comments </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlAssessmentResponse" name="ddlAssessmentResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar">
-                                <label class="label_part">In which phase(s) did the problem occur? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlAssessmentCarePhase" name="ddlAssessmentCarePhase">
-                                    <option value="Admission and initial assessment">Admission and initial assessment</option>
-                                    <option value="Ongoing care">Ongoing care</option>
-                                    <option value="Care during procedure3">Care during procedure</option>
-                                    <option value="Perioperative care">Perioperative care</option>
-                                    <option value="End-of-life care">End-of-life care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">2. Problem with medication / IV fluids / electrolytes / oxygen (other than anaesthetic) </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlMedicationResponse" name="ddlMedicationResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar">
-                                <label class="label_part">In which phase(s) did the problem occur? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlMedicationCarePhase" name="ddlMedicationCarePhase">
-                                    <option value="Admission and initial assessment">Admission and initial assessment</option>
-                                    <option value="Ongoing care">Ongoing care</option>
-                                    <option value="Care during procedure3">Care during procedure</option>
-                                    <option value="Perioperative care">Perioperative care</option>
-                                    <option value="End-of-life care">End-of-life care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">3. Problem related to treatment and management plan (including prevention of pressure ulcers, falls, VTE) </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlTreatmentResponse" name="ddlTreatmentResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar">
-                                <label class="label_part">In which phase(s) did the problem occur? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlTretmentCarePhase" name="ddlTretmentCarePhase">
-                                    <option value="Admission and initial assessment">Admission and initial assessment</option>
-                                    <option value="Ongoing care">Ongoing care</option>
-                                    <option value="Care during procedure3">Care during procedure</option>
-                                    <option value="Perioperative care">Perioperative care</option>
-                                    <option value="End-of-life care">End-of-life care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">4. Problem with infection management </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlInfectionResponse" name="ddlInfectionResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar">
-                                <label class="label_part">In which phase(s) did the problem occur? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlInfectionCarePhase" name="ddlInfectionCarePhase">
-                                    <option value="Admission and initial assessment">Admission and initial assessment</option>
-                                    <option value="Ongoing care">Ongoing care</option>
-                                    <option value="Care during procedure3">Care during procedure</option>
-                                    <option value="Perioperative care">Perioperative care</option>
-                                    <option value="End-of-life care">End-of-life care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">5. Problem related to operation / invasive procedure other than infection control) </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlProcedureResponse" name="ddlProcedureResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar">
-                                <label class="label_part">In which phase(s) did the problem occur? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlProcedureCarePhase" name="ddlProcedureCarePhase">
-                                    <option value="Admission and initial assessment">Admission and initial assessment</option>
-                                    <option value="Ongoing care">Ongoing care</option>
-                                    <option value="Care during procedure3">Care during procedure</option>
-                                    <option value="Perioperative care">Perioperative care</option>
-                                    <option value="End-of-life care">End-of-life care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">6. Problem in clinical monitoring (including failure to plan, to undertake, or to recognise and respond to changes)</label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlMonitoringResponse" name="ddlMonitoringResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">7. Problem in resuscitation following a cardiac or respiratory arrest (including cardiopulmonary resuscitation) </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlResuscitationResponse" name="ddlResuscitationResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">8. Problem in any other type not fitting the categories above (including communication and organisational issues)  </label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="row_bar checkbox-row mb-3">
-                                <label class="label_part" for="defaultCheck3">Did the problem lead to harm? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar checkbox-row mb-3">
-                                <select class="form-control" id="ddlOtherTypeResponse" name="ddlOtherTypeResponse">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Probably">Probably</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-5">
-                            <div class="row_bar">
-                                <label class="label_part">In which phase(s) did the problem occur? </label>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlOtherTypeCarePhase" name="ddlOtherTypeCarePhase">
-                                    <option value="Admission and initial assessment">Admission and initial assessment</option>
-                                    <option value="Ongoing care">Ongoing care</option>
-                                    <option value="Care during procedure3">Care during procedure</option>
-                                    <option value="Perioperative care">Perioperative care</option>
-                                    <option value="End-of-life care">End-of-life care</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row_bar">
-                                <label class="label_part">AVOIDABILITY SCORE</label>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row_bar">
-                                <select class="form-control" id="ddlAvoidabilityScore" name="ddlAvoidabilityScore">
-                                    <option value="Grade 0">Grade 0: No suboptimal care (unavoidable</option>
-                                    <option value="Grade 1">Grade 1: Suboptimal care, but different management would have made no difference to the outcome (unavoidable)</option>
-                                    <option value="Grade 2">Grade 2: Suboptimal care, different care MIGHT have made a difference (possible avoidable death)</option>
-                                    <option value="Grade 3">Grade 3: Suboptimal care, different care WOULD REASONABLY BE EXPECTED to have made a difference (probable avoidable death)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row_bar">
-                                <label class="label_part">key learning/comments </label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row_bar">
-                                <textarea class="form-control" rows="5" id="taComment" placeholder="" name="taComment"></textarea>
+                            <div class="col-md-12">
+                                <div class="row_bar">
+                                    <textarea class="form-control" rows="5" id="taComment" placeholder="" name="taComment"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="pull-right">
-                    <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
-                    <button id="activate-step-2" name="BtnFinish" class="btn btn-primary btn-lg">Finish</button>
-                </div>
-
+                    <div class="pull-right">
+                        <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                        <button id="activate-step-2" type="submit" name="BtnFinish" class="btn btn-primary btn-lg">Save & Finish</button>
+                        <button class="btn btn-primary btn-lg" id="btnClose2">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="modelClose2">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
 
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose2Yes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose2" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnClose2").click(function () {
+            $("#modelClose2").modal();
+        });
+</script>
+
+<script type="text/javascript">
+$(function () {
+     $("#btnModelClose2").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+
+});
+</script>

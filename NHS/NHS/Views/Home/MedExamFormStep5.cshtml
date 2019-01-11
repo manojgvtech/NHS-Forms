@@ -64,95 +64,420 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbPatientSafetySIRI" name="cbPatientSafetySIRI"
-                                           onclick="ShowPatientSafetySIRIReason();">
-                                    <label class="label_part" for="defaultCheck1">Referred to Patient Safety for SIRI Scoping   </label>
+
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+
+                                            if (sessionOtherReferral.PatientSafetySIRI == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbPatientSafetySIRI" name="cbPatientSafetySIRI" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Referred to Patient Safety for SIRI Scoping</label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbPatientSafetySIRI" name="cbPatientSafetySIRI"
+                                                       onclick="ShowPatientSafetySIRIReason();">
+                                                <label class="label_part" for="defaultCheck1">Referred to Patient Safety for SIRI Scoping </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbPatientSafetySIRI" name="cbPatientSafetySIRI"
+                                                   onclick="ShowPatientSafetySIRIReason();">
+                                            <label class="label_part" for="defaultCheck1">Referred to Patient Safety for SIRI Scoping </label>
+
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1" id="lbPatientSafetySIRIReason" name="lbPatientSafetySIRIReason">Reason</label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.PatientSafetySIRI == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbPatientSafetySIRIReason" name="lbPatientSafetySIRIReason">Reason</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbPatientSafetySIRIReason" name="lbPatientSafetySIRIReason">Reason</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1" id="lbPatientSafetySIRIReason" name="lbPatientSafetySIRIReason">Reason</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-control" type="text" placeholder="" id="txtPatientSafetySIRIReason" name="txtPatientSafetySIRIReason">
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            var sessionPatientSafetySIRIReason = sessionOtherReferral.PatientSafetySIRIReason;
+                                            if (sessionOtherReferral.PatientSafetySIRI == true)
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtPatientSafetySIRIReason" name="txtPatientSafetySIRIReason" value="@sessionPatientSafetySIRIReason">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtPatientSafetySIRIReason" name="txtPatientSafetySIRIReason">
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="text" placeholder="" id="txtPatientSafetySIRIReason" name="txtPatientSafetySIRIReason">
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbChildDeathCoOrdinator" name="cbChildDeathCoOrdinator">
-                                    <label class="label_part" for="defaultCheck1">Referred to Child Death Co-ordinator</label>
+
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.ChildDeathCoordinator == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbChildDeathCoOrdinator" name="cbChildDeathCoOrdinator" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Referred to Child Death Co-ordinator</label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbChildDeathCoOrdinator" name="cbChildDeathCoOrdinator">
+                                                <label class="label_part" for="defaultCheck1">Referred to Child Death Co-ordinator</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbChildDeathCoOrdinator" name="cbChildDeathCoOrdinator">
+                                            <label class="label_part" for="defaultCheck1">Referred to Child Death Co-ordinator</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityNurse" name="cbLearningDisabilityNurse">
-                                    <label class="label_part" for="defaultCheck1">Referred to Learning Disability Nurse for LEDER reporting</label>
+
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+
+                                            if (sessionOtherReferral.LearningDisabilityNurse == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityNurse" name="cbLearningDisabilityNurse" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Referred to Learning Disability Nurse for LEDER reporting</label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityNurse" name="cbLearningDisabilityNurse">
+                                                <label class="label_part" for="defaultCheck1">Referred to Learning Disability Nurse for LEDER reporting</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityNurse" name="cbLearningDisabilityNurse">
+                                            <label class="label_part" for="defaultCheck1">Referred to Learning Disability Nurse for LEDER reporting</label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbHeadOfComliance" name="cbHeadOfComliance" onclick="ShowtHeadOfComlianceReason();">
-                                    <label class="label_part" for="defaultCheck1">Referred to Head of Compliance for CQC reporting </label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+
+                                            if (sessionOtherReferral.HeadOfCompliance == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbHeadOfComliance" name="cbHeadOfComliance" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Referred to Head of Compliance for CQC reporting </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbHeadOfComliance" name="cbHeadOfComliance" onclick="ShowtHeadOfComlianceReason();">
+                                                <label class="label_part" for="defaultCheck1">Referred to Head of Compliance for CQC reporting </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbHeadOfComliance" name="cbHeadOfComliance" onclick="ShowtHeadOfComlianceReason();">
+                                            <label class="label_part" for="defaultCheck1">Referred to Head of Compliance for CQC reporting </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1" id="lbHeadOfComlianceReason" name="lbHeadOfComlianceReason">Reason</label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.HeadOfCompliance == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbHeadOfComlianceReason" name="lbHeadOfComlianceReason">Reason</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbHeadOfComlianceReason" name="lbHeadOfComlianceReason">Reason</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1" id="lbHeadOfComlianceReason" name="lbHeadOfComlianceReason">Reason</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-control" type="text" placeholder="" id="txtHeadOfComlianceReason" name="txtHeadOfComlianceReason">
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            var sessionHeadOfComlianceReason = sessionOtherReferral.HeadOfComplianceReason;
+                                            if (sessionOtherReferral.HeadOfCompliance == true)
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtHeadOfComlianceReason" name="txtHeadOfComlianceReason" value="@sessionHeadOfComlianceReason">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtHeadOfComlianceReason" name="txtHeadOfComlianceReason">
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="text" placeholder="" id="txtHeadOfComlianceReason" name="txtHeadOfComlianceReason">
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbPALsComplaints" name="cbPALsComplaints" onclick="ShowPALsComplaintsReason();">
-                                    <label class="label_part" for="defaultCheck1">Referred to PALs/ Complaints </label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+
+                                            if (sessionOtherReferral.PALsComplaints == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbPALsComplaints" name="cbPALsComplaints" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Referred to PALs/ Complaints </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbPALsComplaints" name="cbPALsComplaints" onclick="ShowPALsComplaintsReason();">
+                                                <label class="label_part" for="defaultCheck1">Referred to PALs/ Complaints </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbPALsComplaints" name="cbPALsComplaints" onclick="ShowPALsComplaintsReason();">
+                                            <label class="label_part" for="defaultCheck1">Referred to PALs/ Complaints </label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1" id="lbPALsComplaintsReason" name="lbPALsComplaintsReason">Reason</label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.PALsComplaints == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbPALsComplaintsReason" name="lbPALsComplaintsReason">Reason</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbPALsComplaintsReason" name="lbPALsComplaintsReason">Reason</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1" id="lbPALsComplaintsReason" name="lbPALsComplaintsReason">Reason</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-control" type="text" placeholder="" id="txtPALsComplaintsReason" name="txtPALsComplaintsReason" ">
+
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            var sessionPALsComplaintsReason = sessionOtherReferral.PALsComplaintsReason;
+                                            if (sessionOtherReferral.PALsComplaints == true)
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtPALsComplaintsReason" name="txtPALsComplaintsReason" value="@sessionPALsComplaintsReason">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtPALsComplaintsReason" name="txtPALsComplaintsReason">
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="text" placeholder="" id="txtPALsComplaintsReason" name="txtPALsComplaintsReason">
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbWardTeam" name="cbWardTeam" onclick="ShowWardTeamReson();">
-                                    <label class="label_part" for="defaultCheck1">Referred to Ward team</label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.WardTeam == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbWardTeam" name="cbWardTeam" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Referred to Ward team</label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbWardTeam" name="cbWardTeam" onclick="ShowWardTeamReson();">
+                                                <label class="label_part" for="defaultCheck1">Referred to Ward team</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbWardTeam" name="cbWardTeam" onclick="ShowWardTeamReson();">
+                                            <label class="label_part" for="defaultCheck1">Referred to Ward team</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1" id="lbWardTeamReson" name="lbWardTeamReson">Reason</label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.WardTeam == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbWardTeamReson" name="lbWardTeamReson">Reason</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbWardTeamReson" name="lbWardTeamReson">Reason</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1" id="lbWardTeamReson" name="lbWardTeamReson">Reason</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-control" type="text" placeholder="" id="txtWardTeamReson" name="txtWardTeamReson">
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            var sessionWardTeamReson = sessionOtherReferral.WardTeamReason;
+                                            if (sessionOtherReferral.WardTeam == true)
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtWardTeamReson" name="txtWardTeamReson" value="@sessionWardTeamReson">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtWardTeamReson" name="txtWardTeamReson">
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="text" placeholder="" id="txtWardTeamReson" name="txtWardTeamReson">
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbOther" name="cbOther" onclick="ShowOtherReason();">
-                                    <label class="label_part" for="defaultCheck1">Other</label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.Other == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbOther" name="cbOther" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Other</label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbOther" name="cbOther" onclick="ShowOtherReason();">
+                                                <label class="label_part" for="defaultCheck1">Other</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbOther" name="cbOther" onclick="ShowOtherReason();">
+                                            <label class="label_part" for="defaultCheck1">Other</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1" id="lbOtherReason" name="lbOtherReason">Reason</label>
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            if (sessionOtherReferral.Other == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbOtherReason" name="lbOtherReason">Reason</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1" id="lbOtherReason" name="lbOtherReason">Reason</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1" id="lbOtherReason" name="lbOtherReason">Reason</label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-control" type="text" placeholder="" id="txtOtherReason" name="txtOtherReason">
+                                    @{ if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionOtherReferral = (NHS.Models.OtherReferral)Session["sessionOtherReferral"];
+                                            var sessionOtherReason = sessionOtherReferral.OtherReason;
+                                            if (sessionOtherReferral.Other == true)
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtOtherReason" name="txtOtherReason" value="@sessionOtherReason">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" type="text" placeholder="" id="txtOtherReason" name="txtOtherReason" value="@sessionOtherReason">
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" type="text" placeholder="" id="txtOtherReason" name="txtOtherReason">
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -160,16 +485,66 @@
                 </div>
                 <div class="pull-right">
                     <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
-                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                    <button class="btn btn-primary btn-lg" id="btnClose5">Close</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<div class="modal fade" id="modelClose5">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose5Yes">Yes</button>
+                        </div>                        
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose5" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
-
+        $("#btnClose5").click(function () {
+            $("#modelClose5").modal();
+        });
     });
+</script>
+<script type="text/javascript">
+$(function () {
+     $("#btnModelClose5").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+    
+});
 </script>
 

@@ -64,47 +64,195 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbPaediatricPatient" name="cbPaediatricPatient">
-                                    <label class="label_part" for="defaultCheck1">Paediatric Patient  </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.PaediatricPatient == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbPaediatricPatient" name="cbPaediatricPatient" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Paediatric Patient  </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbPaediatricPatient" name="cbPaediatricPatient">
+                                                <label class="label_part" for="defaultCheck1">Paediatric Patient  </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbPaediatricPatient" name="cbPaediatricPatient">
+                                            <label class="label_part" for="defaultCheck1">Paediatric Patient  </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityPatient" name="cbLearningDisabilityPatient">
-                                    <label class="label_part" for="defaultCheck1">Learning disability patient  </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.LearningDisabilityPatient == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityPatient" name="cbLearningDisabilityPatient" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Learning disability patient  </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityPatient" name="cbLearningDisabilityPatient">
+                                                <label class="label_part" for="defaultCheck1">Learning disability patient  </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbLearningDisabilityPatient" name="cbLearningDisabilityPatient">
+                                            <label class="label_part" for="defaultCheck1">Learning disability patient  </label>
+                                        }
+                                    }
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbMentalIllnessPatient" name="cbMentalIllnessPatient">
-                                    <label class="label_part" for="defaultCheck1">Severe mental health illness patient  </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.MentalillnessPatient == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbMentalIllnessPatient" name="cbMentalIllnessPatient" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Severe mental health illness patient  </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbMentalIllnessPatient" name="cbMentalIllnessPatient">
+                                                <label class="label_part" for="defaultCheck1">Severe mental health illness patient  </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbMentalIllnessPatient" name="cbMentalIllnessPatient">
+                                            <label class="label_part" for="defaultCheck1">Severe mental health illness patient  </label>
+                                        }
+                                    }
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbElectiveAdmission" name="cbElectiveAdmission">
-                                    <label class="label_part" for="defaultCheck1">Elective admission   </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.ElectiveAdmission == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbElectiveAdmission" name="cbElectiveAdmission" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Elective admission   </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbElectiveAdmission" name="cbElectiveAdmission">
+                                                <label class="label_part" for="defaultCheck1">Elective admission   </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbElectiveAdmission" name="cbElectiveAdmission">
+                                            <label class="label_part" for="defaultCheck1">Elective admission   </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbNokConcernsDeath" name="cbNokConcernsDeath">
-                                    <label class="label_part" for="defaultCheck1">NoK concerns about death    </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.NoKConcernsDeath == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbNokConcernsDeath" name="cbNokConcernsDeath" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">NoK concerns about death    </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbNokConcernsDeath" name="cbNokConcernsDeath">
+                                                <label class="label_part" for="defaultCheck1">NoK concerns about death    </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbNokConcernsDeath" name="cbNokConcernsDeath">
+                                            <label class="label_part" for="defaultCheck1">NoK concerns about death    </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <input class="form-checkbox-input" type="checkbox" value="" id="cbOtherConcerns" name="cbOtherConcerns">
-                                    <label class="label_part" for="defaultCheck1">Other concerns which warrant further review     </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.OtherConcern == true)
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbOtherConcerns" name="cbOtherConcerns" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Other concerns which warrant further review     </label>
+                                            }
+                                            else
+                                            {
+                                                <input class="form-checkbox-input" type="checkbox" value="" id="cbOtherConcerns" name="cbOtherConcerns">
+                                                <label class="label_part" for="defaultCheck1">Other concerns which warrant further review     </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input class="form-checkbox-input" type="checkbox" value="" id="cbOtherConcerns" name="cbOtherConcerns">
+                                            <label class="label_part" for="defaultCheck1">Other concerns which warrant further review     </label>
+                                        }
+                                    }
+
+
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row_bar checkbox-row">
-                                    <label class="label_part" for="defaultCheck1">Full SJR Required    </label>
-                                    <input class="form-checkbox-input" type="checkbox" value="Yes" id="cbFullSJRRequiredYes" name="cbFullSJRRequiredYes">
-                                    <label class="label_part" for="defaultCheck1">Yes   </label>
-                                    <input class="form-checkbox-input" type="checkbox" value="No" id="cbFullSJRRequiredNo" name="cbFullSJRRequiredNo">
-                                    <label class="label_part" for="defaultCheck1">No   </label>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReview = (NHS.Models.SJRReview)Session["sessionSJRReview"];
+                                            if (sessionSJRReview.FullSJRRequired == true)
+                                            {
+                                                <label class="label_part" for="defaultCheck1">Full SJR Required    </label>
+                                                <input class="form-checkbox-input" type="checkbox" value="Yes" id="cbFullSJRRequiredYes" name="cbFullSJRRequiredYes" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">Yes   </label>
+                                                <input class="form-checkbox-input" type="checkbox" value="No" id="cbFullSJRRequiredNo" name="cbFullSJRRequiredNo">
+                                                <label class="label_part" for="defaultCheck1">No   </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="label_part" for="defaultCheck1">Full SJR Required    </label>
+                                                <input class="form-checkbox-input" type="checkbox" value="Yes" id="cbFullSJRRequiredYes" name="cbFullSJRRequiredYes">
+                                                <label class="label_part" for="defaultCheck1">Yes   </label>
+                                                <input class="form-checkbox-input" type="checkbox" value="No" id="cbFullSJRRequiredNo" name="cbFullSJRRequiredNo" checked="checked">
+                                                <label class="label_part" for="defaultCheck1">No   </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label class="label_part" for="defaultCheck1">Full SJR Required    </label>
+                                            <input class="form-checkbox-input" type="checkbox" value="Yes" id="cbFullSJRRequiredYes" name="cbFullSJRRequiredYes">
+                                            <label class="label_part" for="defaultCheck1">Yes   </label>
+                                            <input class="form-checkbox-input" type="checkbox" value="No" id="cbFullSJRRequiredNo" name="cbFullSJRRequiredNo">
+                                            <label class="label_part" for="defaultCheck1">No   </label>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -114,14 +262,76 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="row_bar">
-                                    <select class="form-control" id="ddlSJRReviewSpecialty" name="ddlSJRReviewSpecialty">
-                                        <option value="-1">Select</option>
-                                        <option value="M K S">M K S</option>
-                                        <option value="P K P">P K P</option>
-                                        <option value="R T O">R T O</option>
-                                        <option value="T K T">T K T</option>
-                                        <option value="D T O">D T O</option>
-                                    </select>
+                                    @{
+                                        if (Session["BtnPrevious"] != null)
+                                        {
+                                            var sessionSJRReviewSpeciality = (NHS.Models.SJRReviewSpeciality)Session["sessionSJRReviewSpeciality"];
+                                            string strSJRReviewSpeciality = sessionSJRReviewSpeciality.Name;
+
+                                            <select class="form-control" id="ddlSJRReviewSpecialty" name="ddlSJRReviewSpecialty">
+                                                @{
+                                                    if ("M K S" == strSJRReviewSpeciality)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S" selected>M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+                                                    if ("P K P" == strSJRReviewSpeciality)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P" selected>P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+                                                    if ("R T O" == strSJRReviewSpeciality)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O" selected>R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+                                                    if ("T K T" == strSJRReviewSpeciality)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T" selected>T K T</option>
+                                                        <option value="D T O">D T O</option>
+                                                    }
+
+                                                    if ("D T O" == strSJRReviewSpeciality)
+                                                    {
+                                                        <option value="-1">Select</option>
+                                                        <option value="M K S">M K S</option>
+                                                        <option value="P K P">P K P</option>
+                                                        <option value="R T O">R T O</option>
+                                                        <option value="T K T">T K T</option>
+                                                        <option value="D T O" selected>D T O</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-control" id="ddlSJRReviewSpecialty" name="ddlSJRReviewSpecialty">
+                                                <option value="-1">Select</option>
+                                                <option value="M K S">M K S</option>
+                                                <option value="P K P">P K P</option>
+                                                <option value="R T O">R T O</option>
+                                                <option value="T K T">T K T</option>
+                                                <option value="D T O">D T O</option>
+                                            </select>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -129,16 +339,67 @@
                 </div>
                 <div class="pull-right">
                     <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
-                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Next</button>
+                    <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                    <button class="btn btn-primary btn-lg" id="btnClose4">Close</button>
                 </div>
-                </form>
+            </form>
         </div>
     </div>
-   
-</div>
 
+</div>
+<div class="modal fade" id="modelClose4">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose4Yes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose4" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
+        $("#btnClose4").click(function () {
+            $("#modelClose4").modal();
+        });
     });
+</script>
+<script type="text/javascript">
+$(function () {
+     $("#btnModelClose4").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+
+});
 </script>
 

@@ -59,9 +59,9 @@
         <AssociationConnector Association="NHSModel.FK__SJRFormPr__Treat__6477ECF3" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__SJRReview__SJRRe__75A278F5" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK_Session_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="NHSModel.DischargeConsultant" Width="1.5" PointX="6.375" PointY="7.25" />
-        <EntityTypeShape EntityType="NHSModel.PatientDetail" Width="1.5" PointX="8.625" PointY="6" />
-        <AssociationConnector Association="NHSModel.FK__PatientDe__Disch__245D67DE" />
+        <EntityTypeShape EntityType="NHSModel.DischargeConsultant" Width="1.5" PointX="6.375" PointY="7.375" />
+        <EntityTypeShape EntityType="NHSModel.PatientDetail" Width="1.5" PointX="8.625" PointY="6.125" />
+        <AssociationConnector Association="NHSModel.FK__PatientDe__Disch__2B0A656D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

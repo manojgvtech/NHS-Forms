@@ -27,6 +27,7 @@ namespace NHS.Models
         public Nullable<System.DateTime> DateofDeath { get; set; }
         public Nullable<System.DateTime> TimeofDeath { get; set; }
         public string PrimaryDiagnosis { get; set; }
+        public Nullable<bool> CodingIssueIdentified { get; set; }
         public string Comments { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
