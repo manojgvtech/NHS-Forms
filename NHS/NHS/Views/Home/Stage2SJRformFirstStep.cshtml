@@ -3,60 +3,7 @@
     ViewBag.Title = "Stage2SJRformFirstStep";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<script>
-      function validate(form) {
-            var returnValue = true;
-            var vInitialManagement = form.taInitialManagement.value;
-            var vOngoingCare = form.taOngoingCare.value;
-            var vCareDuringProcedure = form.taCareDuringProcedure.value;
-            var vEndLifeCare = form.taEndLifeCare.value;
-            var vOverAllAssessment = form.taOverAllAssessment.value;
-            var vComments = form.taComment.value;
 
-            if (vInitialManagement.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Initial Management");
-                document.frmStage2SJRformFirstStep.taInitialManagement.focus();
-                return returnValue;
-            }
-
-            if (vOngoingCare.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Ongoing Management");
-                document.frmStage2SJRformFirstStep.taOngoingCare.focus();
-                return returnValue;
-            }
-
-            if (vCareDuringProcedure.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Care During Procedure");
-                document.frmStage2SJRformFirstStep.taCareDuringProcedure.focus();
-                return returnValue;
-            }
-
-            if (vEndLifeCare.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk End Life Care ");
-                document.frmStage2SJRformFirstStep.taEndLifeCare.focus();
-                return returnValue;
-            }
-
-            if (vOverAllAssessment.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Over All Assessment ");
-                document.frmStage2SJRformFirstStep.taOverAllAssessment.focus();
-                return returnValue;
-            }
-
-            if (vComments.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Comments ");
-                document.frmStage2SJRformFirstStep.taComment.focus();
-                return returnValue;
-            }
-            return returnValue;
-        }
-    </script>*@
 <div class="container">
     <div class="row form-group">
         <div class="col-xs-12 col-lg-12">
@@ -570,13 +517,18 @@
                     </div>
                     <div class="pull-right">
                         <button id="BtnNext" type="submit" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
-                        <button class="btn btn-primary btn-lg" id="btnClose1">Close</button>
+                       
                     </div>
                 </form>
             </div>
         </div>
+        <br />
+        <br />
+        <div class="pull-right">
+            <button class="btn btn-primary btn-lg" id="btnClose1">Close</button>
+        </div>
+        </div>
     </div>
-</div>
 <div class="modal fade" id="modelClose1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -608,12 +560,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal footer -->
-            @*<div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>*@
-
         </div>
     </div>
 </div>

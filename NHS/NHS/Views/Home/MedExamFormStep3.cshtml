@@ -181,9 +181,9 @@
                                                 }
                                             </select>
 
-                                                    }
-                                                    else
-                                                    {
+                                        }
+                                        else
+                                        {
                                             <select class="form-control" id="ddlCoronerReferralResonName" name="ddlCoronerReferralResonName">
                                                 <option value="-1">Select</option>
                                                 <option value="M K S">M K S</option>
@@ -192,7 +192,7 @@
                                                 <option value="T K T">T K T</option>
                                                 <option value="D T O">D T O</option>
                                             </select>
-                                                    }
+                                        }
                                     }
                                 </div>
                             </div>
@@ -486,67 +486,70 @@
                 <div class="pull-right">
                     <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
                     <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
-                    <button class="btn btn-primary btn-lg" id="btnClose3">Close</button>
+                    
                 </div>
             </form>
         </div>
     </div>
+    <br />
+    <br />
+    <div class="pull-right">
+        <button class="btn btn-primary btn-lg" id="btnClose3">Close</button>
+    </div>
+    <div class="modal fade" id="modelClose3">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
 
-</div>
-<div class="modal fade" id="modelClose3">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Messsage</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Messsage</h4>
-                <button type="button" class="close" data-dismiss="modal">×</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="form-section" style="text-align:left">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row_bar">
-                                <div>Doy you want to Save Record ?</div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-section" style="text-align:left">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row_bar">
+                                    <div>Doy you want to Save Record ?</div>
+                                </div>
                             </div>
-                        </div>
-                        <br />
-                        <br />
+                            <br />
+                            <br />
 
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-block" id="btnClose3Yes">Yes</button>
-                        </div>                      
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose3" data-dismiss="modal">No</button>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary btn-block" id="btnClose3Yes">Yes</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary btn-block" id="btnModelClose3" data-dismiss="modal">No</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>*@
+
             </div>
-
-            <!-- Modal footer -->
-            @*<div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>*@
-
         </div>
     </div>
-</div>
-<script>
-    $(document).ready(function () {
-        $("#btnClose3").click(function () {
-            $("#modelClose3").modal();
+    <script>
+        $(document).ready(function () {
+            $("#btnClose3").click(function () {
+                $("#modelClose3").modal();
+            });
         });
-    });
-</script>
-<script type="text/javascript">
+    </script>
+    <script type="text/javascript">
 $(function () {
 
      $("#btnModelClose3").click(function(){
 window.location.href = "@Url.Action("CORSPatient", "Home")";
     });
-    
+
 });
-</script>
+    </script>
 

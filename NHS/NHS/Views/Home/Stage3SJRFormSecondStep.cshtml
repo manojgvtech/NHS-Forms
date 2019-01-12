@@ -327,10 +327,15 @@
                     <div class="pull-right">
                         <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
                         <button id="activate-step-2" type="submit" name="BtnFinish" class="btn btn-primary btn-lg">Save & Finish</button>
-                        <button class="btn btn-primary btn-lg" id="btnClose2">Close</button>
+
                     </div>
                 </form>
             </div>
+        </div>
+        <br />
+        <br />
+        <div class="pull-right">
+            <button class="btn btn-primary btn-lg" id="btnClose2">Close</button>
         </div>
     </div>
 </div>
@@ -365,12 +370,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal footer -->
-            @*<div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>*@
-
         </div>
     </div>
 </div>
@@ -379,6 +378,7 @@
         $("#btnClose2").click(function () {
             $("#modelClose2").modal();
         });
+    });
 </script>
 
 <script type="text/javascript">

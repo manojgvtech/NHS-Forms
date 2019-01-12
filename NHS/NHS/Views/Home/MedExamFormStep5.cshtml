@@ -486,10 +486,14 @@
                 <div class="pull-right">
                     <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
                     <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
-                    <button class="btn btn-primary btn-lg" id="btnClose5">Close</button>
                 </div>
             </form>
         </div>
+    </div>
+    <br />
+    <br />
+    <div class="pull-right">
+        <button class="btn btn-primary btn-lg" id="btnClose5">Close</button>
     </div>
 </div>
 <div class="modal fade" id="modelClose5">
@@ -516,19 +520,13 @@
 
                         <div class="col-md-4">
                             <button type="button" class="btn btn-primary btn-block" id="btnClose5Yes">Yes</button>
-                        </div>                        
+                        </div>
                         <div class="col-md-4">
                             <button type="button" class="btn btn-primary btn-block" id="btnModelClose5" data-dismiss="modal">No</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Modal footer -->
-            @*<div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>*@
-
         </div>
     </div>
 </div>
@@ -544,7 +542,7 @@ $(function () {
      $("#btnModelClose5").click(function(){
 window.location.href = "@Url.Action("CORSPatient", "Home")";
     });
-    
+
 });
 </script>
 

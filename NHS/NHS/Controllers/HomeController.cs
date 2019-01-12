@@ -18,7 +18,7 @@ namespace NHS.Controllers
         }
 
 
-        public ActionResult SJROutcome(FormCollection data ,string btnSave)
+        public ActionResult SJROutcome(FormCollection data, string btnSave)
         {
             if (btnSave != null)
             {
@@ -81,7 +81,7 @@ namespace NHS.Controllers
 
                 Response.Redirect("/Home/CORSPatient");
             }
-            
+
             return View();
         }
         //public ActionResult Stage2SJRform(FormCollection data)
@@ -179,11 +179,11 @@ namespace NHS.Controllers
 
                     sJRFormInitial.PatientID = lastPatientId;
                     //Stage=0 For Stage2SJRForm Only 
-                    sJRFormInitial.Stage = 0;             
-                    sJRFormInitial.InitialManagement = strInitialManagement;                 
-                    sJRFormInitial.OngoingCare = strOngoingCare;                  
-                    sJRFormInitial.CareDuringProcedure = strCareDuringProcedure;                  
-                    sJRFormInitial.EndLifeCare = strEndLifeCare;                  
+                    sJRFormInitial.Stage = 0;
+                    sJRFormInitial.InitialManagement = strInitialManagement;
+                    sJRFormInitial.OngoingCare = strOngoingCare;
+                    sJRFormInitial.CareDuringProcedure = strCareDuringProcedure;
+                    sJRFormInitial.EndLifeCare = strEndLifeCare;
                     sJRFormInitial.OverAllAssessment = strOverAllAssessment;
                     sJRFormInitial.InitialManagementCareRatingID = intInitialManagementRatingId;
                     sJRFormInitial.OngoingCareRatingID = intOnGoingCareRatingId;
@@ -197,7 +197,7 @@ namespace NHS.Controllers
                     ent.SJRFormInitials.Add(sJRFormInitial);
                     ent.SaveChanges();
                     Session["sJRFormInitial"] = sJRFormInitial;
-                    
+
                     Response.Redirect("/Home/Stage2SJRformSecondStep");
                 }
 
@@ -546,15 +546,10 @@ namespace NHS.Controllers
                     sJRFormInitial.PatientID = lastPatientId;
                     //Stage=0 For Stage2SJRForm Only 
                     sJRFormInitial.Stage = 1;
-
                     sJRFormInitial.InitialManagement = strInitialManagement;
-
                     sJRFormInitial.OngoingCare = strOngoingCare;
-
                     sJRFormInitial.CareDuringProcedure = strCareDuringProcedure;
-
                     sJRFormInitial.EndLifeCare = strEndLifeCare;
-
                     sJRFormInitial.OverAllAssessment = strOverAllAssessment;
                     sJRFormInitial.InitialManagementCareRatingID = intInitialManagementRatingId;
                     sJRFormInitial.OngoingCareRatingID = intOnGoingCareRatingId;
@@ -831,104 +826,104 @@ namespace NHS.Controllers
         {
             try
             {
-               
-                    if (BtnNext != null)
+
+                if (BtnNext != null)
+                {
+                    string strPatientName = data["txtPatientName"];
+                    string strMRN = data["txtMRN"];
+                    string strAge = data["txtAge"];
+                    string strGender = data["ddlGender"];
+                    string strDischargeWard = data["txtDischargeWard"];
+                    string strDischargeConsultant = data["txtDischargeConsultant"];
+                    string strEmergencyAdmission = data["txtEmergencyAdmission"];
+                    string strDateOfAdmission = data["txtDateOfAdmission"];
+                    string strTimeOfAdmission = data["txtTimeOfAdmission"];
+                    string strDateOfDeath = data["txtDateOfDeath"];
+                    string strTimeOfDeath = data["txtTimeOfDeath"];
+                    string strPrimaryDiagnosis = data["txtPrimaryDiagnosis"];
+                    string strComments = data["taComments"];
+                    Boolean blCodingIssueIdentifiedYes = data["cbCodingIssueIdentifiedYes"] != null ? true : false;
+                    Boolean blCodingIssueIdentifiedNo = data["cbCodingIssueIdentifiedNo"] != null ? true : false;
+
+                    //PatientDetail patientDetail = new PatientDetail();
+                    //patientDetail.PatientName = strPatientName;
+                    //patientDetail.MRN = strMRN;
+                    //patientDetail.Age = Convert.ToInt32(strAge);
+                    //patientDetail.Gender = Convert.ToInt32(strGender) == 1 ? true : false;
+                    //patientDetail.DischargeWard = strDischargeWard;
+                    //patientDetail.EmergencyAdmission = strEmergencyAdmission;
+                    //patientDetail.DateofAdmission = Convert.ToDateTime(strDateOfAdmission);
+                    //patientDetail.TimeofAdmission = Convert.ToDateTime(strTimeOfAdmission);
+                    //patientDetail.DateofDeath = Convert.ToDateTime(strDateOfDeath);
+                    //patientDetail.TimeofDeath = Convert.ToDateTime(strTimeOfDeath);
+                    //patientDetail.PrimaryDiagnosis = strPrimaryDiagnosis;
+                    //patientDetail.Comments = strComments;
+                    //Session["sessionPatientDetail"] = patientDetail;
+
+                    //DischargeConsultant dischargeConsultant = new DischargeConsultant();
+                    //dischargeConsultant.DischargeConsultantName = strDischargeConsultant;
+                    //Session["sessionDischargeConsultant"] = dischargeConsultant;
+
+                    //var sessionPatientDetail = (NHS.Models.PatientDetail)Session["sessionPatientDetail"];
+                    //var sessionDischargeConsultant = (NHS.Models.DischargeConsultant)Session["sessionDischargeConsultant"];
+
+                    //string sessionDischargeConsultantName = sessionDischargeConsultant.DischargeConsultantName;
+
+                    DischargeConsultant dischargeConsultant = new DischargeConsultant();
+                    dischargeConsultant.DischargeConsultantName = strDischargeConsultant;
+                    dischargeConsultant.CreatedBy = "John Deo";
+                    dischargeConsultant.CreateDate = DateTime.Now;
+                    dischargeConsultant.UpdatedBy = "John Deo";
+                    dischargeConsultant.UpdatedDate = DateTime.Now;
+                    ent.DischargeConsultants.Add(dischargeConsultant);
+                    ent.SaveChanges();
+
+                    int intDischargeConsultantCode = dischargeConsultant.DischargeConsultantCode;
+
+                    PatientDetail patientDetail = new PatientDetail();
+
+                    patientDetail.PatientName = strPatientName;
+                    patientDetail.MRN = strMRN;
+                    patientDetail.Age = Convert.ToInt32(strAge);
+                    patientDetail.Gender = Convert.ToInt32(strGender) == 1 ? true : false;
+                    patientDetail.DischargeWard = strDischargeWard;
+                    patientDetail.DischargeConsultantCode = intDischargeConsultantCode;
+                    patientDetail.EmergencyAdmission = strEmergencyAdmission;
+                    patientDetail.DateofAdmission = DateTime.ParseExact(strDateOfAdmission, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    patientDetail.TimeofAdmission = Convert.ToDateTime(strTimeOfAdmission);
+                    patientDetail.DateofDeath = DateTime.ParseExact(strDateOfDeath, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    patientDetail.TimeofDeath = Convert.ToDateTime(strTimeOfDeath);
+                    patientDetail.PrimaryDiagnosis = strPrimaryDiagnosis;
+                    if (blCodingIssueIdentifiedNo == true)
                     {
-                        string strPatientName = data["txtPatientName"];
-                        string strMRN = data["txtMRN"];
-                        string strAge = data["txtAge"];
-                        string strGender = data["ddlGender"];
-                        string strDischargeWard = data["txtDischargeWard"];
-                        string strDischargeConsultant = data["txtDischargeConsultant"];
-                        string strEmergencyAdmission = data["txtEmergencyAdmission"];
-                        string strDateOfAdmission = data["txtDateOfAdmission"];
-                        string strTimeOfAdmission = data["txtTimeOfAdmission"];
-                        string strDateOfDeath = data["txtDateOfDeath"];
-                        string strTimeOfDeath = data["txtTimeOfDeath"];
-                        string strPrimaryDiagnosis = data["txtPrimaryDiagnosis"];
-                        string strComments = data["taComments"];
-                        Boolean blCodingIssueIdentifiedYes = data["cbCodingIssueIdentifiedYes"] != null ? true : false;
-                        Boolean blCodingIssueIdentifiedNo = data["cbCodingIssueIdentifiedNo"] != null ? true : false;
+                        patientDetail.CodingIssueIdentified = false;
+                    }
+                    patientDetail.CodingIssueIdentified = blCodingIssueIdentifiedYes;
+                    patientDetail.Comments = strComments;
+                    patientDetail.CreatedBy = "John Deo";
+                    patientDetail.CreateDate = DateTime.Now;
+                    patientDetail.UpdatedBy = "John Deo";
+                    patientDetail.UpdatedDate = DateTime.Now;
+                    ent.PatientDetails.Add(patientDetail);
+                    ent.SaveChanges();
 
-                        //PatientDetail patientDetail = new PatientDetail();
-                        //patientDetail.PatientName = strPatientName;
-                        //patientDetail.MRN = strMRN;
-                        //patientDetail.Age = Convert.ToInt32(strAge);
-                        //patientDetail.Gender = Convert.ToInt32(strGender) == 1 ? true : false;
-                        //patientDetail.DischargeWard = strDischargeWard;
-                        //patientDetail.EmergencyAdmission = strEmergencyAdmission;
-                        //patientDetail.DateofAdmission = Convert.ToDateTime(strDateOfAdmission);
-                        //patientDetail.TimeofAdmission = Convert.ToDateTime(strTimeOfAdmission);
-                        //patientDetail.DateofDeath = Convert.ToDateTime(strDateOfDeath);
-                        //patientDetail.TimeofDeath = Convert.ToDateTime(strTimeOfDeath);
-                        //patientDetail.PrimaryDiagnosis = strPrimaryDiagnosis;
-                        //patientDetail.Comments = strComments;
-                        //Session["sessionPatientDetail"] = patientDetail;
+                    //int intMRN = patientDetail.PatientId;
 
-                        //DischargeConsultant dischargeConsultant = new DischargeConsultant();
-                        //dischargeConsultant.DischargeConsultantName = strDischargeConsultant;
-                        //Session["sessionDischargeConsultant"] = dischargeConsultant;
+                    Session["sessionPatientDetails"] = patientDetail;
+                    Session["sessionDischargeConsultant"] = dischargeConsultant;
 
-                        //var sessionPatientDetail = (NHS.Models.PatientDetail)Session["sessionPatientDetail"];
-                        //var sessionDischargeConsultant = (NHS.Models.DischargeConsultant)Session["sessionDischargeConsultant"];
+                    PatientMap patientMap = new PatientMap();
 
-                        //string sessionDischargeConsultantName = sessionDischargeConsultant.DischargeConsultantName;
+                    patientMap.MRN = strMRN;
+                    patientMap.CreatedBy = "John Deo";
+                    patientMap.CreateDate = DateTime.Now;
+                    patientMap.UpdatedBy = "John Deo";
+                    patientMap.UpdatedDate = DateTime.Now;
+                    ent.PatientMaps.Add(patientMap);
+                    ent.SaveChanges();
 
-                        DischargeConsultant dischargeConsultant = new DischargeConsultant();
-                        dischargeConsultant.DischargeConsultantName = strDischargeConsultant;
-                        dischargeConsultant.CreatedBy = "John Deo";
-                        dischargeConsultant.CreateDate = DateTime.Now;
-                        dischargeConsultant.UpdatedBy = "John Deo";
-                        dischargeConsultant.UpdatedDate = DateTime.Now;
-                        ent.DischargeConsultants.Add(dischargeConsultant);
-                        ent.SaveChanges();
+                    Response.Redirect("/Home/MedExamFormStep2");
 
-                        int intDischargeConsultantCode = dischargeConsultant.DischargeConsultantCode;
-
-                        PatientDetail patientDetail = new PatientDetail();
-
-                        patientDetail.PatientName = strPatientName;
-                        patientDetail.MRN = strMRN;
-                        patientDetail.Age = Convert.ToInt32(strAge);
-                        patientDetail.Gender = Convert.ToInt32(strGender) == 1 ? true : false;
-                        patientDetail.DischargeWard = strDischargeWard;
-                        patientDetail.DischargeConsultantCode = intDischargeConsultantCode;
-                        patientDetail.EmergencyAdmission = strEmergencyAdmission;
-                        patientDetail.DateofAdmission = DateTime.ParseExact(strDateOfAdmission, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        patientDetail.TimeofAdmission = Convert.ToDateTime(strTimeOfAdmission);
-                        patientDetail.DateofDeath = DateTime.ParseExact(strDateOfDeath, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        patientDetail.TimeofDeath = Convert.ToDateTime(strTimeOfDeath);
-                        patientDetail.PrimaryDiagnosis = strPrimaryDiagnosis;
-                        if (blCodingIssueIdentifiedNo == true)
-                        {
-                            patientDetail.CodingIssueIdentified = false;
-                        }
-                        patientDetail.CodingIssueIdentified = blCodingIssueIdentifiedYes;
-                        patientDetail.Comments = strComments;
-                        patientDetail.CreatedBy = "John Deo";
-                        patientDetail.CreateDate = DateTime.Now;
-                        patientDetail.UpdatedBy = "John Deo";
-                        patientDetail.UpdatedDate = DateTime.Now;
-                        ent.PatientDetails.Add(patientDetail);
-                        ent.SaveChanges();
-
-                        //int intMRN = patientDetail.PatientId;
-
-                        Session["sessionPatientDetails"] = patientDetail;
-                        Session["sessionDischargeConsultant"] = dischargeConsultant;
-
-                        PatientMap patientMap = new PatientMap();
-
-                        patientMap.MRN = strMRN;
-                        patientMap.CreatedBy = "John Deo";
-                        patientMap.CreateDate = DateTime.Now;
-                        patientMap.UpdatedBy = "John Deo";
-                        patientMap.UpdatedDate = DateTime.Now;
-                        ent.PatientMaps.Add(patientMap);
-                        ent.SaveChanges();
-
-                        Response.Redirect("/Home/MedExamFormStep2");
-                    
                 }
 
             }
@@ -939,7 +934,7 @@ namespace NHS.Controllers
             return View();
         }
 
-        public ActionResult MedExamFormStep2(FormCollection data,string BtnPrevious, string BtnNext)
+        public ActionResult MedExamFormStep2(FormCollection data, string BtnPrevious, string BtnNext)
         {
             try
             {
@@ -1090,7 +1085,7 @@ namespace NHS.Controllers
                     ent.SaveChanges();
 
                     Session["sessionMedicalExaminerDecision"] = medicalExaminerDecision;
-                    
+
                     Response.Redirect("/Home/MedExamFormStep4");
 
                 }
@@ -1229,7 +1224,7 @@ namespace NHS.Controllers
                     ent.OtherReferrals.Add(otherReferral);
                     ent.SaveChanges();
 
-                    Session["sessionOtherReferral"] = otherReferral;                  
+                    Session["sessionOtherReferral"] = otherReferral;
                     Response.Redirect("/Home/MedExamFormStep6");
                 }
 

@@ -4,77 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<script>
-        function validate(form) {
-            var returnValue = true;
-            var vStage2SJRDateSent = form.txtStage2SJRDateSent.value;
-            var vStage2SJRSentTo = form.txtStage2SJRSentTo.value;
-            var vRefernceNumber = form.txtRefernceNumber.value;
-            var vDateReceived = form.txtDateReceived.value;
-            var vRCAOutcomeComments = form.taRCAOutcomeComments.value;
-            var vDiscussedToMSG = form.txtDiscussedToMSG.value;
-            var vMortalitySurveillanceComments = form.taMortalitySurveillanceComments.value;
-            var vFeedbackToNok = form.taFeedbackToNok.value;
-
-            if (vStage2SJRDateSent.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Date Sent");
-                document.frmSJROutcome.txtStage2SJRDateSent.focus();
-                return returnValue;
-            }
-
-            if (vStage2SJRSentTo.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Sent To");
-                document.frmSJROutcome.txtStage2SJRSentTo.focus();
-                return returnValue;
-            }
-
-            if (vRefernceNumber.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Refernce Number");
-                document.frmSJROutcome.txtRefernceNumber.focus();
-                return returnValue;
-            }
-
-            if (vDateReceived.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Date Received ");
-                document.frmSJROutcome.txtDateReceived.focus();
-                return returnValue;
-            }
-
-            if (vRCAOutcomeComments.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Out Come Comments ");
-                document.frmSJROutcome.taRCAOutcomeComments.focus();
-                return returnValue;
-            }
-
-            if (vDiscussedToMSG.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Disscussed To MSG ");
-                document.frmSJROutcome.txtDiscussedToMSG.focus();
-                return returnValue;
-            }
-
-            if (vMortalitySurveillanceComments.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk Mortality Surveillance Comments ");
-                document.frmSJROutcome.taMortalitySurveillanceComments.focus();
-                return returnValue;
-            }
-
-            if (vFeedbackToNok.length == 0) {
-                returnValue = false;
-                alert("Cannot be balnk FeedBack To Nok ");
-                document.frmSJROutcome.taFeedbackToNok.focus();
-                return returnValue;
-            }
-            return returnValue;
-        }
-    </script>*@
-
 <div class="row setup-content" id="step-1">
     <div class="col-xs-12 col-lg-12">
         <form action="/Home/SJROutcome" method="post">
@@ -202,17 +131,18 @@
                             <textarea class="form-control" rows="5" id="taFeedbackToNok" name="taFeedbackToNok"></textarea>
                         </div>
                     </div>
-                    <div class="col-md-12" align="center">
-                        @*<input type="button" class="btn btn-info" value="Reset">
-                        <input type="submit" name="btnSumbit" class="btn btn-info" value="Submit">*@
+                    <div class="col-md-12" align="center">                     
                         <button id="btnSave" type="submit" class="btn btn-primary btn-lg" name="btnSave">Save </button>
-
                     </div>
                 </div>
             </div>
-        </form>
-        <button class="btn btn-primary btn-lg" id="btnClose">Close</button>
+        </form>       
     </div>
+</div>
+<br />
+<br />
+<div class="pull-right">
+    <button class="btn btn-primary btn-lg" id="btnClose">Close</button>
 </div>
 <div class="modal fade" id="modelClose">
     <div class="modal-dialog modal-md">
