@@ -1,0 +1,500 @@
+﻿@model NHS.Models.clsSJRFormInitialModel
+@{
+    ViewBag.Title = "Stage2SJRformFirstStep";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <div class="row" align="right">
+                <div class="col-md-12">
+                    <input type="image" src="~/images/Delete.png" width="30" height="30" alt="Submit" id="btnClose1" title="Close" />
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="active">
+                    <a href="#step-1">
+                        <h4 class="list-group-item-heading">
+                            Phase of Care Assessment
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#step-2">
+                        <h4 class="list-group-item-heading">
+                            Assessment Of Problems in Healthcare
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="row setup-content" id="step-1">
+            <div class="col-xs-12 col-lg-12">
+                @using (Html.BeginForm("Stage2SJRformFirstStep", "Home", FormMethod.Post, new { @id = "my_form" }))
+                {
+                    AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-md-12 well text-center">
+                        <div class="form-section" style="text-align:left">
+                            <h3 class="stage_title">STAGE 1: STRUCTURED JUDGEMENT REVIEW </h3><br />
+                            <div class="lable_title">
+                                <h2>PHASE OF CARE: INITIAL MANAGEMENT (FIRST 24 HOURS) </h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        @Html.TextAreaFor(model => model.clsSjrFormInitial.InitialManagement, 5, 200, new { @class = "form-control", placeholder = "Please record your explicit judgements about the quality of care the patient received and whether it was in accordance with current good practice (for example, your professional standards or your professional perspective). If there is any other information that you think is important or relevant that you wish to comment on then please do so." })
+                                        @Html.HiddenFor(model => model.clsSjrFormInitial.SJRFormInitial_ID)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+
+
+                                        @Html.DropDownListFor(x => x.clsInitialManagementCareRating.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "1 (Very Poor Care)", Value="1 (Very Poor Care)"},
+                                                                new SelectListItem() {Text = "2 (Poor Care)", Value="2 (Poor Care)"},
+                                                                new SelectListItem() {Text = "3 (Adequate Care)", Value="3 (Adequate Care)"},
+                                                                new SelectListItem() {Text = "4 (Good Care)", Value="4 (Good Care)"},
+                                                                new SelectListItem() {Text = "5 (Excellent Care)", Value="5 (Excellent Care)"}
+
+                                            }, new { @class = "form-control" })
+
+                                        @*<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                                            <li class="disableddisabled">
+                                                <a href="#Step1" class="my-link">
+                                                    <h4 class="list-group-item-heading">
+                                                        Very Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#Stpe2" class="my-link1">
+                                                    <h4 class="list-group-item-heading">
+                                                        Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#Step3">
+                                                    <h4 class="list-group-item-heading">
+                                                        Adequate
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#Step4">
+                                                    <h4 class="list-group-item-heading">
+                                                        good
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#Step5">
+                                                    <h4 class="list-group-item-heading">
+                                                        Excellent
+                                                    </h4>
+                                                </a>
+                                            </li>
+
+                                        </ul>*@
+
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: ONGOING CARE</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        @Html.TextAreaFor(model => model.clsSjrFormInitial.OngoingCare, 5, 200, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        @Html.DropDownListFor(x => x.clsOnGoingCareRating.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "1 (Very Poor Care)", Value="1 (Very Poor Care)"},
+                                                                new SelectListItem() {Text = "2 (Poor Care)", Value="2 (Poor Care)"},
+                                                                new SelectListItem() {Text = "3 (Adequate Care)", Value="3 (Adequate Care)"},
+                                                                new SelectListItem() {Text = "4 (Good Care)", Value="4 (Good Care)"},
+                                                                new SelectListItem() {Text = "5 (Excellent Care)", Value="5 (Excellent Care)"}
+
+                                            }, new { @class = "form-control" })
+                                        @*<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Very Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Adequate
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        good
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Excellent
+                                                    </h4>
+                                                </a>
+                                            </li>
+
+                                        </ul>*@
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: CARE DURING A PROCEDURE (EXCLUDING IV CANNULATION)</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        @Html.TextAreaFor(model => model.clsSjrFormInitial.CareDuringProcedure, 5, 200, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        @Html.DropDownListFor(x => x.clsCareDuringProcedureCareRating.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "1 (Very Poor Care)", Value="1 (Very Poor Care)"},
+                                                                new SelectListItem() {Text = "2 (Poor Care)", Value="2 (Poor Care)"},
+                                                                new SelectListItem() {Text = "3 (Adequate Care)", Value="3 (Adequate Care)"},
+                                                                new SelectListItem() {Text = "4 (Good Care)", Value="4 (Good Care)"},
+                                                                new SelectListItem() {Text = "5 (Excellent Care)", Value="5 (Excellent Care)"}
+
+                                            }, new { @class = "form-control" })
+                                        @*<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Very Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Adequate
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        good
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Excellent
+                                                    </h4>
+                                                </a>
+                                            </li>
+
+                                        </ul>*@
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: END OF LIFE CARE</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        @Html.TextAreaFor(model => model.clsSjrFormInitial.EndLifeCare, 5, 200, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        @Html.DropDownListFor(x => x.clsEndLifeCareRating.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "1 (Very Poor Care)", Value="1 (Very Poor Care)"},
+                                                                new SelectListItem() {Text = "2 (Poor Care)", Value="2 (Poor Care)"},
+                                                                new SelectListItem() {Text = "3 (Adequate Care)", Value="3 (Adequate Care)"},
+                                                                new SelectListItem() {Text = "4 (Good Care)", Value="4 (Good Care)"},
+                                                                new SelectListItem() {Text = "5 (Excellent Care)", Value="5 (Excellent Care)"}
+
+                                            }, new { @class = "form-control" })
+                                        @*<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Very Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Adequate
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        good
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Excellent
+                                                    </h4>
+                                                </a>
+                                            </li>
+
+                                        </ul>*@
+                                    </div>
+                                </div>
+                                <div class="lable_title">
+                                    <h2>&nbsp;&nbsp;PHASE OF CARE: OVERALL ASSESSMENT</h2>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar">
+                                        @Html.TextAreaFor(model => model.clsSjrFormInitial.OverAllAssessment, 5, 200, new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Please rate the care received by the patient during this phase</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        @Html.DropDownListFor(x => x.clsOverAllAssessmentCareRating.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "1 (Very Poor Care)", Value="1 (Very Poor Care)"},
+                                                                new SelectListItem() {Text = "2 (Poor Care)", Value="2 (Poor Care)"},
+                                                                new SelectListItem() {Text = "3 (Adequate Care)", Value="3 (Adequate Care)"},
+                                                                new SelectListItem() {Text = "4 (Good Care)", Value="4 (Good Care)"},
+                                                                new SelectListItem() {Text = "5 (Excellent Care)", Value="5 (Excellent Care)"}
+
+                                            }, new { @class = "form-control" })
+                                        @*<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Very Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Adequate
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        good
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Excellent
+                                                    </h4>
+                                                </a>
+                                            </li>
+
+                                        </ul>*@
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        <label class="label_part">Quality of documentation</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        @Html.DropDownListFor(x => x.clsQualityDocumentationCareRating.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "1", Value="1"},
+                                                                new SelectListItem() {Text = "2", Value="2"},
+                                                                new SelectListItem() {Text = "3", Value="3"},
+                                                                new SelectListItem() {Text = "4", Value="4"},
+                                                                new SelectListItem() {Text = "5", Value="5"}
+
+                                            }, new { @class = "form-control" })
+
+                                        @*<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Very Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Poor
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Adequate
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        good
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="#">
+                                                    <h4 class="list-group-item-heading">
+                                                        Excellent
+                                                    </h4>
+                                                </a>
+                                            </li>
+                                        </ul>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button id="BtnNext" type="submit" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+    <div class="modal fade" id="modelClose1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Messsage</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-section" style="text-align:left">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row_bar">
+                                    <div>Doy you want to Save Record ?</div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary btn-block" id="btnClose1Yes">Yes</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary btn-block" id="btnModelClose1" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnClose1").click(function () {
+            $("#modelClose1").modal();
+        });
+    });
+</script>
+<script type="text/javascript">
+$(function () {
+    $("#btnModelClose1").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+   
+});
+</script>
+
+
+

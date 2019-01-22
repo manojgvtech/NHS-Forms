@@ -17,7 +17,7 @@ namespace NHS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SJRReviewSpeciality()
         {
-            this.SJRReviews = new HashSet<SJRReview>();
+            this.SJRReview = new HashSet<SJRReview>();
         }
     
         public int SJRReviewSpecialityID { get; set; }
@@ -28,6 +28,6 @@ namespace NHS.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRReview> SJRReviews { get; set; }
+        public virtual ICollection<SJRReview> SJRReview { get; set; }
     }
 }

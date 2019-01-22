@@ -45,7 +45,7 @@ namespace NHS.Models
         public virtual CarePhase CarePhase3 { get; set; }
         public virtual CarePhase CarePhase4 { get; set; }
         public virtual CarePhase CarePhase5 { get; set; }
-        public virtual PatientMap PatientMap { get; set; }
+        public virtual PatientDetails PatientDetails { get; set; }
         public virtual ResponsePT ResponsePT { get; set; }
         public virtual ResponsePT ResponsePT1 { get; set; }
         public virtual ResponsePT ResponsePT2 { get; set; }

@@ -185,8 +185,8 @@ E:\NHS Forms\NHS\NHS\bin\Antlr3.Runtime.pdb
 E:\NHS Forms\NHS\NHS\bin\System.Diagnostics.DiagnosticSource.xml
 E:\NHS Forms\NHS\NHS\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 E:\NHS Forms\NHS\NHS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\NHS Forms\NHS\NHS\obj\Debug\NHS.csprojAssemblyReference.cache
 E:\NHS Forms\NHS\NHS\obj\Debug\NHS.csproj.CoreCompileInputs.cache
 E:\NHS Forms\NHS\NHS\obj\Debug\NHS.csproj.CopyComplete
 E:\NHS Forms\NHS\NHS\obj\Debug\NHS.dll
 E:\NHS Forms\NHS\NHS\obj\Debug\NHS.pdb
+E:\NHS Forms\NHS\NHS\obj\Debug\NHS.csprojAssemblyReference.cache

@@ -1,0 +1,207 @@
+﻿@model NHS.Models.clsSJRReviewModel
+@{
+    ViewBag.Title = "SJR Assessment Triage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <div class="row" align="right">
+                <div class="col-md-12">
+                    <input type="image" src="~/images/Delete.png" width="30" height="30" alt="Submit" id="btnClose4" title="Close" />
+                </div>
+                </div>
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                    <li class="disabled">
+                        <a href="/Home/PatientDetails">
+                            <h4 class="list-group-item-heading">
+                                Patient details
+                            </h4>
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/Home/MedicalExaminerReview">
+                            <h4 class="list-group-item-heading">
+                                Medical Examiner Review
+                            </h4>
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/Home/MedicalExaminerDecision">
+                            <h4 class="list-group-item-heading">
+                                Medical Examiner Decision
+                            </h4>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="/Home/SJRAssessmentTriage">
+                            <h4 class="list-group-item-heading">
+                                SJR Assessment Triage
+                            </h4>
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/Home/OtherReferrals">
+                            <h4 class="list-group-item-heading">
+                                Other referrals
+                            </h4>
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/Home/PositiveFeedback">
+                            <h4 class="list-group-item-heading">
+                                Positive Feedback
+                            </h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="row setup-content" id="step-4">
+        @using (Html.BeginForm("SJRAssessmentTriage", "Home", FormMethod.Post, new { @id = "my_form" }))
+        {
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-xs-12 col-lg-12">
+                <form action="/Home/MedExamFormStep4" method="post" id="frmMedExamFormStep4">
+                    <div class="col-md-12 well">
+                        <div class="form-section">
+                            <div class="lable_title">
+                                <h2>SJR REVIEW TRIAGE</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.PaediatricPatient, new { htmlAttributes = new { @class = "form-control" } })<b><span> Paediatric Patient </span></b>
+                                        @Html.HiddenFor(model => model.objclsSJRReview.SJRReview_ID)
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">                                       
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.LearningDisabilityPatient, new { htmlAttributes = new { @class = "form-control" } })<b><span> Learning disability patient </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">                                        
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.MentalillnessPatient, new { htmlAttributes = new { @class = "form-control" } })<b><span> Severe mental health illness patient </span></b>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">                                       
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.ElectiveAdmission, new { htmlAttributes = new { @class = "form-control" } })<b><span> Elective admission </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">                                        
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.NoKConcernsDeath, new { htmlAttributes = new { @class = "form-control" } })<b><span> NoK concerns about death </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">                                       
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.OtherConcern, new { htmlAttributes = new { @class = "form-control" } })<b><span> Other concerns which warrant further review </span></b>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">                                      
+                                        <b><span> Full SJR Required &nbsp;&nbsp;  </span></b>
+                                        @Html.CheckBoxFor(model => model.objclsSJRReview.FullSJRRequired, new { htmlAttributes = new { @class = "form-control" } }) <span>   Yes </span>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+
+                                <div class="col-md-3">
+                                    <div class="row_bar">
+                                        <label class="label_part">Specialty to complete SJR Review </label>
+                                        @*@Html.LabelFor(model => model.objclsSJRReviewSpeciality.Name, new { @class = "label_part" })*@
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row_bar">                                                                        
+                                        @Html.DropDownListFor(x => x.objclsSJRReviewSpeciality.Name, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "M K S", Value="M K S"},
+                                                                new SelectListItem() {Text = "P K P", Value="P K P"},
+                                                                new SelectListItem() {Text = "R T O", Value="R T O"},
+                                                                new SelectListItem() {Text = "P K P", Value="T K T"},
+                                                                new SelectListItem() {Text = "M K S", Value="D T O"}
+
+                                            }, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                        <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+    <br />
+    <br />
+    @*<div class="pull-right">
+        <button class="btn btn-primary btn-lg" id="btnClose4">Close</button>
+    </div>*@
+</div>
+<div class="modal fade" id="modelClose4">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose4Yes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose4" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnClose4").click(function () {
+            $("#modelClose4").modal();
+        });
+    });
+</script>
+<script type="text/javascript">
+$(function () {
+     $("#btnModelClose4").click(function(){
+window.location.href = "@Url.Action("MortalityReview", "Home")";
+    });
+
+});
+</script>
+

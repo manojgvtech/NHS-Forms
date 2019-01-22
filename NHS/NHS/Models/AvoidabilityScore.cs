@@ -17,7 +17,7 @@ namespace NHS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AvoidabilityScore()
         {
-            this.SJRFormProblemTypes = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType = new HashSet<SJRFormProblemType>();
         }
     
         public int AvoidabilityScoreID { get; set; }
@@ -28,6 +28,6 @@ namespace NHS.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType { get; set; }
     }
 }

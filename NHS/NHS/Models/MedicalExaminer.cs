@@ -17,7 +17,7 @@ namespace NHS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MedicalExaminer()
         {
-            this.MedicalExaminerReviews = new HashSet<MedicalExaminerReview>();
+            this.MedicalExaminerReview = new HashSet<MedicalExaminerReview>();
         }
     
         public int ME_ID { get; set; }
@@ -30,6 +30,6 @@ namespace NHS.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedicalExaminerReview> MedicalExaminerReviews { get; set; }
+        public virtual ICollection<MedicalExaminerReview> MedicalExaminerReview { get; set; }
     }
 }

@@ -1,0 +1,195 @@
+﻿@model NHS.Models.clsMedicalExaminerReviewModel
+@{
+    ViewBag.Title = "Medical Examiner Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <div class="row" align="right">
+                <div class="col-md-12">
+                    <input type="image" src="~/images/Delete.png" width="30" height="30" alt="Submit" id="btnClose2" title="Close" />
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled">
+                    <a href="/Home/PatientDetails">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/Home/MedicalExaminerReview">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/MedicalExaminerDecision">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/SJRAssessmentTriage">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/OtherReferrals">
+                        <h4 class="list-group-item-heading">
+                            Other Referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/PositiveFeedback">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row setup-content" id="step-2">
+        <div class="col-xs-12 col-lg-12">
+            @using (Html.BeginForm("MedicalExaminerReview", "Home", FormMethod.Post, new { @id = "my_form" }))
+            {
+                AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-12 well">
+                    @*<div class="form-section">*@
+                    <div class="lable_title">
+                        <h2>MEDICAL EXAMINER REVIEW </h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row_bar">
+                                @Html.LabelFor(model => model.objclsMedicalExaminer.ME_FirstName, new { @class = "label_part" })
+                                @Html.DropDownListFor(x => x.objclsMedicalExaminer.ME_FirstName, new List<SelectListItem>
+                                    {
+                                                        new SelectListItem() {Text = "Select", Value="-1"},
+                                                        new SelectListItem() {Text = "M K S", Value="M K S"},
+                                                        new SelectListItem() {Text = "P K P", Value="P K P"},
+                                                        new SelectListItem() {Text = "R T O", Value="R T O"},
+                                                        new SelectListItem() {Text = "P K P", Value="T K T"},
+                                                        new SelectListItem() {Text = "M K S", Value="D T O"}
+
+                                    }, new { @class = "form-control" })
+                                @Html.HiddenFor(model => model.objclsMedicalExaminerReview.MEReviewId)
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row_bar">
+                                @Html.LabelFor(model => model.objclsMedicalExaminerReview.QAPName, new { @class = "label_part" })
+                                @Html.EditorFor(model => model.objclsMedicalExaminerReview.QAPName, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.ValidationMessageFor(model => model.objclsMedicalExaminerReview.QAPName, "", new { @class = "text-danger" })*@
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row_bar checkbox-row">
+                                @Html.CheckBoxFor(model => model.objclsMedicalExaminerReview.QAP_Discussion, new { htmlAttributes = new { @class = "form-control" } })<b><span> Discussion with QAP complete? </span></b>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row_bar checkbox-row">
+                                @Html.CheckBoxFor(model => model.objclsMedicalExaminerReview.Notes_Review, new { htmlAttributes = new { @class = "form-control" } })<b><span> Notes review complete? </span></b>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row_bar checkbox-row mb-3">
+                                @Html.CheckBoxFor(model => model.objclsMedicalExaminerReview.Nok_Discussion, new { htmlAttributes = new { @class = "form-control" } })<b><span> Discussion with NoK complete? </span></b>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row_bar">
+                                @Html.LabelFor(model => model.objclsMedicalExaminerReview.Comments, new { @class = "label_part" })
+                                @Html.TextAreaFor(model => model.objclsMedicalExaminerReview.Comments, 5, 100, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(model => model.objclsMedicalExaminerReview.Comments, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    @*</div>*@
+                </div>
+                <div class="pull-right">
+                    <button id="BtnPrevious" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                    <button id="BtnNext" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                </div>
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+    @*<div class="pull-right">
+            <button class="btn btn-primary btn-lg" id="btnClose2">Close</button>
+        </div>*@
+</div>
+<div class="modal fade" id="modelClose2">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnClose2Yes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose2" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnClose2").click(function () {
+            $("#modelClose2").modal();
+        });
+    });
+</script>
+<script type="text/javascript">
+$(function () {
+
+     $("#btnModelClose2").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+
+});
+</script>
+

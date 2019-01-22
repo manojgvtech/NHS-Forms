@@ -17,11 +17,12 @@ namespace NHS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CareRating()
         {
-            this.SJRFormInitials = new HashSet<SJRFormInitial>();
-            this.SJRFormInitials1 = new HashSet<SJRFormInitial>();
-            this.SJRFormInitials2 = new HashSet<SJRFormInitial>();
-            this.SJRFormInitials3 = new HashSet<SJRFormInitial>();
-            this.SJRFormInitials4 = new HashSet<SJRFormInitial>();
+            this.SJRFormInitial = new HashSet<SJRFormInitial>();
+            this.SJRFormInitial1 = new HashSet<SJRFormInitial>();
+            this.SJRFormInitial2 = new HashSet<SJRFormInitial>();
+            this.SJRFormInitial3 = new HashSet<SJRFormInitial>();
+            this.SJRFormInitial4 = new HashSet<SJRFormInitial>();
+            this.SJRFormInitial5 = new HashSet<SJRFormInitial>();
         }
     
         public int CareRatingID { get; set; }
@@ -32,14 +33,16 @@ namespace NHS.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormInitial> SJRFormInitials { get; set; }
+        public virtual ICollection<SJRFormInitial> SJRFormInitial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormInitial> SJRFormInitials1 { get; set; }
+        public virtual ICollection<SJRFormInitial> SJRFormInitial1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormInitial> SJRFormInitials2 { get; set; }
+        public virtual ICollection<SJRFormInitial> SJRFormInitial2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormInitial> SJRFormInitials3 { get; set; }
+        public virtual ICollection<SJRFormInitial> SJRFormInitial3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormInitial> SJRFormInitials4 { get; set; }
+        public virtual ICollection<SJRFormInitial> SJRFormInitial4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SJRFormInitial> SJRFormInitial5 { get; set; }
     }
 }

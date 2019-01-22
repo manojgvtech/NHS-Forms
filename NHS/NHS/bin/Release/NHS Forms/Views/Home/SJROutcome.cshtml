@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "SJROutcome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row setup-content" id="step-1">
+    <div class="col-xs-12 col-lg-12">
+        <form action="/Home/SJROutcome" method="post">
+            <div class="col-md-12 well text-center">
+                <div class="form-section" style="text-align:left">
+                    <div class="lable_title">
+                        <h2>SJR OUTCOME</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label class="label_part">Stage 2 SJR Required?</label>
+                        </div>
+                        <div class="col-md-0">
+                            <input class="form-checkbox-input" type="checkbox" value="" id="cbStage2SJRRequiredYes" name="cbStage2SJRRequiredYes">
+                        </div>
+                        <div class="col-md-1">
+                            <label class="label_part" for="defaultCheck1">Yes</label>
+                        </div>
+
+                        <div class="col-md-0">
+                            <input class="form-checkbox-input" type="checkbox" value="" id="cbStage2SJRRequiredNo" name="cbStage2SJRRequiredNo">
+                        </div>
+                        <div class="col-md-1">
+                            <label class="label_part" for="defaultCheck1">No</label>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row_bar">
+                                <label class="label_part">Stage 2 SJR date sent</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row_bar">
+                                <input class="form-control" type="text" placeholder="" id="txtStage2SJRDateSent" name="txtStage2SJRDateSent">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row_bar">
+                                <label class="label_part">Stage 2 SJR sent to</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="row_bar">
+                                <input class="form-control" type="text" placeholder="" id="txtStage2SJRSentTo" name="txtStage2SJRSentTo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lable_title">
+                        <h2>SIRI/ RCA OUTCOME</h2>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label class="label_part">Reference Number</label>
+                        </div>
+
+                        <div class="col-md-5">
+                            <input class="form-control" type="text" placeholder="" id="txtRefernceNumber" name="txtRefernceNumber">
+                        </div>
+                        <div class="col-md-7">
+                            <label class="label_part">Date Received</label>
+                        </div>
+
+                        <div class="col-md-5">
+                            <input class="form-control input_datepicker" type="text" placeholder="" id="txtDateReceived" name="txtDateReceived">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="label_part">Comments</label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="taRCAOutcomeComments" name="taRCAOutcomeComments"></textarea>
+                        </div>
+                    </div><br />
+                    <div class="lable_title">
+                        <h2>MORTALITY SURVEILLANCE GROUP </h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label class="label_part">Presentation to MSG required? </label>
+                        </div>
+                        <div class="col-md-0">
+                            <input class="form-checkbox-input" type="checkbox" value="" id="cbPresentationToMSGYes" name="cbPresentationToMSGYes">
+                        </div>
+                        <div class="col-md-1">
+                            <label class="label_part" for="defaultCheck1">Yes</label>
+                        </div>
+
+                        <div class="col-md-0">
+                            <input class="form-checkbox-input" type="checkbox" value="" id="cbPresentationToMSGNo" name="cbPresentationToMSGNo">
+                        </div>
+                        <div class="col-md-1">
+                            <label class="label_part" for="defaultCheck1">No</label>
+                        </div>
+                        <div class="col-md-7">
+                            <label class="label_part">Discussed with MSG</label>
+                        </div>
+
+                        <div class="col-md-5">
+                            <input class="form-control" type="text" placeholder="" id="txtDiscussedToMSG" name="txtDiscussedToMSG">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row_bar">
+                                <label class="label_part">Avoidability Score</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row_bar">
+                                <select class="form-control" id="ddlAvoidabilityScore" name="ddlAvoidabilityScore">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="label_part">Comments</label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="taMortalitySurveillanceComments" name="taMortalitySurveillanceComments"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="label_part">Feedback to NoK</label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="taFeedbackToNok" name="taFeedbackToNok"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12" align="center">                     
+                        <button id="btnSave" type="submit" class="btn btn-primary btn-lg" name="btnSave">Save </button>
+                    </div>
+                </div>
+            </div>
+        </form>       
+    </div>
+</div>
+<br />
+<br />
+<div class="pull-right">
+    <button class="btn btn-primary btn-lg" id="btnClose">Close</button>
+</div>
+<div class="modal fade" id="modelClose">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnCloseYes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose" data-dismiss="modal">NO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnClose").click(function () {
+            $("#modelClose").modal();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+$(function () {
+    $("#btnModelClose").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+});
+</script>

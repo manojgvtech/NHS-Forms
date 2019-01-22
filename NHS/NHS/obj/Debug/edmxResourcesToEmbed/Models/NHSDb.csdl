@@ -10,7 +10,7 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="SJRFormProblemTypes" Relationship="Self.FK__SJRFormPr__Avoid__59FA5E80" FromRole="AvoidabilityScore" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType" Relationship="Self.FK__SJRFormPr__Avoid__59FA5E80" FromRole="AvoidabilityScore" ToRole="SJRFormProblemType" />
   </EntityType>
   <EntityType Name="CarePhase">
     <Key>
@@ -22,13 +22,12 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="SJRFormProblemTypes" Relationship="Self.FK__SJRFormPr__Asses__6754599E" FromRole="CarePhase" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes1" Relationship="Self.FK__SJRFormPr__Infec__619B8048" FromRole="CarePhase" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes2" Relationship="Self.FK__SJRFormPr__Medic__656C112C" FromRole="CarePhase" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes3" Relationship="Self.FK__SJRFormPr__Other__5DCAEF64" FromRole="CarePhase" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes4" Relationship="Self.FK__SJRFormPr__Probl__5AEE82B9" FromRole="CarePhase" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes5" Relationship="Self.FK__SJRFormPr__Proce__5CD6CB2B" FromRole="CarePhase" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes6" Relationship="Self.FK__SJRFormPr__Treat__6383C8BA" FromRole="CarePhase" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType" Relationship="Self.FK__SJRFormPr__Asses__6754599E" FromRole="CarePhase" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType1" Relationship="Self.FK__SJRFormPr__Infec__619B8048" FromRole="CarePhase" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType2" Relationship="Self.FK__SJRFormPr__Medic__656C112C" FromRole="CarePhase" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType3" Relationship="Self.FK__SJRFormPr__Other__5DCAEF64" FromRole="CarePhase" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType4" Relationship="Self.FK__SJRFormPr__Proce__5CD6CB2B" FromRole="CarePhase" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType5" Relationship="Self.FK__SJRFormPr__Treat__6383C8BA" FromRole="CarePhase" ToRole="SJRFormProblemType" />
   </EntityType>
   <EntityType Name="CareRating">
     <Key>
@@ -40,11 +39,32 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="SJRFormInitials" Relationship="Self.FK__SJRFormIn__CareD__6C190EBB" FromRole="CareRating" ToRole="SJRFormInitial" />
-    <NavigationProperty Name="SJRFormInitials1" Relationship="Self.FK__SJRFormIn__EndLi__6B24EA82" FromRole="CareRating" ToRole="SJRFormInitial" />
-    <NavigationProperty Name="SJRFormInitials2" Relationship="Self.FK__SJRFormIn__Initi__6E01572D" FromRole="CareRating" ToRole="SJRFormInitial" />
-    <NavigationProperty Name="SJRFormInitials3" Relationship="Self.FK__SJRFormIn__Ongoi__6D0D32F4" FromRole="CareRating" ToRole="SJRFormInitial" />
-    <NavigationProperty Name="SJRFormInitials4" Relationship="Self.FK__SJRFormIn__OverA__6A30C649" FromRole="CareRating" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormInitial" Relationship="Self.FK__SJRFormIn__CareD__6C190EBB" FromRole="CareRating" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormInitial1" Relationship="Self.FK__SJRFormIn__EndLi__6B24EA82" FromRole="CareRating" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormInitial2" Relationship="Self.FK__SJRFormIn__Initi__6E01572D" FromRole="CareRating" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormInitial3" Relationship="Self.FK__SJRFormIn__Ongoi__6D0D32F4" FromRole="CareRating" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormInitial4" Relationship="Self.FK__SJRFormIn__OverA__6A30C649" FromRole="CareRating" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormInitial5" Relationship="Self.FK__SJRFormIn__Quali__3D2915A8" FromRole="CareRating" ToRole="SJRFormInitial" />
+  </EntityType>
+  <EntityType Name="ClinicalCoding">
+    <Key>
+      <PropertyRef Name="ClinicalCodingID" />
+    </Key>
+    <Property Name="ClinicalCodingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" />
+    <Property Name="SpellNumber" Type="Int32" />
+    <Property Name="FCENumber" Type="Int32" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="Diagnosiscode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DiagnosisDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ComorbidityFlag" Type="Boolean" Nullable="false" />
+    <Property Name="ProcedureCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProcedureDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PatientDetails" Relationship="Self.FK__ClinicalC__Patie__498EEC8D" FromRole="ClinicalCoding" ToRole="PatientDetails" />
   </EntityType>
   <EntityType Name="CoronerReferralReason">
     <Key>
@@ -56,7 +76,18 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="MedicalExaminerDecisions" Relationship="Self.FK__MedicalEx__Coron__73BA3083" FromRole="CoronerReferralReason" ToRole="MedicalExaminerDecision" />
+    <NavigationProperty Name="MedicalExaminerDecision" Relationship="Self.FK__MedicalEx__Coron__73BA3083" FromRole="CoronerReferralReason" ToRole="MedicalExaminerDecision" />
+  </EntityType>
+  <EntityType Name="DischargeConsultant">
+    <Key>
+      <PropertyRef Name="DischargeConsultantCode" />
+    </Key>
+    <Property Name="DischargeConsultantCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DischargeConsultantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="FeedBack">
     <Key>
@@ -84,7 +115,7 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="MedicalExaminerReviews" Relationship="Self.FK__MedicalEx__ME_ID__70DDC3D8" FromRole="MedicalExaminer" ToRole="MedicalExaminerReview" />
+    <NavigationProperty Name="MedicalExaminerReview" Relationship="Self.FK__MedicalEx__ME_ID__70DDC3D8" FromRole="MedicalExaminer" ToRole="MedicalExaminerReview" />
   </EntityType>
   <EntityType Name="MedicalExaminerDecision">
     <Key>
@@ -170,6 +201,42 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="PatientMap" Relationship="Self.FK__OtherRefe__Patie__76969D2E" FromRole="OtherReferral" ToRole="PatientMap" />
   </EntityType>
+  <EntityType Name="PatientDetails">
+    <Key>
+      <PropertyRef Name="PatientId" />
+    </Key>
+    <Property Name="PatientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpellNumber" Type="Int32" />
+    <Property Name="PatientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NHSNumber" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="DateofAdmission" Type="DateTime" Precision="0" />
+    <Property Name="TimeofAdmission" Type="Time" Precision="7" />
+    <Property Name="DischargeWard" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DateofDeath" Type="DateTime" Precision="0" />
+    <Property Name="TimeofDeath" Type="Time" Precision="7" />
+    <Property Name="WardofDeath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DischargeConsultantCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DischargeConsutantName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DischargeSpecialtyCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DischargeSpeciality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Caregroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdmissionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryProcedure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ComorbiditiesCount" Type="Int32" />
+    <Property Name="SHMIGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CodingIssueIdentified" Type="Boolean" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ClinicalCoding" Relationship="Self.FK__ClinicalC__Patie__498EEC8D" FromRole="PatientDetails" ToRole="ClinicalCoding" />
+    <NavigationProperty Name="ReviewStatus" Relationship="NHSModel.FK__ReviewSta__Patie__634EBE90" FromRole="PatientDetails" ToRole="ReviewStatus" />
+  </EntityType>
   <EntityType Name="PatientMap">
     <Key>
       <PropertyRef Name="PatientID" />
@@ -180,17 +247,36 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="FeedBacks" Relationship="Self.FK__FeedBack__Patien__6FE99F9F" FromRole="PatientMap" ToRole="FeedBack" />
-    <NavigationProperty Name="MedicalExaminerDecisions" Relationship="Self.FK__MedicalEx__Patie__72C60C4A" FromRole="PatientMap" ToRole="MedicalExaminerDecision" />
-    <NavigationProperty Name="MedicalExaminerReviews" Relationship="Self.FK__MedicalEx__Patie__71D1E811" FromRole="PatientMap" ToRole="MedicalExaminerReview" />
-    <NavigationProperty Name="MortalitySurveillances" Relationship="Self.FK__Mortality__Patie__5812160E" FromRole="PatientMap" ToRole="MortalitySurveillance" />
-    <NavigationProperty Name="OtherReferrals" Relationship="Self.FK__OtherRefe__Patie__76969D2E" FromRole="PatientMap" ToRole="OtherReferral" />
-    <NavigationProperty Name="SJRFormInitials" Relationship="Self.FK__SJRFormIn__Patie__6EF57B66" FromRole="PatientMap" ToRole="SJRFormInitial" />
-    <NavigationProperty Name="SJRFormProblemTypes" Relationship="Self.FK__SJRFormPr__Patie__68487DD7" FromRole="PatientMap" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJROutcomes" Relationship="Self.FK__SJROutcom__Patie__59063A47" FromRole="PatientMap" ToRole="SJROutcome" />
-    <NavigationProperty Name="SJRReviews" Relationship="Self.FK__SJRReview__Patie__74AE54BC" FromRole="PatientMap" ToRole="SJRReview" />
+    <NavigationProperty Name="FeedBack" Relationship="Self.FK__FeedBack__Patien__6FE99F9F" FromRole="PatientMap" ToRole="FeedBack" />
+    <NavigationProperty Name="MedicalExaminerDecision" Relationship="Self.FK__MedicalEx__Patie__72C60C4A" FromRole="PatientMap" ToRole="MedicalExaminerDecision" />
+    <NavigationProperty Name="MedicalExaminerReview" Relationship="Self.FK__MedicalEx__Patie__71D1E811" FromRole="PatientMap" ToRole="MedicalExaminerReview" />
+    <NavigationProperty Name="MortalitySurveillance" Relationship="Self.FK__Mortality__Patie__5812160E" FromRole="PatientMap" ToRole="MortalitySurveillance" />
+    <NavigationProperty Name="OtherReferral" Relationship="Self.FK__OtherRefe__Patie__76969D2E" FromRole="PatientMap" ToRole="OtherReferral" />
+    <NavigationProperty Name="SJRFormInitial" Relationship="Self.FK__SJRFormIn__Patie__6EF57B66" FromRole="PatientMap" ToRole="SJRFormInitial" />
+    <NavigationProperty Name="SJRFormProblemType" Relationship="Self.FK__SJRFormPr__Patie__68487DD7" FromRole="PatientMap" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJROutcomes" Relationship="Self.FK__SJROutcom__Patie__02FC7413" FromRole="PatientMap" ToRole="SJROutcomes" />
+    <NavigationProperty Name="SJRReview" Relationship="Self.FK__SJRReview__Patie__74AE54BC" FromRole="PatientMap" ToRole="SJRReview" />
   </EntityType>
-  <EntityType Name="Role">
+  <EntityType Name="ResponsePT">
+    <Key>
+      <PropertyRef Name="ResponseID" />
+    </Key>
+    <Property Name="ResponseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Response" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SJRFormProblemType" Relationship="Self.FK__SJRFormPr__Asses__693CA210" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType1" Relationship="Self.FK__SJRFormPr__Infec__628FA481" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType2" Relationship="Self.FK__SJRFormPr__Medic__66603565" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType3" Relationship="Self.FK__SJRFormPr__Monit__60A75C0F" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType4" Relationship="Self.FK__SJRFormPr__Other__5EBF139D" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType5" Relationship="Self.FK__SJRFormPr__Proce__5BE2A6F2" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType6" Relationship="Self.FK__SJRFormPr__Resus__5FB337D6" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <NavigationProperty Name="SJRFormProblemType7" Relationship="Self.FK__SJRFormPr__Treat__6477ECF3" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+  </EntityType>
+  <EntityType Name="Roles">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -222,11 +308,13 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="QualityDocumentationCode" Type="Int32" />
     <NavigationProperty Name="CareRating" Relationship="Self.FK__SJRFormIn__CareD__6C190EBB" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="CareRating1" Relationship="Self.FK__SJRFormIn__EndLi__6B24EA82" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="CareRating2" Relationship="Self.FK__SJRFormIn__Initi__6E01572D" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="CareRating3" Relationship="Self.FK__SJRFormIn__Ongoi__6D0D32F4" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="CareRating4" Relationship="Self.FK__SJRFormIn__OverA__6A30C649" FromRole="SJRFormInitial" ToRole="CareRating" />
+    <NavigationProperty Name="CareRating5" Relationship="Self.FK__SJRFormIn__Quali__3D2915A8" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="PatientMap" Relationship="Self.FK__SJRFormIn__Patie__6EF57B66" FromRole="SJRFormInitial" ToRole="PatientMap" />
   </EntityType>
   <EntityType Name="SJRFormProblemType">
@@ -249,7 +337,6 @@
     <Property Name="ResuscitationResponseID" Type="Int32" />
     <Property Name="OthertypeResponseID" Type="Int32" />
     <Property Name="OthertypeCarePhaseID" Type="Int32" />
-    <Property Name="ProblemOccurCarePhaseID" Type="Int32" />
     <Property Name="AvoidabilityScoreID" Type="Int32" />
     <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Stage" Type="Int32" />
@@ -262,28 +349,27 @@
     <NavigationProperty Name="CarePhase1" Relationship="Self.FK__SJRFormPr__Infec__619B8048" FromRole="SJRFormProblemType" ToRole="CarePhase" />
     <NavigationProperty Name="CarePhase2" Relationship="Self.FK__SJRFormPr__Medic__656C112C" FromRole="SJRFormProblemType" ToRole="CarePhase" />
     <NavigationProperty Name="CarePhase3" Relationship="Self.FK__SJRFormPr__Other__5DCAEF64" FromRole="SJRFormProblemType" ToRole="CarePhase" />
-    <NavigationProperty Name="CarePhase4" Relationship="Self.FK__SJRFormPr__Probl__5AEE82B9" FromRole="SJRFormProblemType" ToRole="CarePhase" />
-    <NavigationProperty Name="CarePhase5" Relationship="Self.FK__SJRFormPr__Proce__5CD6CB2B" FromRole="SJRFormProblemType" ToRole="CarePhase" />
-    <NavigationProperty Name="CarePhase6" Relationship="Self.FK__SJRFormPr__Treat__6383C8BA" FromRole="SJRFormProblemType" ToRole="CarePhase" />
+    <NavigationProperty Name="CarePhase4" Relationship="Self.FK__SJRFormPr__Proce__5CD6CB2B" FromRole="SJRFormProblemType" ToRole="CarePhase" />
+    <NavigationProperty Name="CarePhase5" Relationship="Self.FK__SJRFormPr__Treat__6383C8BA" FromRole="SJRFormProblemType" ToRole="CarePhase" />
     <NavigationProperty Name="PatientMap" Relationship="Self.FK__SJRFormPr__Patie__68487DD7" FromRole="SJRFormProblemType" ToRole="PatientMap" />
-    <NavigationProperty Name="ResponsePT" Relationship="NHSModel.FK__SJRFormPr__Asses__693CA2101" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT1" Relationship="NHSModel.FK__SJRFormPr__Infec__628FA4811" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT2" Relationship="NHSModel.FK__SJRFormPr__Medic__666035651" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT3" Relationship="NHSModel.FK__SJRFormPr__Monit__60A75C0F1" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT4" Relationship="NHSModel.FK__SJRFormPr__Other__5EBF139D1" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT5" Relationship="NHSModel.FK__SJRFormPr__Proce__5BE2A6F21" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT6" Relationship="NHSModel.FK__SJRFormPr__Resus__5FB337D61" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
-    <NavigationProperty Name="ResponsePT7" Relationship="NHSModel.FK__SJRFormPr__Treat__6477ECF31" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT" Relationship="Self.FK__SJRFormPr__Asses__693CA210" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT1" Relationship="Self.FK__SJRFormPr__Infec__628FA481" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT2" Relationship="Self.FK__SJRFormPr__Medic__66603565" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT3" Relationship="Self.FK__SJRFormPr__Monit__60A75C0F" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT4" Relationship="Self.FK__SJRFormPr__Other__5EBF139D" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT5" Relationship="Self.FK__SJRFormPr__Proce__5BE2A6F2" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT6" Relationship="Self.FK__SJRFormPr__Resus__5FB337D6" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
+    <NavigationProperty Name="ResponsePT7" Relationship="Self.FK__SJRFormPr__Treat__6477ECF3" FromRole="SJRFormProblemType" ToRole="ResponsePT" />
   </EntityType>
-  <EntityType Name="SJROutcome">
+  <EntityType Name="SJROutcomes">
     <Key>
       <PropertyRef Name="SJROutcome_ID" />
     </Key>
     <Property Name="SJROutcome_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PatientID" Type="Int32" />
     <Property Name="Stage2SJRRequired" Type="Boolean" />
-    <Property Name="Stage2SJRdatesent" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Stage2SJRsentto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Stage2SJRDateSent" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Stage2SJRSentTo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="ReferenceNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="DateReceived" Type="DateTime" Precision="3" />
     <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -291,7 +377,7 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="PatientMap" Relationship="Self.FK__SJROutcom__Patie__59063A47" FromRole="SJROutcome" ToRole="PatientMap" />
+    <NavigationProperty Name="PatientMap" Relationship="Self.FK__SJROutcom__Patie__02FC7413" FromRole="SJROutcomes" ToRole="PatientMap" />
   </EntityType>
   <EntityType Name="SJRReview">
     <Key>
@@ -324,9 +410,9 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="SJRReviews" Relationship="Self.FK__SJRReview__SJRRe__75A278F5" FromRole="SJRReviewSpeciality" ToRole="SJRReview" />
+    <NavigationProperty Name="SJRReview" Relationship="Self.FK__SJRReview__SJRRe__75A278F5" FromRole="SJRReviewSpeciality" ToRole="SJRReview" />
   </EntityType>
-  <EntityType Name="UserInRole">
+  <EntityType Name="UserInRoles">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -338,7 +424,7 @@
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="User">
+  <EntityType Name="Users">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -355,7 +441,7 @@
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="UserSessions" Relationship="Self.FK_Session_User" FromRole="Users" ToRole="UserSession" />
+    <NavigationProperty Name="UserSession" Relationship="Self.FK_Session_User" FromRole="Users" ToRole="UserSession" />
   </EntityType>
   <EntityType Name="UserSession">
     <Key>
@@ -369,7 +455,7 @@
     <Property Name="SessionCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="IsMobileSession" Type="Boolean" />
     <Property Name="DeviceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Session_User" FromRole="UserSession" ToRole="Users" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Session_User" FromRole="UserSession" ToRole="Users" />
   </EntityType>
   <Association Name="FK__SJRFormPr__Avoid__59FA5E80">
     <End Role="AvoidabilityScore" Type="Self.AvoidabilityScore" Multiplicity="0..1" />
@@ -428,18 +514,6 @@
       </Principal>
       <Dependent Role="SJRFormProblemType">
         <PropertyRef Name="OthertypeCarePhaseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Probl__5AEE82B9">
-    <End Role="CarePhase" Type="Self.CarePhase" Multiplicity="0..1" />
-    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CarePhase">
-        <PropertyRef Name="CarePhaseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="ProblemOccurCarePhaseID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -524,6 +598,30 @@
       </Principal>
       <Dependent Role="SJRFormInitial">
         <PropertyRef Name="OverAllAssessmentCareRatingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormIn__Quali__3D2915A8">
+    <End Role="CareRating" Type="Self.CareRating" Multiplicity="0..1" />
+    <End Role="SJRFormInitial" Type="Self.SJRFormInitial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CareRating">
+        <PropertyRef Name="CareRatingID" />
+      </Principal>
+      <Dependent Role="SJRFormInitial">
+        <PropertyRef Name="QualityDocumentationCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClinicalC__Patie__498EEC8D">
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="0..1" />
+    <End Role="ClinicalCoding" Type="Self.ClinicalCoding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientDetails">
+        <PropertyRef Name="PatientId" />
+      </Principal>
+      <Dependent Role="ClinicalCoding">
+        <PropertyRef Name="PatientID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -635,14 +733,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SJROutcom__Patie__59063A47">
+  <Association Name="FK__SJROutcom__Patie__02FC7413">
     <End Role="PatientMap" Type="Self.PatientMap" Multiplicity="0..1" />
-    <End Role="SJROutcome" Type="Self.SJROutcome" Multiplicity="*" />
+    <End Role="SJROutcomes" Type="Self.SJROutcomes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientMap">
         <PropertyRef Name="PatientID" />
       </Principal>
-      <Dependent Role="SJROutcome">
+      <Dependent Role="SJROutcomes">
         <PropertyRef Name="PatientID" />
       </Dependent>
     </ReferentialConstraint>
@@ -659,6 +757,102 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__SJRFormPr__Asses__693CA210">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="AssessmentResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Infec__628FA481">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="InfectionResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Medic__66603565">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="MedicationResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Monit__60A75C0F">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="MonitoringResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Other__5EBF139D">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="OthertypeResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Proce__5BE2A6F2">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="ProcedureResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Resus__5FB337D6">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="ResuscitationResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SJRFormPr__Treat__6477ECF3">
+    <End Role="ResponsePT" Type="Self.ResponsePT" Multiplicity="0..1" />
+    <End Role="SJRFormProblemType" Type="Self.SJRFormProblemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponsePT">
+        <PropertyRef Name="ResponseID" />
+      </Principal>
+      <Dependent Role="SJRFormProblemType">
+        <PropertyRef Name="TreatmentResponseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__SJRReview__SJRRe__75A278F5">
     <End Role="SJRReviewSpeciality" Type="Self.SJRReviewSpeciality" Multiplicity="0..1" />
     <End Role="SJRReview" Type="Self.SJRReview" Multiplicity="*" />
@@ -672,7 +866,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Session_User">
-    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -684,276 +878,218 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="NHSEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AvoidabilityScores" EntityType="Self.AvoidabilityScore" />
-    <EntitySet Name="CarePhases" EntityType="Self.CarePhase" />
-    <EntitySet Name="CareRatings" EntityType="Self.CareRating" />
-    <EntitySet Name="CoronerReferralReasons" EntityType="Self.CoronerReferralReason" />
-    <EntitySet Name="FeedBacks" EntityType="Self.FeedBack" />
-    <EntitySet Name="MedicalExaminers" EntityType="Self.MedicalExaminer" />
-    <EntitySet Name="MedicalExaminerDecisions" EntityType="Self.MedicalExaminerDecision" />
-    <EntitySet Name="MedicalExaminerReviews" EntityType="Self.MedicalExaminerReview" />
-    <EntitySet Name="MortalitySurveillances" EntityType="Self.MortalitySurveillance" />
-    <EntitySet Name="OtherReferrals" EntityType="Self.OtherReferral" />
-    <EntitySet Name="PatientMaps" EntityType="Self.PatientMap" />
-    <EntitySet Name="Roles" EntityType="Self.Role" />
-    <EntitySet Name="SJRFormInitials" EntityType="Self.SJRFormInitial" />
-    <EntitySet Name="SJRFormProblemTypes" EntityType="Self.SJRFormProblemType" />
-    <EntitySet Name="SJROutcomes" EntityType="Self.SJROutcome" />
-    <EntitySet Name="SJRReviews" EntityType="Self.SJRReview" />
-    <EntitySet Name="SJRReviewSpecialities" EntityType="Self.SJRReviewSpeciality" />
-    <EntitySet Name="UserInRoles" EntityType="Self.UserInRole" />
-    <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="UserSessions" EntityType="Self.UserSession" />
+    <EntitySet Name="AvoidabilityScore" EntityType="Self.AvoidabilityScore" />
+    <EntitySet Name="CarePhase" EntityType="Self.CarePhase" />
+    <EntitySet Name="CareRating" EntityType="Self.CareRating" />
+    <EntitySet Name="ClinicalCoding" EntityType="Self.ClinicalCoding" />
+    <EntitySet Name="CoronerReferralReason" EntityType="Self.CoronerReferralReason" />
+    <EntitySet Name="DischargeConsultant" EntityType="Self.DischargeConsultant" />
+    <EntitySet Name="FeedBack" EntityType="Self.FeedBack" />
+    <EntitySet Name="MedicalExaminer" EntityType="Self.MedicalExaminer" />
+    <EntitySet Name="MedicalExaminerDecision" EntityType="Self.MedicalExaminerDecision" />
+    <EntitySet Name="MedicalExaminerReview" EntityType="Self.MedicalExaminerReview" />
+    <EntitySet Name="MortalitySurveillance" EntityType="Self.MortalitySurveillance" />
+    <EntitySet Name="OtherReferral" EntityType="Self.OtherReferral" />
+    <EntitySet Name="PatientDetails" EntityType="Self.PatientDetails" />
+    <EntitySet Name="PatientMap" EntityType="Self.PatientMap" />
+    <EntitySet Name="ResponsePT" EntityType="Self.ResponsePT" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="SJRFormInitial" EntityType="Self.SJRFormInitial" />
+    <EntitySet Name="SJRFormProblemType" EntityType="Self.SJRFormProblemType" />
+    <EntitySet Name="SJROutcomes" EntityType="Self.SJROutcomes" />
+    <EntitySet Name="SJRReview" EntityType="Self.SJRReview" />
+    <EntitySet Name="SJRReviewSpeciality" EntityType="Self.SJRReviewSpeciality" />
+    <EntitySet Name="UserInRoles" EntityType="Self.UserInRoles" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="UserSession" EntityType="Self.UserSession" />
     <AssociationSet Name="FK__SJRFormPr__Avoid__59FA5E80" Association="Self.FK__SJRFormPr__Avoid__59FA5E80">
-      <End Role="AvoidabilityScore" EntitySet="AvoidabilityScores" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="AvoidabilityScore" EntitySet="AvoidabilityScore" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Asses__6754599E" Association="Self.FK__SJRFormPr__Asses__6754599E">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="CarePhase" EntitySet="CarePhase" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Infec__619B8048" Association="Self.FK__SJRFormPr__Infec__619B8048">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="CarePhase" EntitySet="CarePhase" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Medic__656C112C" Association="Self.FK__SJRFormPr__Medic__656C112C">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="CarePhase" EntitySet="CarePhase" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Other__5DCAEF64" Association="Self.FK__SJRFormPr__Other__5DCAEF64">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Probl__5AEE82B9" Association="Self.FK__SJRFormPr__Probl__5AEE82B9">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="CarePhase" EntitySet="CarePhase" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Proce__5CD6CB2B" Association="Self.FK__SJRFormPr__Proce__5CD6CB2B">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="CarePhase" EntitySet="CarePhase" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Treat__6383C8BA" Association="Self.FK__SJRFormPr__Treat__6383C8BA">
-      <End Role="CarePhase" EntitySet="CarePhases" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="CarePhase" EntitySet="CarePhase" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormIn__CareD__6C190EBB" Association="Self.FK__SJRFormIn__CareD__6C190EBB">
-      <End Role="CareRating" EntitySet="CareRatings" />
-      <End Role="SJRFormInitial" EntitySet="SJRFormInitials" />
+      <End Role="CareRating" EntitySet="CareRating" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormIn__EndLi__6B24EA82" Association="Self.FK__SJRFormIn__EndLi__6B24EA82">
-      <End Role="CareRating" EntitySet="CareRatings" />
-      <End Role="SJRFormInitial" EntitySet="SJRFormInitials" />
+      <End Role="CareRating" EntitySet="CareRating" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormIn__Initi__6E01572D" Association="Self.FK__SJRFormIn__Initi__6E01572D">
-      <End Role="CareRating" EntitySet="CareRatings" />
-      <End Role="SJRFormInitial" EntitySet="SJRFormInitials" />
+      <End Role="CareRating" EntitySet="CareRating" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormIn__Ongoi__6D0D32F4" Association="Self.FK__SJRFormIn__Ongoi__6D0D32F4">
-      <End Role="CareRating" EntitySet="CareRatings" />
-      <End Role="SJRFormInitial" EntitySet="SJRFormInitials" />
+      <End Role="CareRating" EntitySet="CareRating" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormIn__OverA__6A30C649" Association="Self.FK__SJRFormIn__OverA__6A30C649">
-      <End Role="CareRating" EntitySet="CareRatings" />
-      <End Role="SJRFormInitial" EntitySet="SJRFormInitials" />
+      <End Role="CareRating" EntitySet="CareRating" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormIn__Quali__3D2915A8" Association="Self.FK__SJRFormIn__Quali__3D2915A8">
+      <End Role="CareRating" EntitySet="CareRating" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClinicalC__Patie__498EEC8D" Association="Self.FK__ClinicalC__Patie__498EEC8D">
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="ClinicalCoding" EntitySet="ClinicalCoding" />
     </AssociationSet>
     <AssociationSet Name="FK__MedicalEx__Coron__73BA3083" Association="Self.FK__MedicalEx__Coron__73BA3083">
-      <End Role="CoronerReferralReason" EntitySet="CoronerReferralReasons" />
-      <End Role="MedicalExaminerDecision" EntitySet="MedicalExaminerDecisions" />
+      <End Role="CoronerReferralReason" EntitySet="CoronerReferralReason" />
+      <End Role="MedicalExaminerDecision" EntitySet="MedicalExaminerDecision" />
     </AssociationSet>
     <AssociationSet Name="FK__FeedBack__Patien__6FE99F9F" Association="Self.FK__FeedBack__Patien__6FE99F9F">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="FeedBack" EntitySet="FeedBacks" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="FeedBack" EntitySet="FeedBack" />
     </AssociationSet>
     <AssociationSet Name="FK__MedicalEx__ME_ID__70DDC3D8" Association="Self.FK__MedicalEx__ME_ID__70DDC3D8">
-      <End Role="MedicalExaminer" EntitySet="MedicalExaminers" />
-      <End Role="MedicalExaminerReview" EntitySet="MedicalExaminerReviews" />
+      <End Role="MedicalExaminer" EntitySet="MedicalExaminer" />
+      <End Role="MedicalExaminerReview" EntitySet="MedicalExaminerReview" />
     </AssociationSet>
     <AssociationSet Name="FK__MedicalEx__Patie__72C60C4A" Association="Self.FK__MedicalEx__Patie__72C60C4A">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="MedicalExaminerDecision" EntitySet="MedicalExaminerDecisions" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="MedicalExaminerDecision" EntitySet="MedicalExaminerDecision" />
     </AssociationSet>
     <AssociationSet Name="FK__MedicalEx__Patie__71D1E811" Association="Self.FK__MedicalEx__Patie__71D1E811">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="MedicalExaminerReview" EntitySet="MedicalExaminerReviews" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="MedicalExaminerReview" EntitySet="MedicalExaminerReview" />
     </AssociationSet>
     <AssociationSet Name="FK__Mortality__Patie__5812160E" Association="Self.FK__Mortality__Patie__5812160E">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="MortalitySurveillance" EntitySet="MortalitySurveillances" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="MortalitySurveillance" EntitySet="MortalitySurveillance" />
     </AssociationSet>
     <AssociationSet Name="FK__OtherRefe__Patie__76969D2E" Association="Self.FK__OtherRefe__Patie__76969D2E">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="OtherReferral" EntitySet="OtherReferrals" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="OtherReferral" EntitySet="OtherReferral" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormIn__Patie__6EF57B66" Association="Self.FK__SJRFormIn__Patie__6EF57B66">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="SJRFormInitial" EntitySet="SJRFormInitials" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="SJRFormInitial" EntitySet="SJRFormInitial" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRFormPr__Patie__68487DD7" Association="Self.FK__SJRFormPr__Patie__68487DD7">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
-    <AssociationSet Name="FK__SJROutcom__Patie__59063A47" Association="Self.FK__SJROutcom__Patie__59063A47">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="SJROutcome" EntitySet="SJROutcomes" />
+    <AssociationSet Name="FK__SJROutcom__Patie__02FC7413" Association="Self.FK__SJROutcom__Patie__02FC7413">
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="SJROutcomes" EntitySet="SJROutcomes" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRReview__Patie__74AE54BC" Association="Self.FK__SJRReview__Patie__74AE54BC">
-      <End Role="PatientMap" EntitySet="PatientMaps" />
-      <End Role="SJRReview" EntitySet="SJRReviews" />
+      <End Role="PatientMap" EntitySet="PatientMap" />
+      <End Role="SJRReview" EntitySet="SJRReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Asses__693CA210" Association="Self.FK__SJRFormPr__Asses__693CA210">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Infec__628FA481" Association="Self.FK__SJRFormPr__Infec__628FA481">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Medic__66603565" Association="Self.FK__SJRFormPr__Medic__66603565">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Monit__60A75C0F" Association="Self.FK__SJRFormPr__Monit__60A75C0F">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Other__5EBF139D" Association="Self.FK__SJRFormPr__Other__5EBF139D">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Proce__5BE2A6F2" Association="Self.FK__SJRFormPr__Proce__5BE2A6F2">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Resus__5FB337D6" Association="Self.FK__SJRFormPr__Resus__5FB337D6">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SJRFormPr__Treat__6477ECF3" Association="Self.FK__SJRFormPr__Treat__6477ECF3">
+      <End Role="ResponsePT" EntitySet="ResponsePT" />
+      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemType" />
     </AssociationSet>
     <AssociationSet Name="FK__SJRReview__SJRRe__75A278F5" Association="Self.FK__SJRReview__SJRRe__75A278F5">
-      <End Role="SJRReviewSpeciality" EntitySet="SJRReviewSpecialities" />
-      <End Role="SJRReview" EntitySet="SJRReviews" />
+      <End Role="SJRReviewSpeciality" EntitySet="SJRReviewSpeciality" />
+      <End Role="SJRReview" EntitySet="SJRReview" />
     </AssociationSet>
     <AssociationSet Name="FK_Session_User" Association="Self.FK_Session_User">
       <End Role="Users" EntitySet="Users" />
-      <End Role="UserSession" EntitySet="UserSessions" />
+      <End Role="UserSession" EntitySet="UserSession" />
     </AssociationSet>
-    <EntitySet Name="ResponsePTs" EntityType="NHSModel.ResponsePT" />
-    <AssociationSet Name="FK__SJRFormPr__Asses__693CA2101" Association="NHSModel.FK__SJRFormPr__Asses__693CA2101">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+    <EntitySet Name="ReviewStatus" EntityType="NHSModel.ReviewStatus" />
+    <AssociationSet Name="FK__ReviewSta__Patie__634EBE90" Association="NHSModel.FK__ReviewSta__Patie__634EBE90">
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="ReviewStatus" EntitySet="ReviewStatus" />
     </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Infec__628FA4811" Association="NHSModel.FK__SJRFormPr__Infec__628FA4811">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Medic__666035651" Association="NHSModel.FK__SJRFormPr__Medic__666035651">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Monit__60A75C0F1" Association="NHSModel.FK__SJRFormPr__Monit__60A75C0F1">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Other__5EBF139D1" Association="NHSModel.FK__SJRFormPr__Other__5EBF139D1">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Proce__5BE2A6F21" Association="NHSModel.FK__SJRFormPr__Proce__5BE2A6F21">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Resus__5FB337D61" Association="NHSModel.FK__SJRFormPr__Resus__5FB337D61">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SJRFormPr__Treat__6477ECF31" Association="NHSModel.FK__SJRFormPr__Treat__6477ECF31">
-      <End Role="ResponsePT" EntitySet="ResponsePTs" />
-      <End Role="SJRFormProblemType" EntitySet="SJRFormProblemTypes" />
+    <AssociationSet Name="FK_ReviewStatus_ReviewStatus" Association="NHSModel.FK_ReviewStatus_ReviewStatus">
+      <End Role="ReviewStatus" EntitySet="ReviewStatus" />
+      <End Role="ReviewStatus1" EntitySet="ReviewStatus" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="ResponsePT">
+  <EntityType Name="ReviewStatus">
     <Key>
-      <PropertyRef Name="ResponseID" />
+      <PropertyRef Name="ReviewStatusId" />
     </Key>
-    <Property Name="ResponseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Response" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="CreateDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="SJRFormProblemTypes" Relationship="NHSModel.FK__SJRFormPr__Asses__693CA2101" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes1" Relationship="NHSModel.FK__SJRFormPr__Infec__628FA4811" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes2" Relationship="NHSModel.FK__SJRFormPr__Medic__666035651" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes3" Relationship="NHSModel.FK__SJRFormPr__Monit__60A75C0F1" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes4" Relationship="NHSModel.FK__SJRFormPr__Other__5EBF139D1" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes5" Relationship="NHSModel.FK__SJRFormPr__Proce__5BE2A6F21" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes6" Relationship="NHSModel.FK__SJRFormPr__Resus__5FB337D61" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
-    <NavigationProperty Name="SJRFormProblemTypes7" Relationship="NHSModel.FK__SJRFormPr__Treat__6477ECF31" FromRole="ResponsePT" ToRole="SJRFormProblemType" />
+    <Property Name="ReviewStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" />
+    <Property Name="Spellnumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="METriage" Type="Int32" />
+    <Property Name="SJR1" Type="Int32" />
+    <Property Name="SJR2" Type="Int32" />
+    <Property Name="SJRoutcome" Type="Int32" />
+    <Property Name="MortalityReview" Type="Int32" />
+    <Property Name="CodingReview" Type="Int32" />
+    <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__ReviewSta__Patie__634EBE90" FromRole="ReviewStatus" ToRole="PatientDetails" />
+    <NavigationProperty Name="ReviewStatus1" Relationship="NHSModel.FK_ReviewStatus_ReviewStatus" FromRole="ReviewStatus" ToRole="ReviewStatus1" />
+    <NavigationProperty Name="ReviewStatus2" Relationship="NHSModel.FK_ReviewStatus_ReviewStatus" FromRole="ReviewStatus1" ToRole="ReviewStatus" />
   </EntityType>
-  <Association Name="FK__SJRFormPr__Asses__693CA2101">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
+  <Association Name="FK__ReviewSta__Patie__634EBE90">
+    <End Type="NHSModel.PatientDetails" Role="PatientDetails" Multiplicity="0..1" />
+    <End Type="NHSModel.ReviewStatus" Role="ReviewStatus" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
+      <Principal Role="PatientDetails">
+        <PropertyRef Name="PatientId" />
       </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="AssessmentResponseID" />
+      <Dependent Role="ReviewStatus">
+        <PropertyRef Name="PatientID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SJRFormPr__Infec__628FA4811">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
+  <Association Name="FK_ReviewStatus_ReviewStatus">
+    <End Type="NHSModel.ReviewStatus" Role="ReviewStatus" Multiplicity="1" />
+    <End Type="NHSModel.ReviewStatus" Role="ReviewStatus1" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
+      <Principal Role="ReviewStatus">
+        <PropertyRef Name="ReviewStatusId" />
       </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="InfectionResponseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Medic__666035651">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="MedicationResponseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Monit__60A75C0F1">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="MonitoringResponseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Other__5EBF139D1">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="OthertypeResponseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Proce__5BE2A6F21">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="ProcedureResponseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Resus__5FB337D61">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="ResuscitationResponseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SJRFormPr__Treat__6477ECF31">
-    <End Type="NHSModel.ResponsePT" Role="ResponsePT" Multiplicity="0..1" />
-    <End Type="NHSModel.SJRFormProblemType" Role="SJRFormProblemType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResponsePT">
-        <PropertyRef Name="ResponseID" />
-      </Principal>
-      <Dependent Role="SJRFormProblemType">
-        <PropertyRef Name="TreatmentResponseID" />
+      <Dependent Role="ReviewStatus1">
+        <PropertyRef Name="ReviewStatusId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

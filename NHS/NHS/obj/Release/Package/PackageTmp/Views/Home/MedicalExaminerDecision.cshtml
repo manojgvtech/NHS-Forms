@@ -1,0 +1,270 @@
+﻿@model NHS.Models.clsMedicalExaminerDecisionModel
+@{
+    ViewBag.Title = "Medical Examiner Decision";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <div class="row" align="right">
+                <div class="col-md-12">
+                    <input type="image" src="~/images/Delete.png" width="30" height="30" alt="Submit" id="btnClose3" title="Close" />
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled">
+                    <a href="/Home/PatientDetails">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/MedicalExaminerReview">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/Home/MedicalExaminerDecision">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/SJRAssessmentTriage">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/OtherReferrals">
+                        <h4 class="list-group-item-heading">
+                            Other Referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/PositiveFeedback">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row setup-content" id="step-3">
+        @using (Html.BeginForm("MedicalExaminerDecision", "Home", FormMethod.Post, new { @id = "my_form" }))
+        {
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-xs-12 col-lg-12">
+                @*<form action="/Home/MedExamFormStep3" method="post" id="frmMedExamFormStep3">*@
+                    <div class="col-md-12 well">
+                        <div class="form-section">
+                            <div class="lable_title">
+                                <h2>MEDICAL EXAMINER DECISION</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.MCCDissue, new { htmlAttributes = new { @class = "form-control" } })<b><span> Issue MCCD </span></b>
+                                        @Html.HiddenFor(model => model.objclsMedicalExaminerDecision.MED_ID)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+                                        @Html.LabelFor(model => model.objclsCoronerReferralReason.ReasonName, new { @class = "label_part" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.CornerReferral, new { htmlAttributes = new { @class = "form-control" } })<b><span> Coroner Referral </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar">
+
+                                        @Html.DropDownListFor(x => x.objclsCoronerReferralReason.ReasonName, new List<SelectListItem>
+                                            {
+                                                                new SelectListItem() {Text = "Select", Value="-1"},
+                                                                new SelectListItem() {Text = "M K S", Value="M K S"},
+                                                                new SelectListItem() {Text = "P K P", Value="P K P"},
+                                                                new SelectListItem() {Text = "R T O", Value="R T O"},
+                                                                new SelectListItem() {Text = "P K P", Value="T K T"},
+                                                                new SelectListItem() {Text = "M K S", Value="D T O"}
+
+                                            }, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.HospitalPostMortem, new { htmlAttributes = new { @class = "form-control" } })<b><span> Hospital post-mortem </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+            <div class="row_bar checkbox-row">
+                @*@{
+                    if (Session["BtnPrevious"] != null)
+                    {
+                        var sessionMedicalExaminerDecision = (NHS.Models.MedicalExaminerDecision)Session["sessionMedicalExaminerDecision"];
+
+                        if (sessionMedicalExaminerDecision.HospitalPostMortem == true)
+                        {
+                            <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                        }
+                        else
+                        {
+                            <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                        }
+
+                    }
+                    else
+                    {
+                        <label class="label_part" for="defaultCheck2">Cause of Death </label>
+                    }
+                }*@
+             @Html.LabelFor(model => model.objclsMedicalExaminerDecision.CauseOfDeath, new { @class = "label_part" })
+
+            </div>
+        </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row mb-3">
+
+                                        @Html.EditorFor(model => model.objclsMedicalExaminerDecision.CauseOfDeath, new { htmlAttributes = new { @class = "form-control" } })
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row mb-3">
+                                        <input class="form-control" type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row mb-3">
+                                        <input class="form-control" type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row mb-3">
+                                        <input class="form-control" type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.DeathCertificate, new { htmlAttributes = new { @class = "form-control" } })<b><span> Death Certificate Complete? </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.CornerReferralComplete, new { htmlAttributes = new { @class = "form-control" } })<b><span> Coroner's referral Complete? </span></b>
+                                    </div>
+                                </div><br>
+                                <div class="col-md-12">
+                                    <div class="row_bar checkbox-row">
+                                        <label class="label_part" for="defaultCheck1">(If Applicable) Coroner's decision </label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.CoronerDecisionInquest, new { htmlAttributes = new { @class = "form-control" } })<b><span> Inquest </span></b>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.CoronerDecisionPostMortem, new { htmlAttributes = new { @class = "form-control" } })<b><span> Post-Mortem </span></b>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.CoronerDecision100A, new { htmlAttributes = new { @class = "form-control" } })<b><span> 100 A </span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row_bar checkbox-row">
+                                        @Html.CheckBoxFor(model => model.objclsMedicalExaminerDecision.CoronerDecisionGPissue, new { htmlAttributes = new { @class = "form-control" } })<b><span> GP Issue </span></b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button id="activate-prev-1" name="BtnPrevious" class="btn btn-primary btn-lg">Previous</button>
+                        <button id="activate-step-2" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                    </div>
+                @*</form>*@
+            </div>
+        }
+    </div>
+ </div>
+    <br />
+    <br />
+    @*<div class="pull-right">
+        <button class="btn btn-primary btn-lg" id="btnClose3">Close</button>
+    </div>*@
+    <div class="modal fade" id="modelClose3">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Messsage</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-section" style="text-align:left">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row_bar">
+                                    <div>Doy you want to Save Record ?</div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary btn-block" id="btnClose3Yes">Yes</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary btn-block" id="btnModelClose3" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>*@
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#btnClose3").click(function () {
+                $("#modelClose3").modal();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+$(function () {
+
+     $("#btnModelClose3").click(function(){
+window.location.href = "@Url.Action("MortalityReview", "Home")";
+    });
+
+});
+    </script>
+

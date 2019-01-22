@@ -14,191 +14,368 @@ namespace NHS.Controllers
         NHSEntities ent = new NHSEntities();
         public ActionResult Index()
         {
+
             return View();
         }
 
+        public ActionResult SJROutcome(int? id)
+        {
+            clsSJROutComeModel clsSJROutCome = GetSJROutComeModel();
+            return View(clsSJROutCome);
+        }
 
-        public ActionResult SJROutcome(FormCollection data, string btnSave)
+
+        [HttpPost]
+        public ActionResult SJROutcome(clsSJROutComeModel clsSJROutComeModel, string btnSave, int id)
         {
             if (btnSave != null)
             {
-                var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                int lastPatientId = lastRecordPatientMap.PatientID;
 
                 SJROutcomes sJROutcomes = new SJROutcomes();
-                Boolean blStage2SJRRequiredYes = data["cbStage2SJRRequiredYes"] != null ? true : false;
-                Boolean blStage2SJRRequiredNo = data["cbStage2SJRRequiredNo"] != null ? true : false;
-                string strStage2SJRDateSent = data["txtStage2SJRDateSent"];
-                string strStage2SJRSentTo = data["txtStage2SJRSentTo"];
-                string strRefernceNumber = data["txtRefernceNumber"];
-                string strDateReceived = data["txtDateReceived"];
-                string strRCAOutcomeComments = data["taRCAOutcomeComments"];
 
-                if (blStage2SJRRequiredNo == true)
-                {
-                    sJROutcomes.Stage2SJRRequired = false;
-                }
-
-                sJROutcomes.Stage2SJRRequired = blStage2SJRRequiredYes;
-                sJROutcomes.Stage2SJRDateSent = strStage2SJRDateSent;
-                sJROutcomes.Stage2SJRSentTo = strStage2SJRSentTo;
-                sJROutcomes.ReferenceNumber = strRefernceNumber;
-                sJROutcomes.DateReceived = Convert.ToDateTime(strDateReceived);
-                sJROutcomes.Comments = strRCAOutcomeComments;
+                sJROutcomes.Stage2SJRRequired = clsSJROutComeModel.clsSjrOutCome.Stage2SJRRequired;
+                sJROutcomes.Stage2SJRDateSent = clsSJROutComeModel.clsSjrOutCome.Stage2SJRDateSent;
+                sJROutcomes.Stage2SJRSentTo = clsSJROutComeModel.clsSjrOutCome.Stage2SJRSentTo;
+                sJROutcomes.ReferenceNumber = clsSJROutComeModel.clsSjrOutCome.ReferenceNumber;
+                sJROutcomes.DateReceived = Convert.ToDateTime(clsSJROutComeModel.clsSjrOutCome.DateReceived);
+                sJROutcomes.Comments = clsSJROutComeModel.clsSjrOutCome.Comments;
                 sJROutcomes.CreatedBy = "John Deo";
                 sJROutcomes.CreateDate = DateTime.Now;
                 sJROutcomes.UpdatedBy = "John Deo";
                 sJROutcomes.UpdatedDate = DateTime.Now;
-                sJROutcomes.PatientID = lastPatientId;
-                ent.SJROutcomes1.Add(sJROutcomes);
+                sJROutcomes.PatientID = id;
+                ent.SJROutcomes.Add(sJROutcomes);
                 ent.SaveChanges();
 
 
                 MortalitySurveillance mortalitySurveillance = new MortalitySurveillance();
-                Boolean blPresentationToMSGYes = data["cbPresentationToMSGYes"] != null ? true : false;
-                Boolean blPresentationToMSGNo = data["cbPresentationToMSGNo"] != null ? true : false;
-                if (blPresentationToMSGNo == true)
-                {
-                    mortalitySurveillance.PresentationToMSG = false;
-                }
-                string strDiscussedToMSG = data["txtDiscussedToMSG"];
-                int intAvoidabilityScoreId = Convert.ToInt32(data["ddlAvoidabilityScore"]);
-                string strMortalitySurveillanceComments = data["taMortalitySurveillanceComments"];
-                string strFeedbackToNok = data["taFeedbackToNok"];
 
-                mortalitySurveillance.PresentationToMSG = blPresentationToMSGYes;
-                mortalitySurveillance.DiscussedWithMSG = strDiscussedToMSG;
-                mortalitySurveillance.AvoidabilityScoreID = intAvoidabilityScoreId;
-                mortalitySurveillance.Comments = strMortalitySurveillanceComments;
-                mortalitySurveillance.FeedbackToNoK = strFeedbackToNok;
-                mortalitySurveillance.PatientID = lastPatientId;
+                mortalitySurveillance.PresentationToMSG = clsSJROutComeModel.clsMortalitySurveillance.PresentationToMSG;
+                mortalitySurveillance.DiscussedWithMSG = clsSJROutComeModel.clsMortalitySurveillance.DiscussedWithMSG;
+                mortalitySurveillance.AvoidabilityScoreID = clsSJROutComeModel.clsMortalitySurveillance.AvoidabilityScoreID;
+                mortalitySurveillance.Comments = clsSJROutComeModel.clsMortalitySurveillance.Comments;
+                mortalitySurveillance.FeedbackToNoK = clsSJROutComeModel.clsMortalitySurveillance.FeedbackToNoK;
+                mortalitySurveillance.PatientID = id;
                 mortalitySurveillance.CreatedBy = "John Deo";
                 mortalitySurveillance.CreateDate = DateTime.Now;
                 mortalitySurveillance.UpdatedBy = "John Deo";
                 mortalitySurveillance.UpdatedDate = DateTime.Now;
-                ent.MortalitySurveillances.Add(mortalitySurveillance);
+                ent.MortalitySurveillance.Add(mortalitySurveillance);
                 ent.SaveChanges();
 
-                Response.Redirect("/Home/CORSPatient");
+
+                PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                where pDetails.PatientId == id
+                                                select pDetails).FirstOrDefault();
+
+
+                ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                             where revStatus.PatientID == id
+                                             select revStatus).FirstOrDefault();
+
+
+                reviewStatus.PatientID = patientDetail.PatientId;
+                reviewStatus.Spellnumber = Convert.ToString(patientDetail.SpellNumber);
+                // 3 for Green               
+                reviewStatus.SJRoutcome = 3;
+                reviewStatus.CreatedBy = "John Deo";
+                reviewStatus.CreateDate = DateTime.Now;
+                reviewStatus.UpdatedBy = "John Deo";
+                reviewStatus.UpdatedDate = DateTime.Now;
+                ent.SaveChanges();
+
+                if (reviewStatus.SJRoutcome == 3)
+                {
+                    return RedirectToAction("MortalityReview", new { Id = patientDetail.PatientId, PName = patientDetail.PatientName, DOB = Convert.ToDateTime(patientDetail.DOB) });
+                }
             }
 
             return View();
         }
         //public ActionResult Stage2SJRform(FormCollection data)
 
+        public ActionResult Stage2SJRformFirstStep(int? id)
+        {
+            Session["id"] = Convert.ToInt32(id);
+            clsSJRFormInitialModel clsSJRFormInitialModel = GetSJRFormInitialModel();
+            return View(clsSJRFormInitialModel);
+        }
 
-        public ActionResult Stage2SJRformFirstStep(FormCollection data, string BtnNext)
+        [HttpPost]
+        public ActionResult Stage2SJRformFirstStep(clsSJRFormInitialModel clsSJRFormInitialModel, string BtnNext, int? id)
         {
             try
             {
+                Session["PId"] = id;
                 if (BtnNext != null)
                 {
+                    if (clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID == 0)
+                    {
+                        CareRating careRating1 = new CareRating();
+                        careRating1.Name = clsSJRFormInitialModel.clsInitialManagementCareRating.Name;
+                        careRating1.CreatedBy = "John Deo";
+                        careRating1.CreateDate = DateTime.Now;
+                        careRating1.UpdatedBy = "John Deo";
+                        careRating1.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating1);
+                        ent.SaveChanges();
 
-                    CareRating careRating1 = new CareRating();
-                    string strInitialManagementRating = data["ddlInitialManagementRating"];
-                    careRating1.Name = strInitialManagementRating;
-                    careRating1.CreatedBy = "John Deo";
-                    careRating1.CreateDate = DateTime.Now;
-                    careRating1.UpdatedBy = "John Deo";
-                    careRating1.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating1);
-                    ent.SaveChanges();
+                        int intInitialManagementRatingId = careRating1.CareRatingID;
 
-                    int intInitialManagementRatingId = careRating1.CareRatingID;
+                        CareRating careRating2 = new CareRating();
+                        careRating2.Name = clsSJRFormInitialModel.clsOnGoingCareRating.Name;
+                        careRating2.CreatedBy = "John Deo";
+                        careRating2.CreateDate = DateTime.Now;
+                        careRating2.UpdatedBy = "John Deo";
+                        careRating2.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating2);
+                        ent.SaveChanges();
 
+                        int intOnGoingCareRatingId = careRating2.CareRatingID;
 
-                    Session["careRating1"] = careRating1;
+                        CareRating careRating3 = new CareRating();
+                        careRating3.Name = clsSJRFormInitialModel.clsCareDuringProcedureCareRating.Name;
+                        careRating3.CreatedBy = "John Deo";
+                        careRating3.CreateDate = DateTime.Now;
+                        careRating3.UpdatedBy = "John Deo";
+                        careRating3.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating3);
+                        ent.SaveChanges();
 
-                    CareRating careRating2 = new CareRating();
-                    string strOnGoingCareRating = data["ddlOnGoingCareRating"];
-                    careRating2.Name = strOnGoingCareRating;
-                    careRating2.CreatedBy = "John Deo";
-                    careRating2.CreateDate = DateTime.Now;
-                    careRating2.UpdatedBy = "John Deo";
-                    careRating2.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating2);
-                    ent.SaveChanges();
-
-                    int intOnGoingCareRatingId = careRating2.CareRatingID;
+                        int intCareDuringProcedureCareRatingId = careRating3.CareRatingID;
 
 
-                    Session["careRating2"] = careRating2;
+                        CareRating careRating4 = new CareRating();
+                        careRating4.Name = clsSJRFormInitialModel.clsEndLifeCareRating.Name;
+                        careRating4.CreatedBy = "John Deo";
+                        careRating4.CreateDate = DateTime.Now;
+                        careRating4.UpdatedBy = "John Deo";
+                        careRating4.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating4);
+                        ent.SaveChanges();
 
-                    CareRating careRating3 = new CareRating();
-                    string strCareDuringProcedureCareRating = data["ddlCareDuringProcedureCareRating"];
-                    careRating3.Name = strCareDuringProcedureCareRating;
-                    careRating3.CreatedBy = "John Deo";
-                    careRating3.CreateDate = DateTime.Now;
-                    careRating3.UpdatedBy = "John Deo";
-                    careRating3.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating3);
-                    ent.SaveChanges();
+                        int intEndLifeCareRating = careRating4.CareRatingID;
 
-                    int intCareDuringProcedureCareRatingId = careRating3.CareRatingID;
+                        //Session["careRating4"] = careRating4;
 
-                    Session["careRating3"] = careRating3;
+                        CareRating careRating5 = new CareRating();
+                        careRating5.Name = clsSJRFormInitialModel.clsOverAllAssessmentCareRating.Name;
+                        careRating5.CreatedBy = "John Deo";
+                        careRating5.CreateDate = DateTime.Now;
+                        careRating5.UpdatedBy = "John Deo";
+                        careRating5.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating5);
+                        ent.SaveChanges();
 
-                    CareRating careRating4 = new CareRating();
-                    string strEndLifeCareRating = data["ddlEndLifeCareRating"];
-                    careRating4.Name = strEndLifeCareRating;
-                    careRating4.CreatedBy = "John Deo";
-                    careRating4.CreateDate = DateTime.Now;
-                    careRating4.UpdatedBy = "John Deo";
-                    careRating4.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating4);
-                    ent.SaveChanges();
+                        int intOverAllAssessmentCareRatingId = careRating5.CareRatingID;
 
-                    int intEndLifeCareRating = careRating4.CareRatingID;
+                        //Session["careRating5"] = careRating5;
 
-                    Session["careRating4"] = careRating4;
+                        CareRating careRating6 = new CareRating();
+                        careRating6.Name = clsSJRFormInitialModel.clsQualityDocumentationCareRating.Name;
+                        careRating6.CreatedBy = "John Deo";
+                        careRating6.CreateDate = DateTime.Now;
+                        careRating6.UpdatedBy = "John Deo";
+                        careRating6.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating6);
+                        ent.SaveChanges();
 
-                    CareRating careRating5 = new CareRating();
-                    string strOverAllAssessmentCareRating = data["ddlOverAllAssessmentCareRating"];
-                    careRating5.Name = strOverAllAssessmentCareRating;
-                    careRating5.CreatedBy = "John Deo";
-                    careRating5.CreateDate = DateTime.Now;
-                    careRating5.UpdatedBy = "John Deo";
-                    careRating5.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating5);
-                    ent.SaveChanges();
+                        int intQualityDocumentationCareRatingId = careRating6.CareRatingID;
 
-                    int intOverAllAssessmentCareRatingId = careRating5.CareRatingID;
 
-                    Session["careRating5"] = careRating5;
+                        SJRFormInitial sJRFormInitial = new SJRFormInitial();
 
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
+                        sJRFormInitial.PatientID = id;
+                        //Stage=0 For Stage2SJRForm Only 
+                        sJRFormInitial.Stage = 0;
+                        sJRFormInitial.InitialManagement = clsSJRFormInitialModel.clsSjrFormInitial.InitialManagement;
+                        sJRFormInitial.OngoingCare = clsSJRFormInitialModel.clsSjrFormInitial.OngoingCare;
+                        sJRFormInitial.CareDuringProcedure = clsSJRFormInitialModel.clsSjrFormInitial.CareDuringProcedure;
+                        sJRFormInitial.EndLifeCare = clsSJRFormInitialModel.clsSjrFormInitial.EndLifeCare;
+                        sJRFormInitial.OverAllAssessment = clsSJRFormInitialModel.clsSjrFormInitial.OverAllAssessment;
+                        sJRFormInitial.InitialManagementCareRatingID = intInitialManagementRatingId;
+                        sJRFormInitial.OngoingCareRatingID = intOnGoingCareRatingId;
+                        sJRFormInitial.CareDuringProcedureCareRatingID = intCareDuringProcedureCareRatingId;
+                        sJRFormInitial.EndLifeCareRatingID = intEndLifeCareRating;
+                        sJRFormInitial.OverAllAssessmentCareRatingID = intOverAllAssessmentCareRatingId;
+                        sJRFormInitial.QualityDocumentationCode = intQualityDocumentationCareRatingId;
+                        sJRFormInitial.CreatedBy = "John Deo";
+                        sJRFormInitial.CreateDate = DateTime.Now;
+                        sJRFormInitial.UpdatedBy = "John Deo";
+                        sJRFormInitial.UpdatedDate = DateTime.Now;
+                        ent.SJRFormInitial.Add(sJRFormInitial);
+                        ent.SaveChanges();
 
-                    string strInitialManagement = data["taInitialManagement"];
-                    string strOngoingCare = data["taOngoingCare"];
-                    string strCareDuringProcedure = data["taCareDuringProcedure"];
-                    string strEndLifeCare = data["taEndLifeCare"];
-                    string strOverAllAssessment = data["taOverAllAssessment"];
+                        PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                        where pDetails.PatientId == id
+                                                        select pDetails).FirstOrDefault();
 
-                    SJRFormInitial sJRFormInitial = new SJRFormInitial();
 
-                    sJRFormInitial.PatientID = lastPatientId;
-                    //Stage=0 For Stage2SJRForm Only 
-                    sJRFormInitial.Stage = 0;
-                    sJRFormInitial.InitialManagement = strInitialManagement;
-                    sJRFormInitial.OngoingCare = strOngoingCare;
-                    sJRFormInitial.CareDuringProcedure = strCareDuringProcedure;
-                    sJRFormInitial.EndLifeCare = strEndLifeCare;
-                    sJRFormInitial.OverAllAssessment = strOverAllAssessment;
-                    sJRFormInitial.InitialManagementCareRatingID = intInitialManagementRatingId;
-                    sJRFormInitial.OngoingCareRatingID = intOnGoingCareRatingId;
-                    sJRFormInitial.CareDuringProcedureCareRatingID = intCareDuringProcedureCareRatingId;
-                    sJRFormInitial.EndLifeCareRatingID = intEndLifeCareRating;
-                    sJRFormInitial.OverAllAssessmentCareRatingID = intOverAllAssessmentCareRatingId;
-                    sJRFormInitial.CreatedBy = "John Deo";
-                    sJRFormInitial.CreateDate = DateTime.Now;
-                    sJRFormInitial.UpdatedBy = "John Deo";
-                    sJRFormInitial.UpdatedDate = DateTime.Now;
-                    ent.SJRFormInitials.Add(sJRFormInitial);
-                    ent.SaveChanges();
-                    Session["sJRFormInitial"] = sJRFormInitial;
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == id
+                                                     select revStatus).FirstOrDefault();
 
-                    Response.Redirect("/Home/Stage2SJRformSecondStep");
+                        reviewStatus.PatientID = id;
+                        // 1 for Amber
+                        reviewStatus.METriage = 3;
+                        reviewStatus.SJR1 = 1;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID = sJRFormInitial.SJRFormInitial_ID;
+                        Session["sessionSJRFormInitial"] = clsSJRFormInitialModel;
+
+                        Response.Redirect("/Home/Stage2SJRformSecondStep", false);
+                        //return RedirectToAction("/Stage2SJRformSecondStep");
+                    }
+                    else
+                    {
+
+
+
+                        SJRFormInitial sJRFormInitial = (from sjr in ent.SJRFormInitial
+                                                         where sjr.SJRFormInitial_ID == clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID
+                                                         select sjr).FirstOrDefault();
+
+                        int intPId = Convert.ToInt32(sJRFormInitial.PatientID);
+
+                        sJRFormInitial.PatientID = intPId;
+                        //Stage=0 For Stage2SJRForm Only 
+                        sJRFormInitial.Stage = 0;
+                        sJRFormInitial.InitialManagement = clsSJRFormInitialModel.clsSjrFormInitial.InitialManagement;
+                        sJRFormInitial.OngoingCare = clsSJRFormInitialModel.clsSjrFormInitial.OngoingCare;
+                        sJRFormInitial.CareDuringProcedure = clsSJRFormInitialModel.clsSjrFormInitial.CareDuringProcedure;
+                        sJRFormInitial.EndLifeCare = clsSJRFormInitialModel.clsSjrFormInitial.EndLifeCare;
+                        sJRFormInitial.OverAllAssessment = clsSJRFormInitialModel.clsSjrFormInitial.OverAllAssessment;
+                        sJRFormInitial.CreatedBy = "John Deo";
+                        sJRFormInitial.CreateDate = DateTime.Now;
+                        sJRFormInitial.UpdatedBy = "John Deo";
+                        sJRFormInitial.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating1 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.InitialManagementCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating1.Name = clsSJRFormInitialModel.clsInitialManagementCareRating.Name;
+                        careRating1.CreatedBy = "John Deo";
+                        careRating1.CreateDate = DateTime.Now;
+                        careRating1.UpdatedBy = "John Deo";
+                        careRating1.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating2 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.OngoingCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating2.Name = clsSJRFormInitialModel.clsOnGoingCareRating.Name;
+                        careRating2.CreatedBy = "John Deo";
+                        careRating2.CreateDate = DateTime.Now;
+                        careRating2.UpdatedBy = "John Deo";
+                        careRating2.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+                        CareRating careRating3 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.CareDuringProcedureCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        //Session["careRating2"] = careRating2;
+
+
+                        careRating3.Name = clsSJRFormInitialModel.clsCareDuringProcedureCareRating.Name;
+                        careRating3.CreatedBy = "John Deo";
+                        careRating3.CreateDate = DateTime.Now;
+                        careRating3.UpdatedBy = "John Deo";
+                        careRating3.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating4 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.EndLifeCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating4.Name = clsSJRFormInitialModel.clsEndLifeCareRating.Name;
+                        careRating4.CreatedBy = "John Deo";
+                        careRating4.CreateDate = DateTime.Now;
+                        careRating4.UpdatedBy = "John Deo";
+                        careRating4.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating5 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.OverAllAssessmentCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating5.Name = clsSJRFormInitialModel.clsOverAllAssessmentCareRating.Name;
+                        careRating5.CreatedBy = "John Deo";
+                        careRating5.CreateDate = DateTime.Now;
+                        careRating5.UpdatedBy = "John Deo";
+                        careRating5.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating6 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.QualityDocumentationCode
+                                                  select x).FirstOrDefault();
+
+
+
+                        careRating6.Name = clsSJRFormInitialModel.clsQualityDocumentationCareRating.Name;
+                        careRating6.CreatedBy = "John Deo";
+                        careRating6.CreateDate = DateTime.Now;
+                        careRating6.UpdatedBy = "John Deo";
+                        careRating6.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+                        PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                        where pDetails.PatientId == id
+                                                        select pDetails).FirstOrDefault();
+
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == id
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = id;
+                        // 1 for Amber
+                        reviewStatus.METriage = 3;
+                        reviewStatus.SJR1 = 1;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID = sJRFormInitial.SJRFormInitial_ID;
+                        Session["sessionSJRFormInitial"] = clsSJRFormInitialModel;
+
+                        Session["ssPatientId"] = intPId;
+                        //Response.Redirect("/Home/Stage2SJRformSecondStep", false);
+                        return RedirectToAction("/Stage2SJRformSecondStep");
+                    }
                 }
 
             }
@@ -210,20 +387,24 @@ namespace NHS.Controllers
             return View();
         }
 
+
         public ActionResult Stage2SJRformSecondStep(FormCollection data, string BtnPrevious, string BtnFinish)
         {
             try
             {
+                //int id = Convert.ToInt32(Session["id"]);
+                int PID = Convert.ToInt32(Session["PId"]);
                 if (BtnPrevious != null)
                 {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/Stage2SJRformFirstStep");
+                    //Session["BtnPrevious"] = BtnPrevious;
+                    Response.Redirect("/Home/Stage2SJRformFirstStep", false);
+                    //return RedirectToAction("/Stage2SJRformFirstStep");
                 }
                 if (BtnFinish != null)
                 {
 
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
+                    //var lastRecordPatientMap = ent.PatientMap.OrderByDescending(p => p.PatientID).FirstOrDefault();
+                    //int lastPatientId = lastRecordPatientMap.PatientID;
 
                     CarePhase carePhase1 = new CarePhase();
                     string strAssessmentCarePhase = data["ddlAssessmentCarePhase"];
@@ -232,7 +413,7 @@ namespace NHS.Controllers
                     carePhase1.CreateDate = DateTime.Now;
                     carePhase1.UpdatedBy = "John Deo";
                     carePhase1.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase1);
+                    ent.CarePhase.Add(carePhase1);
                     ent.SaveChanges();
 
                     int intAssessmentCarePhaseId = carePhase1.CarePhaseID;
@@ -245,7 +426,7 @@ namespace NHS.Controllers
                     carePhase2.CreateDate = DateTime.Now;
                     carePhase2.UpdatedBy = "John Deo";
                     carePhase2.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase2);
+                    ent.CarePhase.Add(carePhase2);
                     ent.SaveChanges();
 
                     int intMedicationCarePhaseId = carePhase2.CarePhaseID;
@@ -257,7 +438,7 @@ namespace NHS.Controllers
                     carePhase3.CreateDate = DateTime.Now;
                     carePhase3.UpdatedBy = "John Deo";
                     carePhase3.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase3);
+                    ent.CarePhase.Add(carePhase3);
                     ent.SaveChanges();
 
                     int intTretmentCarePhaseId = carePhase3.CarePhaseID;
@@ -269,7 +450,7 @@ namespace NHS.Controllers
                     carePhase4.CreateDate = DateTime.Now;
                     carePhase4.UpdatedBy = "John Deo";
                     carePhase4.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase4);
+                    ent.CarePhase.Add(carePhase4);
                     ent.SaveChanges();
 
 
@@ -282,7 +463,7 @@ namespace NHS.Controllers
                     carePhase5.CreateDate = DateTime.Now;
                     carePhase5.UpdatedBy = "John Deo";
                     carePhase5.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase5);
+                    ent.CarePhase.Add(carePhase5);
                     ent.SaveChanges();
 
 
@@ -295,7 +476,7 @@ namespace NHS.Controllers
                     carePhase6.CreateDate = DateTime.Now;
                     carePhase6.UpdatedBy = "John Deo";
                     carePhase6.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase6);
+                    ent.CarePhase.Add(carePhase6);
                     ent.SaveChanges();
 
                     int intOtherTypeCarePhaseId = carePhase6.CarePhaseID;
@@ -308,7 +489,7 @@ namespace NHS.Controllers
                     avoidabilityScore.CreateDate = DateTime.Now;
                     avoidabilityScore.UpdatedBy = "John Deo";
                     avoidabilityScore.UpdatedDate = DateTime.Now;
-                    ent.AvoidabilityScores.Add(avoidabilityScore);
+                    ent.AvoidabilityScore.Add(avoidabilityScore);
                     ent.SaveChanges();
 
 
@@ -321,7 +502,7 @@ namespace NHS.Controllers
                     responsePT.CreateDate = DateTime.Now;
                     responsePT.UpdatedBy = "John Deo";
                     responsePT.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT);
+                    ent.ResponsePT.Add(responsePT);
                     ent.SaveChanges();
 
                     int intAssessmentResponseId = responsePT.ResponseID;
@@ -333,7 +514,7 @@ namespace NHS.Controllers
                     responsePT1.CreateDate = DateTime.Now;
                     responsePT1.UpdatedBy = "John Deo";
                     responsePT1.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT1);
+                    ent.ResponsePT.Add(responsePT1);
                     ent.SaveChanges();
 
                     int intMedicationResponseId = responsePT1.ResponseID;
@@ -345,7 +526,7 @@ namespace NHS.Controllers
                     responsePT2.CreateDate = DateTime.Now;
                     responsePT2.UpdatedBy = "John Deo";
                     responsePT2.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT2);
+                    ent.ResponsePT.Add(responsePT2);
                     ent.SaveChanges();
 
                     int intTreatmentResponseId = responsePT2.ResponseID;
@@ -357,7 +538,7 @@ namespace NHS.Controllers
                     responsePT3.CreateDate = DateTime.Now;
                     responsePT3.UpdatedBy = "John Deo";
                     responsePT3.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT3);
+                    ent.ResponsePT.Add(responsePT3);
                     ent.SaveChanges();
 
                     int intInfectionResponseId = responsePT3.ResponseID;
@@ -370,7 +551,7 @@ namespace NHS.Controllers
                     responsePT4.CreateDate = DateTime.Now;
                     responsePT4.UpdatedBy = "John Deo";
                     responsePT4.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT4);
+                    ent.ResponsePT.Add(responsePT4);
                     ent.SaveChanges();
 
                     int intProcedureResponseId = responsePT4.ResponseID;
@@ -382,7 +563,7 @@ namespace NHS.Controllers
                     responsePT5.CreateDate = DateTime.Now;
                     responsePT5.UpdatedBy = "John Deo";
                     responsePT5.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT5);
+                    ent.ResponsePT.Add(responsePT5);
                     ent.SaveChanges();
 
                     int intMonitoringResponseId = responsePT5.ResponseID;
@@ -395,7 +576,7 @@ namespace NHS.Controllers
                     responsePT6.CreateDate = DateTime.Now;
                     responsePT6.UpdatedBy = "John Deo";
                     responsePT6.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT6);
+                    ent.ResponsePT.Add(responsePT6);
                     ent.SaveChanges();
 
                     int intResuscitationResponseId = responsePT6.ResponseID;
@@ -408,14 +589,16 @@ namespace NHS.Controllers
                     responsePT7.CreateDate = DateTime.Now;
                     responsePT7.UpdatedBy = "John Deo";
                     responsePT7.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT7);
+                    ent.ResponsePT.Add(responsePT7);
                     ent.SaveChanges();
 
                     int intOtherTypeResponseId = responsePT7.ResponseID;
                     string strSJRFormProblemTypeComments = data["taComment"];
 
+                    //int intPID = Convert.ToInt32(Session["ssPatientId"]);
+
                     SJRFormProblemType sJRFormProblemType = new SJRFormProblemType();
-                    sJRFormProblemType.PatientID = lastPatientId;
+                    sJRFormProblemType.PatientID = PID;
                     sJRFormProblemType.AssessmentResponseID = intAssessmentResponseId;
                     sJRFormProblemType.AssessmentCarePhaseID = intAssessmentCarePhaseId;
                     sJRFormProblemType.MedicationResponseID = intMedicationResponseId;
@@ -438,134 +621,336 @@ namespace NHS.Controllers
                     sJRFormProblemType.UpdatedBy = "John Deo";
                     sJRFormProblemType.UpdatedDate = DateTime.Now;
 
-                    ent.SJRFormProblemTypes.Add(sJRFormProblemType);
+                    ent.SJRFormProblemType.Add(sJRFormProblemType);
                     ent.SaveChanges();
 
-                    Response.Redirect("/Home/CORSPatient");
+                    PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                    where pDetails.PatientId == PID
+                                                    select pDetails).FirstOrDefault();
+
+                    ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                 where revStatus.PatientID == PID
+                                                 select revStatus).FirstOrDefault();
+
+                    reviewStatus.PatientID = PID;
+                    // 1 for Amber
+                    reviewStatus.METriage = 3;
+                    reviewStatus.SJR1 = 3;
+                    reviewStatus.SJR2 = 2;
+                    reviewStatus.SJRoutcome = 0;
+                    reviewStatus.CreatedBy = "John Deo";
+                    reviewStatus.CreateDate = DateTime.Now;
+                    reviewStatus.UpdatedBy = "John Deo";
+                    reviewStatus.UpdatedDate = DateTime.Now;
+                    ent.SaveChanges();
+
+                    if (reviewStatus.SJR1 == 3)
+                    {
+                        return RedirectToAction("MortalityReview", new { Id = patientDetail.PatientId, PName = patientDetail.PatientName, DOB = Convert.ToDateTime(patientDetail.DOB) });
+                        // Response.Redirect("/Home/Stage2SJRformSecondStep");
+                    }
                 }
 
             }
             catch (Exception ex)
             {
                 Console.Write(ex.StackTrace);
+                // return View("Error", new HandleErrorInfo(ex, "Stage2SJRformSecondStep", "Home"));
             }
             return View();
-
         }
 
-        public ActionResult Stage3SJRformFirstStep(FormCollection data, string BtnNext)
+        public ActionResult Stage3SJRformFirstStep()
+        {
+            clsSJRFormInitialModel clsSJRFormInitialModel = GetSJRFormInitialModel();
+            return View(clsSJRFormInitialModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult Stage3SJRformFirstStep(clsSJRFormInitialModel clsSJRFormInitialModel, string BtnNext, int id)
         {
             try
             {
+                Session["PId"] = id;
                 if (BtnNext != null)
                 {
+                    if (clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID == 0)
+                    {
+                        CareRating careRating1 = new CareRating();
+                        careRating1.Name = clsSJRFormInitialModel.clsInitialManagementCareRating.Name;
+                        careRating1.CreatedBy = "John Deo";
+                        careRating1.CreateDate = DateTime.Now;
+                        careRating1.UpdatedBy = "John Deo";
+                        careRating1.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating1);
+                        ent.SaveChanges();
 
-                    CareRating careRating1 = new CareRating();
-                    string strInitialManagementRating = data["ddlInitialManagementRating"];
-                    careRating1.Name = strInitialManagementRating;
-                    careRating1.CreatedBy = "John Deo";
-                    careRating1.CreateDate = DateTime.Now;
-                    careRating1.UpdatedBy = "John Deo";
-                    careRating1.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating1);
-                    ent.SaveChanges();
+                        int intInitialManagementRatingId = careRating1.CareRatingID;
+                        //Session["careRating1"] = careRating1;
 
-                    int intInitialManagementRatingId = careRating1.CareRatingID;
+                        CareRating careRating2 = new CareRating();
+                        careRating2.Name = clsSJRFormInitialModel.clsOnGoingCareRating.Name;
+                        careRating2.CreatedBy = "John Deo";
+                        careRating2.CreateDate = DateTime.Now;
+                        careRating2.UpdatedBy = "John Deo";
+                        careRating2.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating2);
+                        ent.SaveChanges();
 
-
-                    Session["careRating1"] = careRating1;
-
-                    CareRating careRating2 = new CareRating();
-                    string strOnGoingCareRating = data["ddlOnGoingCareRating"];
-                    careRating2.Name = strOnGoingCareRating;
-                    careRating2.CreatedBy = "John Deo";
-                    careRating2.CreateDate = DateTime.Now;
-                    careRating2.UpdatedBy = "John Deo";
-                    careRating2.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating2);
-                    ent.SaveChanges();
-
-                    int intOnGoingCareRatingId = careRating2.CareRatingID;
+                        int intOnGoingCareRatingId = careRating2.CareRatingID;
 
 
-                    Session["careRating2"] = careRating2;
+                        //Session["careRating2"] = careRating2;
 
-                    CareRating careRating3 = new CareRating();
-                    string strCareDuringProcedureCareRating = data["ddlCareDuringProcedureCareRating"];
-                    careRating3.Name = strCareDuringProcedureCareRating;
-                    careRating3.CreatedBy = "John Deo";
-                    careRating3.CreateDate = DateTime.Now;
-                    careRating3.UpdatedBy = "John Deo";
-                    careRating3.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating3);
-                    ent.SaveChanges();
+                        CareRating careRating3 = new CareRating();
+                        careRating3.Name = clsSJRFormInitialModel.clsCareDuringProcedureCareRating.Name;
+                        careRating3.CreatedBy = "John Deo";
+                        careRating3.CreateDate = DateTime.Now;
+                        careRating3.UpdatedBy = "John Deo";
+                        careRating3.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating3);
+                        ent.SaveChanges();
 
-                    int intCareDuringProcedureCareRatingId = careRating3.CareRatingID;
+                        int intCareDuringProcedureCareRatingId = careRating3.CareRatingID;
 
-                    Session["careRating3"] = careRating3;
+                        //Session["careRating3"] = careRating3;
 
-                    CareRating careRating4 = new CareRating();
-                    string strEndLifeCareRating = data["ddlEndLifeCareRating"];
-                    careRating4.Name = strEndLifeCareRating;
-                    careRating4.CreatedBy = "John Deo";
-                    careRating4.CreateDate = DateTime.Now;
-                    careRating4.UpdatedBy = "John Deo";
-                    careRating4.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating4);
-                    ent.SaveChanges();
+                        CareRating careRating4 = new CareRating();
+                        careRating4.Name = clsSJRFormInitialModel.clsEndLifeCareRating.Name;
+                        careRating4.CreatedBy = "John Deo";
+                        careRating4.CreateDate = DateTime.Now;
+                        careRating4.UpdatedBy = "John Deo";
+                        careRating4.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating4);
+                        ent.SaveChanges();
 
-                    int intEndLifeCareRating = careRating4.CareRatingID;
+                        int intEndLifeCareRating = careRating4.CareRatingID;
 
-                    Session["careRating4"] = careRating4;
+                        //Session["careRating4"] = careRating4;
 
-                    CareRating careRating5 = new CareRating();
-                    string strOverAllAssessmentCareRating = data["ddlOverAllAssessmentCareRating"];
-                    careRating5.Name = strOverAllAssessmentCareRating;
-                    careRating5.CreatedBy = "John Deo";
-                    careRating5.CreateDate = DateTime.Now;
-                    careRating5.UpdatedBy = "John Deo";
-                    careRating5.UpdatedDate = DateTime.Now;
-                    ent.CareRatings.Add(careRating5);
-                    ent.SaveChanges();
+                        CareRating careRating5 = new CareRating();
+                        careRating5.Name = clsSJRFormInitialModel.clsOverAllAssessmentCareRating.Name;
+                        careRating5.CreatedBy = "John Deo";
+                        careRating5.CreateDate = DateTime.Now;
+                        careRating5.UpdatedBy = "John Deo";
+                        careRating5.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating5);
+                        ent.SaveChanges();
 
-                    int intOverAllAssessmentCareRatingId = careRating5.CareRatingID;
+                        int intOverAllAssessmentCareRatingId = careRating5.CareRatingID;
 
-                    Session["careRating5"] = careRating5;
+                        //Session["careRating5"] = careRating5;
 
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
+                        CareRating careRating6 = new CareRating();
+                        careRating6.Name = clsSJRFormInitialModel.clsQualityDocumentationCareRating.Name;
+                        careRating6.CreatedBy = "John Deo";
+                        careRating6.CreateDate = DateTime.Now;
+                        careRating6.UpdatedBy = "John Deo";
+                        careRating6.UpdatedDate = DateTime.Now;
+                        ent.CareRating.Add(careRating6);
+                        ent.SaveChanges();
 
-                    string strInitialManagement = data["taInitialManagement"];
-                    string strOngoingCare = data["taOngoingCare"];
-                    string strCareDuringProcedure = data["taCareDuringProcedure"];
-                    string strEndLifeCare = data["taEndLifeCare"];
-                    string strOverAllAssessment = data["taOverAllAssessment"];
+                        int intQualityDocumentationCareRatingId = careRating6.CareRatingID;
 
-                    SJRFormInitial sJRFormInitial = new SJRFormInitial();
 
-                    sJRFormInitial.PatientID = lastPatientId;
-                    //Stage=0 For Stage2SJRForm Only 
-                    sJRFormInitial.Stage = 1;
-                    sJRFormInitial.InitialManagement = strInitialManagement;
-                    sJRFormInitial.OngoingCare = strOngoingCare;
-                    sJRFormInitial.CareDuringProcedure = strCareDuringProcedure;
-                    sJRFormInitial.EndLifeCare = strEndLifeCare;
-                    sJRFormInitial.OverAllAssessment = strOverAllAssessment;
-                    sJRFormInitial.InitialManagementCareRatingID = intInitialManagementRatingId;
-                    sJRFormInitial.OngoingCareRatingID = intOnGoingCareRatingId;
-                    sJRFormInitial.CareDuringProcedureCareRatingID = intCareDuringProcedureCareRatingId;
-                    sJRFormInitial.EndLifeCareRatingID = intEndLifeCareRating;
-                    sJRFormInitial.OverAllAssessmentCareRatingID = intOverAllAssessmentCareRatingId;
-                    sJRFormInitial.CreatedBy = "John Deo";
-                    sJRFormInitial.CreateDate = DateTime.Now;
-                    sJRFormInitial.UpdatedBy = "John Deo";
-                    sJRFormInitial.UpdatedDate = DateTime.Now;
-                    ent.SJRFormInitials.Add(sJRFormInitial);
-                    ent.SaveChanges();
+                        SJRFormInitial sJRFormInitial = new SJRFormInitial();
 
-                    Session["sJRFormInitial"] = sJRFormInitial;
+                        sJRFormInitial.PatientID = id;
+                        //Stage=0 For Stage2SJRForm Only 
+                        sJRFormInitial.Stage = 1;
+                        sJRFormInitial.InitialManagement = clsSJRFormInitialModel.clsSjrFormInitial.InitialManagement;
+                        sJRFormInitial.OngoingCare = clsSJRFormInitialModel.clsSjrFormInitial.OngoingCare;
+                        sJRFormInitial.CareDuringProcedure = clsSJRFormInitialModel.clsSjrFormInitial.CareDuringProcedure;
+                        sJRFormInitial.EndLifeCare = clsSJRFormInitialModel.clsSjrFormInitial.EndLifeCare;
+                        sJRFormInitial.OverAllAssessment = clsSJRFormInitialModel.clsSjrFormInitial.OverAllAssessment;
+                        sJRFormInitial.InitialManagementCareRatingID = intInitialManagementRatingId;
+                        sJRFormInitial.OngoingCareRatingID = intOnGoingCareRatingId;
+                        sJRFormInitial.CareDuringProcedureCareRatingID = intCareDuringProcedureCareRatingId;
+                        sJRFormInitial.EndLifeCareRatingID = intEndLifeCareRating;
+                        sJRFormInitial.OverAllAssessmentCareRatingID = intOverAllAssessmentCareRatingId;
+                        sJRFormInitial.QualityDocumentationCode = intQualityDocumentationCareRatingId;
+                        sJRFormInitial.CreatedBy = "John Deo";
+                        sJRFormInitial.CreateDate = DateTime.Now;
+                        sJRFormInitial.UpdatedBy = "John Deo";
+                        sJRFormInitial.UpdatedDate = DateTime.Now;
+                        ent.SJRFormInitial.Add(sJRFormInitial);
+                        ent.SaveChanges();
 
-                    Response.Redirect("/Home/Stage3SJRformSecondStep");
+                        PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                        where pDetails.PatientId == id
+                                                        select pDetails).FirstOrDefault();
+
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == id
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = id;
+                        // 1 for Amber
+                        reviewStatus.METriage = 3;
+                        reviewStatus.SJR1 = 3;
+                        reviewStatus.SJR2 = 1;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID = sJRFormInitial.SJRFormInitial_ID;
+                        Session["sessionSJRFormInitial"] = clsSJRFormInitialModel;
+
+                        // Response.Redirect("/Home/Stage2SJRformSecondStep", false);
+                        return RedirectToAction("/Stage3SJRformSecondStep");
+                    }
+                    else
+                    {
+
+
+                        //int intQualityDocumentationCareRatingId = careRating6.CareRatingID;
+
+                        //var lastRecordPatientMap = ent.PatientMap.OrderByDescending(p => p.PatientID).FirstOrDefault();
+                        //int lastPatientId = lastRecordPatientMap.PatientID;
+
+
+                        SJRFormInitial sJRFormInitial = (from sjr in ent.SJRFormInitial
+                                                         where sjr.SJRFormInitial_ID == clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID
+                                                         select sjr).FirstOrDefault();
+
+                        int intPId = Convert.ToInt32(sJRFormInitial.PatientID);
+
+                        sJRFormInitial.PatientID = intPId;
+                        //Stage=0 For Stage2SJRForm Only 
+                        sJRFormInitial.Stage = 1;
+                        sJRFormInitial.InitialManagement = clsSJRFormInitialModel.clsSjrFormInitial.InitialManagement;
+                        sJRFormInitial.OngoingCare = clsSJRFormInitialModel.clsSjrFormInitial.OngoingCare;
+                        sJRFormInitial.CareDuringProcedure = clsSJRFormInitialModel.clsSjrFormInitial.CareDuringProcedure;
+                        sJRFormInitial.EndLifeCare = clsSJRFormInitialModel.clsSjrFormInitial.EndLifeCare;
+                        sJRFormInitial.OverAllAssessment = clsSJRFormInitialModel.clsSjrFormInitial.OverAllAssessment;
+                        sJRFormInitial.CreatedBy = "John Deo";
+                        sJRFormInitial.CreateDate = DateTime.Now;
+                        sJRFormInitial.UpdatedBy = "John Deo";
+                        sJRFormInitial.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating1 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.InitialManagementCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating1.Name = clsSJRFormInitialModel.clsInitialManagementCareRating.Name;
+                        careRating1.CreatedBy = "John Deo";
+                        careRating1.CreateDate = DateTime.Now;
+                        careRating1.UpdatedBy = "John Deo";
+                        careRating1.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating2 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.OngoingCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating2.Name = clsSJRFormInitialModel.clsOnGoingCareRating.Name;
+                        careRating2.CreatedBy = "John Deo";
+                        careRating2.CreateDate = DateTime.Now;
+                        careRating2.UpdatedBy = "John Deo";
+                        careRating2.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+                        CareRating careRating3 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.CareDuringProcedureCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        //Session["careRating2"] = careRating2;
+
+
+                        careRating3.Name = clsSJRFormInitialModel.clsCareDuringProcedureCareRating.Name;
+                        careRating3.CreatedBy = "John Deo";
+                        careRating3.CreateDate = DateTime.Now;
+                        careRating3.UpdatedBy = "John Deo";
+                        careRating3.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating4 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.EndLifeCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating4.Name = clsSJRFormInitialModel.clsEndLifeCareRating.Name;
+                        careRating4.CreatedBy = "John Deo";
+                        careRating4.CreateDate = DateTime.Now;
+                        careRating4.UpdatedBy = "John Deo";
+                        careRating4.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating5 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.OverAllAssessmentCareRatingID
+                                                  select x).FirstOrDefault();
+
+
+                        careRating5.Name = clsSJRFormInitialModel.clsOverAllAssessmentCareRating.Name;
+                        careRating5.CreatedBy = "John Deo";
+                        careRating5.CreateDate = DateTime.Now;
+                        careRating5.UpdatedBy = "John Deo";
+                        careRating5.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        CareRating careRating6 = (from x in ent.CareRating
+                                                  where x.CareRatingID == sJRFormInitial.QualityDocumentationCode
+                                                  select x).FirstOrDefault();
+
+
+
+                        careRating6.Name = clsSJRFormInitialModel.clsQualityDocumentationCareRating.Name;
+                        careRating6.CreatedBy = "John Deo";
+                        careRating6.CreateDate = DateTime.Now;
+                        careRating6.UpdatedBy = "John Deo";
+                        careRating6.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+                        PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                        where pDetails.PatientId == id
+                                                        select pDetails).FirstOrDefault();
+
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == id
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = id;
+                        // 1 for Amber
+                        reviewStatus.METriage = 3;
+                        reviewStatus.SJR1 = 3;
+                        reviewStatus.SJR2 = 1;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+
+                        clsSJRFormInitialModel.clsSjrFormInitial.SJRFormInitial_ID = sJRFormInitial.SJRFormInitial_ID;
+                        Session["sessionSJRFormInitial"] = clsSJRFormInitialModel;
+
+                        Session["ssPatientId"] = intPId;
+                        //Response.Redirect("/Home/Stage2SJRformSecondStep", false);
+                        return RedirectToAction("/Stage3SJRformSecondStep");
+                    }
                 }
 
             }
@@ -582,16 +967,18 @@ namespace NHS.Controllers
         {
             try
             {
+
+                //int id = Convert.ToInt32(Session["id"]);
+                int PID = Convert.ToInt32(Session["PId"]);
                 if (BtnPrevious != null)
                 {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/Stage3SJRformFirstStep");
+                    //Session["BtnPrevious"] = BtnPrevious;
+                    Response.Redirect("/Home/Stage2SJRformFirstStep", false);
+                    //return RedirectToAction("/Stage2SJRformFirstStep");
                 }
                 if (BtnFinish != null)
                 {
 
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
 
                     CarePhase carePhase1 = new CarePhase();
                     string strAssessmentCarePhase = data["ddlAssessmentCarePhase"];
@@ -600,7 +987,7 @@ namespace NHS.Controllers
                     carePhase1.CreateDate = DateTime.Now;
                     carePhase1.UpdatedBy = "John Deo";
                     carePhase1.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase1);
+                    ent.CarePhase.Add(carePhase1);
                     ent.SaveChanges();
 
                     int intAssessmentCarePhaseId = carePhase1.CarePhaseID;
@@ -613,7 +1000,7 @@ namespace NHS.Controllers
                     carePhase2.CreateDate = DateTime.Now;
                     carePhase2.UpdatedBy = "John Deo";
                     carePhase2.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase2);
+                    ent.CarePhase.Add(carePhase2);
                     ent.SaveChanges();
 
                     int intMedicationCarePhaseId = carePhase2.CarePhaseID;
@@ -625,7 +1012,7 @@ namespace NHS.Controllers
                     carePhase3.CreateDate = DateTime.Now;
                     carePhase3.UpdatedBy = "John Deo";
                     carePhase3.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase3);
+                    ent.CarePhase.Add(carePhase3);
                     ent.SaveChanges();
 
                     int intTretmentCarePhaseId = carePhase3.CarePhaseID;
@@ -637,7 +1024,7 @@ namespace NHS.Controllers
                     carePhase4.CreateDate = DateTime.Now;
                     carePhase4.UpdatedBy = "John Deo";
                     carePhase4.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase4);
+                    ent.CarePhase.Add(carePhase4);
                     ent.SaveChanges();
 
 
@@ -650,7 +1037,7 @@ namespace NHS.Controllers
                     carePhase5.CreateDate = DateTime.Now;
                     carePhase5.UpdatedBy = "John Deo";
                     carePhase5.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase5);
+                    ent.CarePhase.Add(carePhase5);
                     ent.SaveChanges();
 
 
@@ -663,7 +1050,7 @@ namespace NHS.Controllers
                     carePhase6.CreateDate = DateTime.Now;
                     carePhase6.UpdatedBy = "John Deo";
                     carePhase6.UpdatedDate = DateTime.Now;
-                    ent.CarePhases.Add(carePhase6);
+                    ent.CarePhase.Add(carePhase6);
                     ent.SaveChanges();
 
                     int intOtherTypeCarePhaseId = carePhase6.CarePhaseID;
@@ -676,7 +1063,7 @@ namespace NHS.Controllers
                     avoidabilityScore.CreateDate = DateTime.Now;
                     avoidabilityScore.UpdatedBy = "John Deo";
                     avoidabilityScore.UpdatedDate = DateTime.Now;
-                    ent.AvoidabilityScores.Add(avoidabilityScore);
+                    ent.AvoidabilityScore.Add(avoidabilityScore);
                     ent.SaveChanges();
 
 
@@ -689,7 +1076,7 @@ namespace NHS.Controllers
                     responsePT.CreateDate = DateTime.Now;
                     responsePT.UpdatedBy = "John Deo";
                     responsePT.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT);
+                    ent.ResponsePT.Add(responsePT);
                     ent.SaveChanges();
 
                     int intAssessmentResponseId = responsePT.ResponseID;
@@ -701,7 +1088,7 @@ namespace NHS.Controllers
                     responsePT1.CreateDate = DateTime.Now;
                     responsePT1.UpdatedBy = "John Deo";
                     responsePT1.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT1);
+                    ent.ResponsePT.Add(responsePT1);
                     ent.SaveChanges();
 
                     int intMedicationResponseId = responsePT1.ResponseID;
@@ -713,7 +1100,7 @@ namespace NHS.Controllers
                     responsePT2.CreateDate = DateTime.Now;
                     responsePT2.UpdatedBy = "John Deo";
                     responsePT2.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT2);
+                    ent.ResponsePT.Add(responsePT2);
                     ent.SaveChanges();
 
                     int intTreatmentResponseId = responsePT2.ResponseID;
@@ -725,7 +1112,7 @@ namespace NHS.Controllers
                     responsePT3.CreateDate = DateTime.Now;
                     responsePT3.UpdatedBy = "John Deo";
                     responsePT3.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT3);
+                    ent.ResponsePT.Add(responsePT3);
                     ent.SaveChanges();
 
                     int intInfectionResponseId = responsePT3.ResponseID;
@@ -738,7 +1125,7 @@ namespace NHS.Controllers
                     responsePT4.CreateDate = DateTime.Now;
                     responsePT4.UpdatedBy = "John Deo";
                     responsePT4.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT4);
+                    ent.ResponsePT.Add(responsePT4);
                     ent.SaveChanges();
 
                     int intProcedureResponseId = responsePT4.ResponseID;
@@ -750,7 +1137,7 @@ namespace NHS.Controllers
                     responsePT5.CreateDate = DateTime.Now;
                     responsePT5.UpdatedBy = "John Deo";
                     responsePT5.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT5);
+                    ent.ResponsePT.Add(responsePT5);
                     ent.SaveChanges();
 
                     int intMonitoringResponseId = responsePT5.ResponseID;
@@ -763,7 +1150,7 @@ namespace NHS.Controllers
                     responsePT6.CreateDate = DateTime.Now;
                     responsePT6.UpdatedBy = "John Deo";
                     responsePT6.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT6);
+                    ent.ResponsePT.Add(responsePT6);
                     ent.SaveChanges();
 
                     int intResuscitationResponseId = responsePT6.ResponseID;
@@ -776,14 +1163,16 @@ namespace NHS.Controllers
                     responsePT7.CreateDate = DateTime.Now;
                     responsePT7.UpdatedBy = "John Deo";
                     responsePT7.UpdatedDate = DateTime.Now;
-                    ent.ResponsePTs.Add(responsePT7);
+                    ent.ResponsePT.Add(responsePT7);
                     ent.SaveChanges();
 
                     int intOtherTypeResponseId = responsePT7.ResponseID;
                     string strSJRFormProblemTypeComments = data["taComment"];
 
+                    //int intPID = Convert.ToInt32(Session["ssPatientId"]);
+
                     SJRFormProblemType sJRFormProblemType = new SJRFormProblemType();
-                    sJRFormProblemType.PatientID = lastPatientId;
+                    sJRFormProblemType.PatientID = PID;
                     sJRFormProblemType.AssessmentResponseID = intAssessmentResponseId;
                     sJRFormProblemType.AssessmentCarePhaseID = intAssessmentCarePhaseId;
                     sJRFormProblemType.MedicationResponseID = intMedicationResponseId;
@@ -806,10 +1195,35 @@ namespace NHS.Controllers
                     sJRFormProblemType.UpdatedBy = "John Deo";
                     sJRFormProblemType.UpdatedDate = DateTime.Now;
 
-                    ent.SJRFormProblemTypes.Add(sJRFormProblemType);
+                    ent.SJRFormProblemType.Add(sJRFormProblemType);
                     ent.SaveChanges();
 
-                    Response.Redirect("/Home/CORSPatient");
+                    PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                    where pDetails.PatientId == PID
+                                                    select pDetails).FirstOrDefault();
+
+
+                    ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                 where revStatus.PatientID == PID
+                                                 select revStatus).FirstOrDefault();
+
+                    reviewStatus.PatientID = PID;
+                    // 1 for Amber
+                    reviewStatus.METriage = 3;
+                    reviewStatus.SJR1 = 3;
+                    reviewStatus.SJR2 = 3;
+                    reviewStatus.SJRoutcome = 2;
+                    reviewStatus.CreatedBy = "John Deo";
+                    reviewStatus.CreateDate = DateTime.Now;
+                    reviewStatus.UpdatedBy = "John Deo";
+                    reviewStatus.UpdatedDate = DateTime.Now;
+                    ent.SaveChanges();
+
+                    if (reviewStatus.SJR2 == 3)
+                    {
+                        return RedirectToAction("MortalityReview", new { Id = patientDetail.PatientId, PName = patientDetail.PatientName, DOB = Convert.ToDateTime(patientDetail.DOB) });
+                    }
+
                 }
 
             }
@@ -817,114 +1231,233 @@ namespace NHS.Controllers
             {
                 Console.Write(ex.StackTrace);
             }
-
             return View();
 
         }
 
-        public ActionResult MedExamFormStep1(FormCollection data, string BtnNext)
+        private clsPatientDetailsModel GetPatientDetailsModel()
+        {
+            if (Session["sessionPatientDetailsModel"] == null)
+            {
+                Session["sessionPatientDetailsModel"] = new clsPatientDetailsModel();
+            }
+            return (clsPatientDetailsModel)Session["sessionPatientDetailsModel"];
+        }
+
+        private clsMedicalExaminerReviewModel GetMedicalExaminerReviewModel()
+        {
+            if (Session["sessionMedicalExaminerReview"] == null)
+            {
+                Session["sessionMedicalExaminerReview"] = new clsMedicalExaminerReviewModel();
+            }
+            return (clsMedicalExaminerReviewModel)Session["sessionMedicalExaminerReview"];
+        }
+
+        private clsMedicalExaminerDecisionModel GetMedicalExaminerDecisionModel()
+        {
+            if (Session["sessionMedicalExaminerDecision"] == null)
+            {
+                Session["sessionMedicalExaminerDecision"] = new clsMedicalExaminerDecisionModel();
+            }
+            return (clsMedicalExaminerDecisionModel)Session["sessionMedicalExaminerDecision"];
+        }
+
+        private clsSJRReviewModel GetSJRReviewModel()
+        {
+            if (Session["sessionSJRReview"] == null)
+            {
+                Session["sessionSJRReview"] = new clsSJRReviewModel();
+            }
+            return (clsSJRReviewModel)Session["sessionSJRReview"];
+        }
+
+        private clsOtherReferralModel GetOtherReferralModel()
+        {
+            if (Session["sessionOtherReferral"] == null)
+            {
+                Session["sessionOtherReferral"] = new clsOtherReferralModel();
+            }
+            return (clsOtherReferralModel)Session["sessionOtherReferral"];
+        }
+
+        private clsFeedBackModel GetFeedBackModel()
+        {
+            if (Session["sessionFeedBack"] == null)
+            {
+                Session["sessionFeedBack"] = new clsFeedBackModel();
+            }
+            return (clsFeedBackModel)Session["sessionFeedBack"];
+        }
+
+        private clsSJRFormInitialModel GetSJRFormInitialModel()
+        {
+            if (Session["sessionSJRFormInitial"] == null)
+            {
+                Session["sessionSJRFormInitial"] = new clsSJRFormInitialModel();
+            }
+            return (clsSJRFormInitialModel)Session["sessionSJRFormInitial"];
+        }
+
+        private clsSJROutComeModel GetSJROutComeModel()
+        {
+            if (Session["sessionSJROutComeModel"] == null)
+            {
+                Session["sessionSJROutComeModel"] = new clsSJROutComeModel();
+            }
+            return (clsSJROutComeModel)Session["sessionSJROutComeModel"];
+        }
+
+
+        public ActionResult PatientDetails(int? id)
+        {
+            clsPatientDetailsModel objPDM = GetPatientDetailsModel();
+
+            Session["sessionPatientId"] = id;
+            if (id != null)
+            {
+                clsPatientDetailsModel obj = new clsPatientDetailsModel();
+                obj.objclPatientDetails = (from x in ent.PatientDetails
+                                           where x.PatientId == id
+                                           select new clsPatientDetails
+                                           {
+                                               PatientId = x.PatientId,
+                                               SpellNumber = x.SpellNumber,
+                                               PatientName = x.PatientName,
+                                               AdmissionType = x.AdmissionType,
+                                               NHSNumber = x.NHSNumber,
+                                               DischargeConsutantName = x.DischargeConsutantName,
+                                               Gender = x.Gender,
+                                               Age = x.Age,
+                                               DateofAdmission = x.DateofAdmission,
+                                               DischargeWard = x.DischargeWard,
+                                               DateofDeath = x.DateofDeath,
+                                               TimeofDeath = x.TimeofDeath,
+                                               TimeofAdmission = x.TimeofAdmission,
+                                               PrimaryDiagnosis = x.PrimaryDiagnosis,
+                                               CodingIssueIdentified = x.CodingIssueIdentified == true ? true : false,
+                                               Comments = x.Comments
+                                           }).FirstOrDefault();
+
+
+                ViewBag.CilinicalCodingDropdown = (from cilinicalCoding in ent.ClinicalCoding select cilinicalCoding).ToList();
+
+                ViewBag.CilinicalCodingCount = ent.ClinicalCoding.Count();
+
+
+                Session["sessionClinicalCodingModel"] = obj;
+
+                return View(obj);
+            }
+            else
+            {
+
+                ViewBag.CilinicalCodingDropdown = (from cilinicalCoding in ent.ClinicalCoding select cilinicalCoding).ToList();
+
+                ViewBag.CilinicalCodingCount = ent.ClinicalCoding.Count();
+
+                return View(objPDM);
+
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PatientDetails(clsPatientDetailsModel clsPatientDetailsModel, string btnCloseYes, int? id)
         {
             try
             {
+                clsPatientDetailsModel obj = new clsPatientDetailsModel();
 
-                if (BtnNext != null)
+                ViewBag.CilinicalCodingCount = ent.ClinicalCoding.Count();
+                ViewBag.CilinicalCodingDropdown = (from cilinicalCoding in ent.ClinicalCoding select cilinicalCoding).ToList();
+                //if (clsPatientDetailsModel.objclPatientDetails.PatientId != id)
+                //{
+
+                int intPId = Convert.ToInt32(id);
+
+                ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                             where revStatus.PatientID == intPId
+                                             select revStatus).FirstOrDefault();
+
+                if (reviewStatus != null )
                 {
-                    string strPatientName = data["txtPatientName"];
-                    string strMRN = data["txtMRN"];
-                    string strAge = data["txtAge"];
-                    string strGender = data["ddlGender"];
-                    string strDischargeWard = data["txtDischargeWard"];
-                    string strDischargeConsultant = data["txtDischargeConsultant"];
-                    string strEmergencyAdmission = data["txtEmergencyAdmission"];
-                    string strDateOfAdmission = data["txtDateOfAdmission"];
-                    string strTimeOfAdmission = data["txtTimeOfAdmission"];
-                    string strDateOfDeath = data["txtDateOfDeath"];
-                    string strTimeOfDeath = data["txtTimeOfDeath"];
-                    string strPrimaryDiagnosis = data["txtPrimaryDiagnosis"];
-                    string strComments = data["taComments"];
-                    Boolean blCodingIssueIdentifiedYes = data["cbCodingIssueIdentifiedYes"] != null ? true : false;
-                    Boolean blCodingIssueIdentifiedNo = data["cbCodingIssueIdentifiedNo"] != null ? true : false;
+                    int intPID = Convert.ToInt32(Session["sessionPatientId"]);
 
-                    //PatientDetail patientDetail = new PatientDetail();
-                    //patientDetail.PatientName = strPatientName;
-                    //patientDetail.MRN = strMRN;
-                    //patientDetail.Age = Convert.ToInt32(strAge);
-                    //patientDetail.Gender = Convert.ToInt32(strGender) == 1 ? true : false;
-                    //patientDetail.DischargeWard = strDischargeWard;
-                    //patientDetail.EmergencyAdmission = strEmergencyAdmission;
-                    //patientDetail.DateofAdmission = Convert.ToDateTime(strDateOfAdmission);
-                    //patientDetail.TimeofAdmission = Convert.ToDateTime(strTimeOfAdmission);
-                    //patientDetail.DateofDeath = Convert.ToDateTime(strDateOfDeath);
-                    //patientDetail.TimeofDeath = Convert.ToDateTime(strTimeOfDeath);
-                    //patientDetail.PrimaryDiagnosis = strPrimaryDiagnosis;
-                    //patientDetail.Comments = strComments;
-                    //Session["sessionPatientDetail"] = patientDetail;
+                 
 
-                    //DischargeConsultant dischargeConsultant = new DischargeConsultant();
-                    //dischargeConsultant.DischargeConsultantName = strDischargeConsultant;
-                    //Session["sessionDischargeConsultant"] = dischargeConsultant;
+                    PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                    where pDetails.PatientId == intPID
+                                                    select pDetails).FirstOrDefault();
 
-                    //var sessionPatientDetail = (NHS.Models.PatientDetail)Session["sessionPatientDetail"];
-                    //var sessionDischargeConsultant = (NHS.Models.DischargeConsultant)Session["sessionDischargeConsultant"];
 
-                    //string sessionDischargeConsultantName = sessionDischargeConsultant.DischargeConsultantName;
-
-                    DischargeConsultant dischargeConsultant = new DischargeConsultant();
-                    dischargeConsultant.DischargeConsultantName = strDischargeConsultant;
-                    dischargeConsultant.CreatedBy = "John Deo";
-                    dischargeConsultant.CreateDate = DateTime.Now;
-                    dischargeConsultant.UpdatedBy = "John Deo";
-                    dischargeConsultant.UpdatedDate = DateTime.Now;
-                    ent.DischargeConsultants.Add(dischargeConsultant);
-                    ent.SaveChanges();
-
-                    int intDischargeConsultantCode = dischargeConsultant.DischargeConsultantCode;
-
-                    PatientDetail patientDetail = new PatientDetail();
-
-                    patientDetail.PatientName = strPatientName;
-                    patientDetail.MRN = strMRN;
-                    patientDetail.Age = Convert.ToInt32(strAge);
-                    patientDetail.Gender = Convert.ToInt32(strGender) == 1 ? true : false;
-                    patientDetail.DischargeWard = strDischargeWard;
-                    patientDetail.DischargeConsultantCode = intDischargeConsultantCode;
-                    patientDetail.EmergencyAdmission = strEmergencyAdmission;
-                    patientDetail.DateofAdmission = DateTime.ParseExact(strDateOfAdmission, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                    patientDetail.TimeofAdmission = Convert.ToDateTime(strTimeOfAdmission);
-                    patientDetail.DateofDeath = DateTime.ParseExact(strDateOfDeath, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                    patientDetail.TimeofDeath = Convert.ToDateTime(strTimeOfDeath);
-                    patientDetail.PrimaryDiagnosis = strPrimaryDiagnosis;
-                    if (blCodingIssueIdentifiedNo == true)
-                    {
-                        patientDetail.CodingIssueIdentified = false;
-                    }
-                    patientDetail.CodingIssueIdentified = blCodingIssueIdentifiedYes;
-                    patientDetail.Comments = strComments;
+                    patientDetail.CodingIssueIdentified = clsPatientDetailsModel.objclPatientDetails.CodingIssueIdentified;
+                    patientDetail.Comments = clsPatientDetailsModel.objclPatientDetails.Comments;
                     patientDetail.CreatedBy = "John Deo";
                     patientDetail.CreateDate = DateTime.Now;
                     patientDetail.UpdatedBy = "John Deo";
                     patientDetail.UpdatedDate = DateTime.Now;
-                    ent.PatientDetails.Add(patientDetail);
                     ent.SaveChanges();
 
-                    //int intMRN = patientDetail.PatientId;
 
-                    Session["sessionPatientDetails"] = patientDetail;
-                    Session["sessionDischargeConsultant"] = dischargeConsultant;
+                    ReviewStatus reviewStatusUp = (from revStatus in ent.ReviewStatus
+                                                 where revStatus.PatientID == intPID
+                                                 select revStatus).FirstOrDefault();
 
-                    PatientMap patientMap = new PatientMap();
-
-                    patientMap.MRN = strMRN;
-                    patientMap.CreatedBy = "John Deo";
-                    patientMap.CreateDate = DateTime.Now;
-                    patientMap.UpdatedBy = "John Deo";
-                    patientMap.UpdatedDate = DateTime.Now;
-                    ent.PatientMaps.Add(patientMap);
+                    reviewStatusUp.PatientID = intPID;
+                    // 1 for Amber
+                    reviewStatusUp.METriage = 1;
+                    reviewStatusUp.SJR1 = 0;
+                    reviewStatusUp.SJR2 = 0;
+                    reviewStatusUp.SJRoutcome = 0;
+                    reviewStatusUp.CreatedBy = "John Deo";
+                    reviewStatusUp.CreateDate = DateTime.Now;
+                    reviewStatusUp.UpdatedBy = "John Deo";
+                    reviewStatusUp.UpdatedDate = DateTime.Now;
                     ent.SaveChanges();
 
-                    Response.Redirect("/Home/MedExamFormStep2");
-
+                    Session["sessionPatientDetailsModel"] = clsPatientDetailsModel;
+                    Response.Redirect("/Home/MedicalExaminerReview", false);
                 }
+                else
+                {
+
+
+                    int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+                   
+
+                    PatientDetails patientDetail = (from pDetails in ent.PatientDetails
+                                                    where pDetails.PatientId == intPID
+                                                    select pDetails).FirstOrDefault();
+
+
+                    patientDetail.CodingIssueIdentified = clsPatientDetailsModel.objclPatientDetails.CodingIssueIdentified;
+                    patientDetail.Comments = clsPatientDetailsModel.objclPatientDetails.Comments;
+                    patientDetail.CreatedBy = "John Deo";
+                    patientDetail.CreateDate = DateTime.Now;
+                    patientDetail.UpdatedBy = "John Deo";
+                    patientDetail.UpdatedDate = DateTime.Now;
+                    ent.SaveChanges();
+
+                    ReviewStatus reviewStatus1 = new ReviewStatus();
+                    reviewStatus1.PatientID = intPId;
+                    // 1 for Amber
+                    reviewStatus1.METriage = 1;
+                    reviewStatus1.SJR1 = 0;
+                    reviewStatus1.SJR2 = 0;
+                    reviewStatus1.SJRoutcome = 0;
+                    reviewStatus1.CreatedBy = "John Deo";
+                    reviewStatus1.CreateDate = DateTime.Now;
+                    reviewStatus1.UpdatedBy = "John Deo";
+                    reviewStatus1.UpdatedDate = DateTime.Now;
+                    ent.ReviewStatus.Add(reviewStatus1);
+                    ent.SaveChanges();
+
+                    Session["sessionPatientDetailsModel"] = clsPatientDetailsModel;
+                    Response.Redirect("/Home/MedicalExaminerReview", false);
+
+                  
+                }
+
 
             }
             catch (Exception ex)
@@ -934,238 +1467,590 @@ namespace NHS.Controllers
             return View();
         }
 
-        public ActionResult MedExamFormStep2(FormCollection data, string BtnPrevious, string BtnNext)
+        public ActionResult MedicalExaminerReview()
+        {
+            clsMedicalExaminerReviewModel clsMedicalExaminerReviewModel = GetMedicalExaminerReviewModel();
+            return View(clsMedicalExaminerReviewModel);
+        }
+
+        [HttpPost]
+        public ActionResult MedicalExaminerReview(clsMedicalExaminerReviewModel clsMedicalExaminerReviewModel, string BtnPrevious, string BtnNext)
+        {
+            try
+            {
+
+                if (BtnPrevious != null)
+                {
+                    Response.Redirect("/Home/PatientDetails", false);
+                }
+
+                if (BtnNext != null)
+                {
+                    if (clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.MEReviewId == 0)
+                    {
+
+                        string firstName = "";
+                        string midName = "";
+                        string lastName = "";
+
+                        string strMEName = clsMedicalExaminerReviewModel.objclsMedicalExaminer.ME_FirstName;
+                        if (strMEName != null)
+                        {
+                            var names = strMEName.Split(' ');
+                            firstName = names[0];
+                            midName = names[1];
+                            lastName = names[2];
+                        }
+
+
+                        MedicalExaminer medicalExaminer = new MedicalExaminer();
+
+                        medicalExaminer.ME_FirstName = firstName;
+                        medicalExaminer.ME_MiddleName = midName;
+                        medicalExaminer.ME_LastName = lastName;
+                        medicalExaminer.CreatedBy = "John Deo";
+                        medicalExaminer.CreateDate = DateTime.Now;
+                        medicalExaminer.UpdatedBy = "John Deo";
+                        medicalExaminer.UpdatedDate = DateTime.Now;
+                        ent.MedicalExaminer.Add(medicalExaminer);
+                        ent.SaveChanges();
+
+                        int intMEID = medicalExaminer.ME_ID;
+
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+                        MedicalExaminerReview medicalExaminerReview = new MedicalExaminerReview();
+
+                        medicalExaminerReview.PatientID = intPID;
+                        medicalExaminerReview.ME_ID = intMEID;
+
+                        medicalExaminerReview.QAP_Discussion = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.QAP_Discussion;
+                        medicalExaminerReview.Notes_Review = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.Notes_Review;
+                        medicalExaminerReview.Nok_Discussion = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.Nok_Discussion;
+                        medicalExaminerReview.Comments = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.Comments;
+                        medicalExaminerReview.QAPName = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.QAPName;
+                        medicalExaminerReview.CreatedBy = "John Deo";
+                        medicalExaminerReview.CreateDate = DateTime.Now;
+                        medicalExaminerReview.UpdatedBy = "John Deo";
+                        medicalExaminerReview.UpdatedDate = DateTime.Now;
+                        ent.MedicalExaminerReview.Add(medicalExaminerReview);
+
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.MEReviewId = medicalExaminerReview.MEReviewId;
+                        Session["sessionMedicalExaminerReview"] = clsMedicalExaminerReviewModel;
+                        Response.Redirect("/Home/MedicalExaminerDecision", false);
+
+                    }
+                    else
+                    {
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+
+
+                        MedicalExaminerReview medicalExaminerReview = (from MEReview in ent.MedicalExaminerReview
+                                                                       where MEReview.MEReviewId == clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.MEReviewId
+                                                                       select MEReview).FirstOrDefault();
+
+
+                        medicalExaminerReview.PatientID = intPID;
+
+                        medicalExaminerReview.QAP_Discussion = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.QAP_Discussion;
+                        medicalExaminerReview.Notes_Review = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.Notes_Review;
+                        medicalExaminerReview.Nok_Discussion = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.Nok_Discussion;
+                        medicalExaminerReview.Comments = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.Comments;
+                        medicalExaminerReview.QAPName = clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.QAPName;
+                        medicalExaminerReview.CreatedBy = "John Deo";
+                        medicalExaminerReview.CreateDate = DateTime.Now;
+                        medicalExaminerReview.UpdatedBy = "John Deo";
+                        medicalExaminerReview.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        MedicalExaminer medicalExaminer = (from mExaminer in ent.MedicalExaminer
+                                                           where mExaminer.ME_ID == medicalExaminerReview.ME_ID
+                                                           select mExaminer).FirstOrDefault();
+
+
+                        string firstName = "";
+                        string midName = "";
+                        string lastName = "";
+
+                        string strMEName = clsMedicalExaminerReviewModel.objclsMedicalExaminer.ME_FirstName;
+                        if (strMEName != null)
+                        {
+                            var names = strMEName.Split(' ');
+                            firstName = names[0];
+                            midName = names[1];
+                            lastName = names[2];
+                        }
+
+                        medicalExaminer.ME_FirstName = firstName;
+                        medicalExaminer.ME_MiddleName = midName;
+                        medicalExaminer.ME_LastName = lastName;
+                        medicalExaminer.CreatedBy = "John Deo";
+                        medicalExaminer.CreateDate = DateTime.Now;
+                        medicalExaminer.UpdatedBy = "John Deo";
+                        medicalExaminer.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+
+                        clsMedicalExaminerReviewModel.objclsMedicalExaminerReview.MEReviewId = medicalExaminerReview.MEReviewId;
+                        Session["sessionMedicalExaminerReview"] = clsMedicalExaminerReviewModel;
+                        Response.Redirect("/Home/MedicalExaminerDecision", false);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
+
+            return View();
+        }
+
+        public ActionResult MedicalExaminerDecision()
+        {
+            clsMedicalExaminerDecisionModel clsMedicalExaminerDecisionModel = GetMedicalExaminerDecisionModel();
+            return View(clsMedicalExaminerDecisionModel);
+        }
+
+        [HttpPost]
+        public ActionResult MedicalExaminerDecision(clsMedicalExaminerDecisionModel clsMedicalExaminerDecisionModel, string BtnPrevious, string BtnNext)
         {
             try
             {
                 if (BtnPrevious != null)
                 {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/MedExamFormStep1");
+                    Response.Redirect("/Home/MedicalExaminerReview", false);
                 }
-
                 if (BtnNext != null)
                 {
-
-                    string firstName = "";
-                    string midName = "";
-                    string lastName = "";
-
-                    string strMEName = data["ddlMEName"];
-                    if (strMEName != null)
+                    if (clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MED_ID == 0)
                     {
-                        var names = strMEName.Split(' ');
-                        firstName = names[0];
-                        midName = names[1];
-                        lastName = names[2];
+
+                        CoronerReferralReason coronerReferralReason = new CoronerReferralReason();
+                        coronerReferralReason.ReasonName = clsMedicalExaminerDecisionModel.objclsCoronerReferralReason.ReasonName;
+                        coronerReferralReason.CreatedBy = "John Deo";
+                        coronerReferralReason.CreateDate = DateTime.Now;
+                        coronerReferralReason.UpdatedBy = "John Deo";
+                        coronerReferralReason.UpdatedDate = DateTime.Now;
+                        ent.CoronerReferralReason.Add(coronerReferralReason);
+                        ent.SaveChanges();
+
+                        int intCoronerReferralReasonsId = coronerReferralReason.Reason_ID;
+
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+                        MedicalExaminerDecision medicalExaminerDecision = new MedicalExaminerDecision();
+                        medicalExaminerDecision.PatientID = intPID;
+                        medicalExaminerDecision.MCCDissue = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MCCDissue;
+                        medicalExaminerDecision.CornerReferral = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferral;
+                        medicalExaminerDecision.HospitalPostMortem = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.HospitalPostMortem;
+                        medicalExaminerDecision.CoronerReferralReasonID = intCoronerReferralReasonsId;
+                        medicalExaminerDecision.CauseOfDeath = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath;
+                        medicalExaminerDecision.DeathCertificate = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.DeathCertificate;
+                        medicalExaminerDecision.CornerReferralComplete = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferralComplete;
+                        medicalExaminerDecision.CoronerDecisionInquest = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionInquest;
+                        medicalExaminerDecision.CoronerDecisionPostMortem = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionPostMortem;
+                        medicalExaminerDecision.CoronerDecision100A = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecision100A;
+                        medicalExaminerDecision.CoronerDecisionGPissue = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionGPissue;
+                        medicalExaminerDecision.CreatedBy = "John Deo";
+                        medicalExaminerDecision.CreateDate = DateTime.Now;
+                        medicalExaminerDecision.UpdatedBy = "John Deo";
+                        medicalExaminerDecision.UpdatedDate = DateTime.Now;
+                        ent.MedicalExaminerDecision.Add(medicalExaminerDecision);
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MED_ID = medicalExaminerDecision.MED_ID;
+                        Session["sessionMedicalExaminerDecision"] = clsMedicalExaminerDecisionModel;
+
+                        Response.Redirect("/Home/SJRAssessmentTriage", false);
+
+                    }
+                    else
+                    {
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+
+
+                        MedicalExaminerDecision medicalExaminerDecision = (from medicalExaminerD in ent.MedicalExaminerDecision
+                                                                           where medicalExaminerD.MED_ID == clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MED_ID
+                                                                           select medicalExaminerD).FirstOrDefault();
+
+
+                        medicalExaminerDecision.PatientID = intPID;
+                        medicalExaminerDecision.MCCDissue = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MCCDissue;
+                        medicalExaminerDecision.CornerReferral = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferral;
+                        medicalExaminerDecision.HospitalPostMortem = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.HospitalPostMortem;
+
+                        medicalExaminerDecision.CauseOfDeath = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath;
+                        medicalExaminerDecision.DeathCertificate = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.DeathCertificate;
+                        medicalExaminerDecision.CornerReferralComplete = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferralComplete;
+                        medicalExaminerDecision.CoronerDecisionInquest = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionInquest;
+                        medicalExaminerDecision.CoronerDecisionPostMortem = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionPostMortem;
+                        medicalExaminerDecision.CoronerDecision100A = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecision100A;
+                        medicalExaminerDecision.CoronerDecisionGPissue = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionGPissue;
+                        medicalExaminerDecision.CreatedBy = "John Deo";
+                        medicalExaminerDecision.CreateDate = DateTime.Now;
+                        medicalExaminerDecision.UpdatedBy = "John Deo";
+                        medicalExaminerDecision.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+
+                        CoronerReferralReason coronerReferralReason = (from coronerReferral in ent.CoronerReferralReason
+                                                                       where coronerReferral.Reason_ID == medicalExaminerDecision.CoronerReferralReasonID
+                                                                       select coronerReferral).FirstOrDefault();
+
+                        coronerReferralReason.ReasonName = clsMedicalExaminerDecisionModel.objclsCoronerReferralReason.ReasonName;
+                        coronerReferralReason.CreatedBy = "John Deo";
+                        coronerReferralReason.CreateDate = DateTime.Now;
+                        coronerReferralReason.UpdatedBy = "John Deo";
+                        coronerReferralReason.UpdatedDate = DateTime.Now;
+
+
+
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MED_ID = medicalExaminerDecision.MED_ID;
+                        Session["sessionMedicalExaminerDecision"] = clsMedicalExaminerDecisionModel;
+                        Response.Redirect("/Home/SJRAssessmentTriage", false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
+
+            return View();
+        }
+
+        public ActionResult SJRAssessmentTriage()
+        {
+            clsSJRReviewModel clsSJRReviewModel = GetSJRReviewModel();
+            return View(clsSJRReviewModel);
+        }
+
+        [HttpPost]
+        public ActionResult SJRAssessmentTriage(clsSJRReviewModel clsSJRReviewModel, string BtnPrevious, string BtnNext)
+        {
+            try
+            {
+                if (BtnPrevious != null)
+                {
+                    Response.Redirect("/Home/MedicalExaminerDecision", false);
+                }
+                if (BtnNext != null)
+                {
+                    if (clsSJRReviewModel.objclsSJRReview.SJRReview_ID == 0)
+                    {
+
+                        SJRReviewSpeciality sJRReviewSpeciality = new SJRReviewSpeciality();
+                        sJRReviewSpeciality.Name = clsSJRReviewModel.objclsSJRReviewSpeciality.Name;
+                        sJRReviewSpeciality.CreatedBy = "John Deo";
+                        sJRReviewSpeciality.CreateDate = DateTime.Now;
+                        sJRReviewSpeciality.UpdatedBy = "John Deo";
+                        sJRReviewSpeciality.UpdatedDate = DateTime.Now;
+                        ent.SJRReviewSpeciality.Add(sJRReviewSpeciality);
+                        ent.SaveChanges();
+
+
+                        int intSJRReviewSpecialityId = sJRReviewSpeciality.SJRReviewSpecialityID;
+
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+
+                        SJRReview sJRReview = new SJRReview();
+                        sJRReview.PatientID = intPID;
+                        sJRReview.PaediatricPatient = clsSJRReviewModel.objclsSJRReview.PaediatricPatient;
+                        sJRReview.LearningDisabilityPatient = clsSJRReviewModel.objclsSJRReview.LearningDisabilityPatient;
+                        sJRReview.MentalillnessPatient = clsSJRReviewModel.objclsSJRReview.MentalillnessPatient;
+                        sJRReview.ElectiveAdmission = clsSJRReviewModel.objclsSJRReview.ElectiveAdmission;
+                        sJRReview.NoKConcernsDeath = clsSJRReviewModel.objclsSJRReview.NoKConcernsDeath;
+                        sJRReview.OtherConcern = clsSJRReviewModel.objclsSJRReview.NoKConcernsDeath;
+                        sJRReview.FullSJRRequired = clsSJRReviewModel.objclsSJRReview.FullSJRRequired;
+                        sJRReview.SJRReviewSpecialityID = intSJRReviewSpecialityId;
+                        sJRReview.CreatedBy = "John Deo";
+                        sJRReview.CreateDate = DateTime.Now;
+                        sJRReview.UpdatedBy = "John Deo";
+                        sJRReview.UpdatedDate = DateTime.Now;
+                        ent.SJRReview.Add(sJRReview);
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+
+                        clsSJRReviewModel.objclsSJRReview.SJRReview_ID = sJRReview.SJRReview_ID;
+                        Session["sessionSJRReview"] = clsSJRReviewModel;
+
+                        Response.Redirect("/Home/OtherReferrals", false);
+
+                    }
+                    else
+                    {
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+
+
+                        SJRReview sJRReview = (from sjrReview in ent.SJRReview
+                                               where sjrReview.SJRReview_ID == clsSJRReviewModel.objclsSJRReview.SJRReview_ID
+                                               select sjrReview).FirstOrDefault();
+
+                        sJRReview.PatientID = intPID;
+                        sJRReview.PaediatricPatient = clsSJRReviewModel.objclsSJRReview.PaediatricPatient;
+                        sJRReview.LearningDisabilityPatient = clsSJRReviewModel.objclsSJRReview.LearningDisabilityPatient;
+                        sJRReview.MentalillnessPatient = clsSJRReviewModel.objclsSJRReview.MentalillnessPatient;
+                        sJRReview.ElectiveAdmission = clsSJRReviewModel.objclsSJRReview.ElectiveAdmission;
+                        sJRReview.NoKConcernsDeath = clsSJRReviewModel.objclsSJRReview.NoKConcernsDeath;
+                        sJRReview.OtherConcern = clsSJRReviewModel.objclsSJRReview.NoKConcernsDeath;
+                        sJRReview.FullSJRRequired = clsSJRReviewModel.objclsSJRReview.FullSJRRequired;
+
+                        sJRReview.CreatedBy = "John Deo";
+                        sJRReview.CreateDate = DateTime.Now;
+                        sJRReview.UpdatedBy = "John Deo";
+                        sJRReview.UpdatedDate = DateTime.Now;
+                        ent.SJRReview.Add(sJRReview);
+                        ent.SaveChanges();
+
+                        SJRReviewSpeciality sJRReviewSpeciality = (from sJRReviewSpec in ent.SJRReviewSpeciality
+                                                                   where sJRReviewSpec.SJRReviewSpecialityID == sJRReview.SJRReviewSpecialityID
+                                                                   select sJRReviewSpec).FirstOrDefault();
+
+                        sJRReviewSpeciality.Name = clsSJRReviewModel.objclsSJRReviewSpeciality.Name;
+                        sJRReviewSpeciality.CreatedBy = "John Deo";
+                        sJRReviewSpeciality.CreateDate = DateTime.Now;
+                        sJRReviewSpeciality.UpdatedBy = "John Deo";
+                        sJRReviewSpeciality.UpdatedDate = DateTime.Now;
+
+                        ent.SaveChanges();
+
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+                        clsSJRReviewModel.objclsSJRReview.SJRReview_ID = sJRReview.SJRReview_ID;
+                        Session["sessionSJRReview"] = clsSJRReviewModel;
+
+                        Response.Redirect("/Home/OtherReferrals", false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
+            return View();
+        }
+
+        public ActionResult OtherReferrals()
+        {
+            clsOtherReferralModel clsOtherReferralModel = GetOtherReferralModel();
+            return View(clsOtherReferralModel);
+        }
+
+        [HttpPost]
+        public ActionResult OtherReferrals(clsOtherReferralModel clsOtherReferralModel, string BtnPrevious, string BtnNext)
+        {
+            try
+            {
+                if (BtnPrevious != null)
+                {
+                    Response.Redirect("/Home/SJRAssessmentTriage", false);
+                }
+                if (BtnNext != null)
+                {
+                    if (clsOtherReferralModel.OtherReferral_ID == 0)
+                    {
+
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
+
+
+                        OtherReferral otherReferral = new OtherReferral();
+
+                        otherReferral.PatientID = intPID;
+                        otherReferral.PatientSafetySIRI = clsOtherReferralModel.PatientSafetySIRI;
+                        otherReferral.PatientSafetySIRIReason = clsOtherReferralModel.PatientSafetySIRIReason;
+                        otherReferral.ChildDeathCoordinator = clsOtherReferralModel.ChildDeathCoordinator;
+                        otherReferral.LearningDisabilityNurse = clsOtherReferralModel.LearningDisabilityNurse;
+                        otherReferral.HeadOfCompliance = clsOtherReferralModel.HeadOfCompliance;
+                        otherReferral.HeadOfComplianceReason = clsOtherReferralModel.HeadOfComplianceReason;
+                        otherReferral.PALsComplaints = clsOtherReferralModel.PALsComplaints;
+                        otherReferral.PALsComplaintsReason = clsOtherReferralModel.PALsComplaintsReason;
+                        otherReferral.WardTeam = clsOtherReferralModel.WardTeam;
+                        otherReferral.WardTeamReason = clsOtherReferralModel.WardTeamReason;
+                        otherReferral.Other = clsOtherReferralModel.Other;
+                        otherReferral.OtherReason = clsOtherReferralModel.OtherReason;
+                        otherReferral.CreatedBy = "John Deo";
+                        otherReferral.CreateDate = DateTime.Now;
+                        otherReferral.UpdatedBy = "John Deo";
+                        otherReferral.UpdatedDate = DateTime.Now;
+                        ent.OtherReferral.Add(otherReferral);
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsOtherReferralModel.OtherReferral_ID = otherReferral.OtherReferral_ID;
+                        Session["sessionOtherReferral"] = clsOtherReferralModel;
+                        Response.Redirect("/Home/PositiveFeedback", false);
                     }
 
-                    string strQAP = data["txtQAP"];
-                    //Boolean blQAPDiscussion = data["cbQAPDiscussion"] != null  ? data["cbQAPDiscussion"]=="1"? true:false : false;
-                    //Boolean blNotesReview = data["cbNotesReview"] != null ? data["cbNotesReview"] == "1" ? true : false : false;
-                    //Boolean blNoK_Discussion = data["cbNoK_Discussion"] != null ? data["cbNoK_Discussion"] == "1" ? true : false : false;
-
-                    Boolean blQAPDiscussion = data["cbQAPDiscussion"] != null ? true : false;
-                    Boolean blNotesReview = data["cbNotesReview"] != null ? true : false;
-                    Boolean blNoK_Discussion = data["cbNoK_Discussion"] != null ? true : false;
-                    string strComment = data["taComment"];
-
-
-                    MedicalExaminer medicalExaminer = new MedicalExaminer();
-
-                    medicalExaminer.ME_FirstName = firstName;
-                    medicalExaminer.ME_MiddleName = midName;
-                    medicalExaminer.ME_LastName = lastName;
-                    medicalExaminer.CreatedBy = "John Deo";
-                    medicalExaminer.CreateDate = DateTime.Now;
-                    medicalExaminer.UpdatedBy = "John Deo";
-                    medicalExaminer.UpdatedDate = DateTime.Now;
-                    ent.MedicalExaminers.Add(medicalExaminer);
-                    ent.SaveChanges();
-
-                    int intMEID = medicalExaminer.ME_ID;
-
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
-
-                    Session["sessionMedicalExaminer"] = medicalExaminer;
-
-                    MedicalExaminerReview medicalExaminerReview = new MedicalExaminerReview();
-
-                    medicalExaminerReview.PatientID = lastPatientId;
-                    medicalExaminerReview.ME_ID = intMEID;
-                    medicalExaminerReview.QAP_Discussion = blQAPDiscussion;
-                    medicalExaminerReview.Notes_Review = blNotesReview;
-                    medicalExaminerReview.Nok_Discussion = blNoK_Discussion;
-                    medicalExaminerReview.Comments = strComment;
-                    medicalExaminerReview.QAPName = strQAP;
-                    medicalExaminerReview.CreatedBy = "John Deo";
-                    medicalExaminerReview.CreateDate = DateTime.Now;
-                    medicalExaminerReview.UpdatedBy = "John Deo";
-                    medicalExaminerReview.UpdatedDate = DateTime.Now;
-                    ent.MedicalExaminerReviews.Add(medicalExaminerReview);
-                    ent.SaveChanges();
-
-                    Session["sessionMedicalExaminerReview"] = medicalExaminerReview;
-
-
-
-
-                    Response.Redirect("/Home/MedExamFormStep3");
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.StackTrace);
-            }
-
-            return View();
-        }
-
-        public ActionResult MedExamFormStep3(FormCollection data, string BtnPrevious, string BtnNext)
-        {
-            try
-            {
-                if (BtnPrevious != null)
-                {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/MedExamFormStep2");
-                }
-                if (BtnNext != null)
-                {
-
-                    string strCoronerReferralResonName = data["ddlCoronerReferralResonName"];
-
-                    Boolean blMCCSIssue = data["cbMCCSIssue"] != null ? true : false;
-                    Boolean blCoronerReferral = data["cbCoronerReferral"] != null ? true : false;
-                    Boolean blHospitalPostMortem = data["cbHospitalPostMortem"] != null ? true : false;
-                    string strCouseOfDeath = data["txtCouseOfDeath"];
-                    Boolean blDeathCertificate = data["cbDeathCertificate"] != null ? true : false;
-                    Boolean blCoronerReferralComplete = data["cbCoronerReferralComplete"] != null ? true : false;
-                    Boolean blCoronerDecisionInquest = data["cbCoronerDecisionInquest"] != null ? true : false;
-                    Boolean blCoronerDecisionPostMortem = data["cbCoronerDecisionPostMortem"] != null ? true : false;
-                    Boolean blCoronerDecision100A = data["cbCoronerDecision100A"] != null ? true : false;
-                    Boolean blCoronerDecisionGPIssue = data["cbCoronerDecisionGPIssue"] != null ? true : false;
-
-                    CoronerReferralReason coronerReferralReason = new CoronerReferralReason();
-                    coronerReferralReason.ReasonName = strCoronerReferralResonName;
-                    coronerReferralReason.CreatedBy = "John Deo";
-                    coronerReferralReason.CreateDate = DateTime.Now;
-                    coronerReferralReason.UpdatedBy = "John Deo";
-                    coronerReferralReason.UpdatedDate = DateTime.Now;
-                    ent.CoronerReferralReasons.Add(coronerReferralReason);
-                    ent.SaveChanges();
-
-                    Session["sessionCoronerReferralReason"] = coronerReferralReason;
-
-                    int intCoronerReferralReasonsId = coronerReferralReason.Reason_ID;
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
-
-                    MedicalExaminerDecision medicalExaminerDecision = new MedicalExaminerDecision();
-                    medicalExaminerDecision.PatientID = lastPatientId;
-                    medicalExaminerDecision.MCCDissue = blMCCSIssue;
-                    medicalExaminerDecision.CornerReferral = blCoronerReferral;
-                    medicalExaminerDecision.HospitalPostMortem = blHospitalPostMortem;
-                    medicalExaminerDecision.CoronerReferralReasonID = intCoronerReferralReasonsId;
-                    medicalExaminerDecision.CauseOfDeath = strCouseOfDeath;
-                    medicalExaminerDecision.DeathCertificate = blDeathCertificate;
-                    medicalExaminerDecision.CornerReferralComplete = blCoronerReferralComplete;
-                    medicalExaminerDecision.CoronerDecisionInquest = blCoronerDecisionInquest;
-                    medicalExaminerDecision.CoronerDecisionPostMortem = blCoronerDecisionPostMortem;
-                    medicalExaminerDecision.CoronerDecision100A = blCoronerDecision100A;
-                    medicalExaminerDecision.CoronerDecisionGPissue = blCoronerDecisionGPIssue;
-                    medicalExaminerDecision.CreatedBy = "John Deo";
-                    medicalExaminerDecision.CreateDate = DateTime.Now;
-                    medicalExaminerDecision.UpdatedBy = "John Deo";
-                    medicalExaminerDecision.UpdatedDate = DateTime.Now;
-                    ent.MedicalExaminerDecisions.Add(medicalExaminerDecision);
-                    ent.SaveChanges();
-
-                    Session["sessionMedicalExaminerDecision"] = medicalExaminerDecision;
-
-                    Response.Redirect("/Home/MedExamFormStep4");
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.StackTrace);
-            }
-
-            return View();
-        }
-
-        public ActionResult MedExamFormStep4(FormCollection data, string BtnPrevious, string BtnNext)
-        {
-            try
-            {
-                if (BtnPrevious != null)
-                {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/MedExamFormStep3");
-                }
-                if (BtnNext != null)
-                {
-
-                    string strSJRReviewSpecialty = data["ddlSJRReviewSpecialty"];
-
-                    Boolean blPaediatricPatient = data["cbPaediatricPatient"] != null ? true : false;
-                    Boolean blLearningDisabilityPatient = data["cbLearningDisabilityPatient"] != null ? true : false;
-                    Boolean blMentalIllnessPatient = data["cbMentalIllnessPatient"] != null ? true : false;
-                    Boolean blElectiveAdmission = data["cbElectiveAdmission"] != null ? true : false;
-                    Boolean blNokConcernsDeath = data["cbNokConcernsDeath"] != null ? true : false;
-                    Boolean blOtherConcerns = data["cbOtherConcerns"] != null ? true : false;
-                    Boolean blFullSJRRequired = data["cbFullSJRRequired"] != null ? true : false;
-                    Boolean blFullSJRRequiredYes = data["cbFullSJRRequiredYes"] != null ? true : false;
-                    Boolean blFullSJRRequiredNo = data["cbFullSJRRequiredNo"] != null ? true : false;
-
-                    SJRReviewSpeciality sJRReviewSpeciality = new SJRReviewSpeciality();
-                    sJRReviewSpeciality.Name = strSJRReviewSpecialty;
-                    sJRReviewSpeciality.CreatedBy = "John Deo";
-                    sJRReviewSpeciality.CreateDate = DateTime.Now;
-                    sJRReviewSpeciality.UpdatedBy = "John Deo";
-                    sJRReviewSpeciality.UpdatedDate = DateTime.Now;
-                    ent.SJRReviewSpecialities.Add(sJRReviewSpeciality);
-                    ent.SaveChanges();
-
-                    Session["sessionSJRReviewSpeciality"] = sJRReviewSpeciality;
-
-                    int intSJRReviewSpecialityId = sJRReviewSpeciality.SJRReviewSpecialityID;
-
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
-
-                    SJRReview sJRReview = new SJRReview();
-                    sJRReview.PatientID = lastPatientId;
-                    sJRReview.PaediatricPatient = blPaediatricPatient;
-                    sJRReview.LearningDisabilityPatient = blLearningDisabilityPatient;
-                    sJRReview.MentalillnessPatient = blMentalIllnessPatient;
-                    sJRReview.ElectiveAdmission = blElectiveAdmission;
-                    sJRReview.NoKConcernsDeath = blNokConcernsDeath;
-                    sJRReview.OtherConcern = blOtherConcerns;
-                    if (blFullSJRRequiredYes == true)
+                    else
                     {
-                        sJRReview.FullSJRRequired = true;
-                    }
-                    if (blFullSJRRequiredNo == true)
-                    {
-                        sJRReview.FullSJRRequired = false;
-                    }
-                    sJRReview.SJRReviewSpecialityID = intSJRReviewSpecialityId;
-                    sJRReview.CreatedBy = "John Deo";
-                    sJRReview.CreateDate = DateTime.Now;
-                    sJRReview.UpdatedBy = "John Deo";
-                    sJRReview.UpdatedDate = DateTime.Now;
-                    ent.SJRReviews.Add(sJRReview);
-                    ent.SaveChanges();
-                    Session["sessionSJRReview"] = sJRReview;
-                    Response.Redirect("/Home/MedExamFormStep5");
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
 
+
+                        OtherReferral otherReferral = (from otherRefe in ent.OtherReferral
+                                                       where otherRefe.OtherReferral_ID == clsOtherReferralModel.OtherReferral_ID
+                                                       select otherRefe).FirstOrDefault();
+
+                        otherReferral.PatientID = intPID;
+                        otherReferral.PatientSafetySIRI = clsOtherReferralModel.PatientSafetySIRI;
+                        otherReferral.PatientSafetySIRIReason = clsOtherReferralModel.PatientSafetySIRIReason;
+                        otherReferral.ChildDeathCoordinator = clsOtherReferralModel.ChildDeathCoordinator;
+                        otherReferral.LearningDisabilityNurse = clsOtherReferralModel.LearningDisabilityNurse;
+                        otherReferral.HeadOfCompliance = clsOtherReferralModel.HeadOfCompliance;
+                        otherReferral.HeadOfComplianceReason = clsOtherReferralModel.HeadOfComplianceReason;
+                        otherReferral.PALsComplaints = clsOtherReferralModel.PALsComplaints;
+                        otherReferral.PALsComplaintsReason = clsOtherReferralModel.PALsComplaintsReason;
+                        otherReferral.WardTeam = clsOtherReferralModel.WardTeam;
+                        otherReferral.WardTeamReason = clsOtherReferralModel.WardTeamReason;
+                        otherReferral.Other = clsOtherReferralModel.Other;
+                        otherReferral.OtherReason = clsOtherReferralModel.OtherReason;
+                        otherReferral.CreatedBy = "John Deo";
+                        otherReferral.CreateDate = DateTime.Now;
+                        otherReferral.UpdatedBy = "John Deo";
+                        otherReferral.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 1;
+                        reviewStatus.SJR1 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+                        clsOtherReferralModel.OtherReferral_ID = otherReferral.OtherReferral_ID;
+                        Session["sessionOtherReferral"] = clsOtherReferralModel;
+                        Response.Redirect("/Home/PositiveFeedback", false);
+
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1174,99 +2059,75 @@ namespace NHS.Controllers
             return View();
         }
 
-        public ActionResult MedExamFormStep5(FormCollection data, string BtnPrevious, string BtnNext)
+        public ActionResult PositiveFeedback()
         {
-            try
-            {
-                if (BtnPrevious != null)
-                {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/MedExamFormStep4");
-                }
-                if (BtnNext != null)
-                {
-
-                    Boolean blPatientSafetySIRI = data["cbPatientSafetySIRI"] != null ? true : false;
-                    string strPatientSafetySIRIReason = data["txtPatientSafetySIRIReason"];
-                    Boolean blChildDeathCoOrdinator = data["cbChildDeathCoOrdinator"] != null ? true : false;
-                    Boolean blLearningDisabilityNurse = data["cbLearningDisabilityNurse"] != null ? true : false;
-                    Boolean blHeadOfComliance = data["cbHeadOfComliance"] != null ? true : false;
-                    string strHeadOfComlianceReason = data["txtHeadOfComlianceReason"];
-                    Boolean blPALsComplaints = data["cbPALsComplaints"] != null ? true : false;
-                    string strPALsComplaintsReason = data["txtPALsComplaintsReason"];
-                    Boolean blWardTeam = data["cbWardTeam"] != null ? true : false;
-                    string strWardTeamReson = data["txtWardTeamReson"];
-                    Boolean blOther = data["cbOther"] != null ? true : false;
-                    string strOtherReason = data["txtOtherReason"];
-
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
-
-                    OtherReferral otherReferral = new OtherReferral();
-
-                    otherReferral.PatientID = lastPatientId;
-                    otherReferral.PatientSafetySIRI = blPatientSafetySIRI;
-                    otherReferral.PatientSafetySIRIReason = strPatientSafetySIRIReason;
-                    otherReferral.ChildDeathCoordinator = blChildDeathCoOrdinator;
-                    otherReferral.LearningDisabilityNurse = blLearningDisabilityNurse;
-                    otherReferral.HeadOfCompliance = blHeadOfComliance;
-                    otherReferral.HeadOfComplianceReason = strHeadOfComlianceReason;
-                    otherReferral.PALsComplaints = blPALsComplaints;
-                    otherReferral.PALsComplaintsReason = strPALsComplaintsReason;
-                    otherReferral.WardTeam = blWardTeam;
-                    otherReferral.WardTeamReason = strWardTeamReson;
-                    otherReferral.Other = blOther;
-                    otherReferral.OtherReason = strOtherReason;
-                    otherReferral.CreatedBy = "John Deo";
-                    otherReferral.CreateDate = DateTime.Now;
-                    otherReferral.UpdatedBy = "John Deo";
-                    otherReferral.UpdatedDate = DateTime.Now;
-                    ent.OtherReferrals.Add(otherReferral);
-                    ent.SaveChanges();
-
-                    Session["sessionOtherReferral"] = otherReferral;
-                    Response.Redirect("/Home/MedExamFormStep6");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.StackTrace);
-            }
-            return View();
+            clsFeedBackModel clsFeedBackModel = GetFeedBackModel();
+            return View(clsFeedBackModel);
         }
 
-        public ActionResult MedExamFormStep6(FormCollection data, string BtnPrevious, string BtnFinish)
+        [HttpPost]
+
+        public ActionResult PositiveFeedback(clsFeedBackModel clsFeedBackModel, string BtnPrevious, string BtnFinish, string BtnNext)
         {
             try
             {
                 if (BtnPrevious != null)
                 {
-                    Session["BtnPrevious"] = BtnPrevious;
-                    return RedirectToAction("/MedExamFormStep5");
+                    Response.Redirect("/Home/OtherReferrals", false);
                 }
                 if (BtnFinish != null)
                 {
+                    if (clsFeedBackModel.FeedBack_ID == 0)
+                    {
 
-                    Boolean blFormCompleted = data["cbFormCompleted"] != null ? true : false;
-                    Boolean blComplimentsFedBack = data["cbComplimentsFedBack"] != null ? true : false;
+                        int intPID = Convert.ToInt32(Session["sessionPatientId"]);
 
-                    var lastRecordPatientMap = ent.PatientMaps.OrderByDescending(p => p.PatientID).FirstOrDefault();
-                    int lastPatientId = lastRecordPatientMap.PatientID;
+                        FeedBack feedBack = new FeedBack();
+                        feedBack.PatientID = intPID;
+                        feedBack.FormCompleted = clsFeedBackModel.FormCompleted;
+                        feedBack.ComplementsFedBack = clsFeedBackModel.ComplementsFedBack;
+                        feedBack.CreatedBy = "John Deo";
+                        feedBack.CreateDate = DateTime.Now;
+                        feedBack.UpdatedBy = "John Deo";
+                        feedBack.UpdatedDate = DateTime.Now;
+                        ent.FeedBack.Add(feedBack);
+                        ent.SaveChanges();
 
-                    FeedBack feedBack = new FeedBack();
-                    feedBack.PatientID = lastPatientId;
-                    feedBack.FormCompleted = blFormCompleted;
-                    feedBack.ComplementsFedBack = blComplimentsFedBack;
-                    feedBack.CreatedBy = "John Deo";
-                    feedBack.CreateDate = DateTime.Now;
-                    feedBack.UpdatedBy = "John Deo";
-                    feedBack.UpdatedDate = DateTime.Now;
-                    ent.FeedBacks.Add(feedBack);
-                    ent.SaveChanges();
-                    Response.Redirect("/Home/CORSPatient");
+                        ReviewStatus reviewStatus = (from revStatus in ent.ReviewStatus
+                                                     where revStatus.PatientID == intPID
+                                                     select revStatus).FirstOrDefault();
+
+                        reviewStatus.PatientID = intPID;
+                        // 1 for Amber
+                        reviewStatus.METriage = 3;
+                        reviewStatus.SJR1 = 2;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJR2 = 0;
+                        reviewStatus.SJRoutcome = 0;
+                        reviewStatus.CreatedBy = "John Deo";
+                        reviewStatus.CreateDate = DateTime.Now;
+                        reviewStatus.UpdatedBy = "John Deo";
+                        reviewStatus.UpdatedDate = DateTime.Now;
+                        ent.SaveChanges();
+
+
+
+                        clsFeedBackModel.FeedBack_ID = feedBack.FeedBack_ID;
+                        Session["sessionFeedBack"] = clsFeedBackModel;
+
+                        //Response.Redirect("/Home/CORSPatient", false);
+
+                        PatientDetails patientDetails = (from pDetls in ent.PatientDetails
+                                                         where pDetls.PatientId == intPID
+                                                         select pDetls).FirstOrDefault();
+
+                        if (reviewStatus.METriage == 3)
+                        {
+                            return RedirectToAction("MortalityReview", new { Id = patientDetails.PatientId, PName = patientDetails.PatientName, DOB = Convert.ToDateTime(patientDetails.DOB) });
+                        }
+
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1275,15 +2136,142 @@ namespace NHS.Controllers
             return View();
         }
 
-        public ActionResult MedicalExaminerDashboard()
+        public ActionResult MedicalExaminerDashboard(FormCollection formCollection, string btnSearch, int? pNo)
         {
-            return View();
+            Session.Remove("sessionPatientDetailsModel");
+            Session.Remove("sessionMedicalExaminerReview");
+            Session.Remove("sessionMedicalExaminerDecision");
+            Session.Remove("sessionSJRReview");
+            Session.Remove("sessionOtherReferral");
+            Session.Remove("sessionFeedBack");
+            Session.Remove("sessionSJRFormInitial");
+            Session.Remove("sessionSJROutComeModel");
+            Session.Remove("sessionPatientId");
+
+
+            if (btnSearch != null)
+            {
+                //string strStartDate = formCollection["txtStartDate"];
+                //string strEndDate = formCollection["txtEndDate"];
+                string strDischargeSpeciality = formCollection["ddlDischargeSpeciality"];
+                string strWardDeath = formCollection["ddlWardDeath"];
+                string strDischargeConsultant = formCollection["ddlDischargeConsultant"];
+                //int intDischargeConsultantId = Convert.ToInt32(ddlSpecialityReviewName);
+
+                clPatientDetailsDashbord clsPatientDetailsDashbord = new clPatientDetailsDashbord();
+                clsPatientDetailsDashbord.PatientDtls = (from x in ent.PatientDetails
+                                                         where x.DischargeSpeciality == strDischargeSpeciality || x.DischargeWard == strWardDeath || x.DischargeConsutantName == strDischargeConsultant
+                                                         select new clsPatientDetailsDashbord
+                                                         {
+                                                             PatientId = x.PatientId,
+                                                             PatientName = x.PatientName,
+                                                             DOB = x.DOB,
+                                                             NHSNumber = x.NHSNumber,
+                                                             DateofAdmission = x.DateofAdmission.HasValue ? x.DateofAdmission : null,
+                                                             DateofDeath = x.DateofDeath,
+                                                             WardofDeath = x.WardofDeath,
+                                                             TimeofDeath = x.TimeofDeath,
+                                                             DischargeSpeciality = x.DischargeSpeciality,
+                                                             AdmissionType = x.AdmissionType,
+                                                             DischargeWard = x.DischargeWard,
+                                                             DischargeConsutantName = x.DischargeConsutantName,
+                                                         }).ToList();
+
+                ViewBag.LoadDischargeSpecialityDropdown = (from dischrageSpecility in ent.PatientDetails select dischrageSpecility).ToList();
+
+                ViewBag.wardDeathDropdown = (from patientDetails in ent.PatientDetails
+                                             select patientDetails).ToList();
+
+                ViewBag.dischargeConsultantDropdown = (from dischargeConsultant in ent.PatientDetails
+                                                       select dischargeConsultant).ToList();
+
+
+
+                return View(clsPatientDetailsDashbord);
+
+            }
+            else
+            {
+
+
+                clPatientDetailsDashbord clPatientDetailsDashbord = new clPatientDetailsDashbord();
+                clPatientDetailsDashbord.PatientDtls = (from x in ent.PatientDetails
+                                                        join u in ent.ReviewStatus on x.PatientId equals u.PatientID into leftjoinreviewstatus
+                                                        from objrevstatus in leftjoinreviewstatus.DefaultIfEmpty()
+                                                        join sjrReview in ent.SJRReview on x.PatientId equals sjrReview.PatientID into leftSJRReview
+                                                        from objReview in leftSJRReview.DefaultIfEmpty()
+                                                        orderby x.PatientId ascending
+                                                        select new clsPatientDetailsDashbord
+                                                        {
+                                                            PatientId = x.PatientId,
+                                                            PatientName = x.PatientName,
+                                                            DOB = x.DOB,
+                                                            NHSNumber = x.NHSNumber,
+                                                            DateofAdmission = x.DateofAdmission.HasValue ? x.DateofAdmission : null,
+                                                            DateofDeath = x.DateofDeath,
+                                                            WardofDeath = x.WardofDeath,
+                                                            DischargeSpeciality = x.DischargeSpeciality,
+                                                            AdmissionType = x.AdmissionType,
+                                                            DischargeWard = x.DischargeWard,
+                                                            DischargeConsutantName = x.DischargeConsutantName,
+                                                            TimeofDeath = x.TimeofDeath,
+                                                            METriage = objrevstatus.METriage,
+                                                            SJR1 = objrevstatus.SJR1,
+                                                            SJR2 = objrevstatus.SJR2,
+                                                            SJRoutcome = objrevstatus.SJRoutcome,
+                                                             FullSJRRequired = objReview.FullSJRRequired
+
+                                                        }).ToList();
+
+
+                ViewBag.LoadDischargeSpecialityDropdown = (from dischrageSpecility in ent.PatientDetails select dischrageSpecility).ToList();
+
+                ViewBag.wardDeathDropdown = (from patientDetails in ent.PatientDetails
+                                             select patientDetails).ToList();
+
+                ViewBag.dischargeConsultantDropdown = (from dischargeConsultant in ent.PatientDetails
+                                                       select dischargeConsultant).ToList();
+
+
+
+                return View(clPatientDetailsDashbord);
+            }
+
         }
-        public ActionResult CORSPatient(string Id, string PName, string DOB)
+
+        public ActionResult MortalityReview(string Id, string PName, DateTime DOB)
         {
-            ViewBag.Id = Id;
-            ViewBag.Name = PName;
-            ViewBag.DOB = DOB;
+            int pId = Convert.ToInt32(Id);
+            //  DateTime dateTime = DOB ?? DateTime.Now;
+
+            clsCodingReview obj = new clsCodingReview();
+            obj = (from x in ent.ReviewStatus
+                   join sjrReview in ent.SJRReview on x.PatientID equals sjrReview.PatientID into leftSJRReview
+                   from objReview in leftSJRReview.DefaultIfEmpty()
+                       //join u in ent.PatientDetails on x.PatientID equals u.PatientId into leftjoinPatdDtls
+                       //from objPDtls in leftjoinPatdDtls.DefaultIfEmpty()
+                   where x.PatientID == pId
+                   select new clsCodingReview
+                   {
+                       PatientId = x.PatientID,
+                       METriage = x.METriage,
+                       SJR1 = x.SJR1,
+                       SJR2 = x.SJR2,
+                       SJRoutcome = x.SJRoutcome,
+                       //PName= PName,
+                       //DOB = DOB,
+                       PatientName = PName,
+                       DOB = DOB,
+                       FullSJRRequired=objReview.FullSJRRequired
+
+                   }).FirstOrDefault();
+
+            return View(obj);
+        }
+
+        public ActionResult PatientHistory()
+        {
+
 
             return View();
         }

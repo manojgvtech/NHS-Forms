@@ -172,9 +172,9 @@
     <Property Name="DischargeWard" Type="varchar(max)" />
     <Property Name="DischargeConsultantCode" Type="int" />
     <Property Name="EmergencyAdmission" Type="varchar(max)" />
-    <Property Name="TimeofAdmission" Type="datetime" />
+    <Property Name="TimeofAdmission" Type="time" Precision="7" />
     <Property Name="DateofDeath" Type="datetime" />
-    <Property Name="TimeofDeath" Type="datetime" />
+    <Property Name="TimeofDeath" Type="time" Precision="7" />
     <Property Name="PrimaryDiagnosis" Type="varchar(max)" />
     <Property Name="CodingIssueIdentified" Type="bit" />
     <Property Name="Comments" Type="varchar(max)" />
@@ -237,6 +237,7 @@
     <Property Name="CreateDate" Type="datetime" />
     <Property Name="UpdatedBy" Type="varchar" MaxLength="100" />
     <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="QualityDocumentation" Type="int" />
   </EntityType>
   <EntityType Name="SJRFormProblemType">
     <Key>

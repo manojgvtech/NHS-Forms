@@ -28,6 +28,6 @@ namespace NHS.Models
         public string QAPName { get; set; }
     
         public virtual MedicalExaminer MedicalExaminer { get; set; }
-        public virtual PatientMap PatientMap { get; set; }
+        public virtual PatientDetails PatientDetails { get; set; }
     }
 }

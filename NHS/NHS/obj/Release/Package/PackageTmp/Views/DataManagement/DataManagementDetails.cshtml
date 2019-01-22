@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "DataManagementDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .square {
+        height: 30px;
+        width: 100px;
+        background-color: forestgreen;
+    }
+</style>
+
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-md-10">
+            <h2 style="margin-left:40px"><b>Data Management Details</b></h2>
+        </div>
+        
+    </div>
+    <hr style="height:2px;background-color:black">
+    <br />
+    <br />
+
+    <div class="col-md-10" style="text-align:center;margin-left:110px">
+
+        @foreach (var item in ViewBag.bindDataManagement)
+        {
+            <table class="table table-bordered" id="assets-data-table">
+                <tr bgcolor="#005db3" style="color:white;">
+                    <th style="text-align:center">Source System</th>
+                    <th style="text-align:center">Dataset </th>
+                    <th style="text-align:center">DQ Rag</th>
+                    <th style="text-align:center">Updated Date </th>
+                    <th style="text-align:center"> Updated Time</th>
+                </tr>
+                <tbody>
+                    <tr style="color:black;color:black" bgcolor="cadetblue">
+                        @*<td><a href="~/Views/CORS/CORSPatient.cshtml">M11231</a></td>*@
+                        <td>@item.SourceSystem</td>
+                        <td>@item.DataSet</td>
+                        <td>
+                            @if (item.DQReq == 1)
+                            {
+                                <img src="~/images/GreenCircle.png" width="30" height="30">
+                            }
+
+                        </td>
+                        <td align="center"><div class="square" style="text-align:center">@item.UpdateDate</div></td>
+                        <td>@item.UpdateTime</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        </div>
+</div>
+
+

@@ -22,21 +22,21 @@ namespace NHS
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                      "~/Scripts/js/jquery-1.12.4.min.js",
-                      "~/Scripts/js/jquery-ui.min.js",
-                      "~/Scripts/js/bootstrap.min.js",
-                      "~/Scripts/js/modernizr-2.8.3.min.js",
-                      "~/Scripts/js/respond-1.4.2.min.js",
-                      "~/Scripts/js/custom.js"
-                      ));
+            //bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            //          "~/Scripts/js/jquery-1.12.4.min.js",
+            //          "~/Scripts/js/jquery-ui.min.js",
+            //          "~/Scripts/js/bootstrap.min.js",
+            //          "~/Scripts/js/modernizr-2.8.3.min.js",
+            //          "~/Scripts/js/respond-1.4.2.min.js",
+            //          "~/Scripts/js/custom.js"
+            //          ));
 
-            bundles.Add(new StyleBundle("~/css/css").Include(
-                      "~/css/bootstrap.min.css",
-                      "~/css/font-awesome.min.css",
-                      "~/css/jquery-ui.min.css",
-                      "~/css/responsive.css",
-                      "~/css/style.css"));
+            //bundles.Add(new StyleBundle("~/css/css").Include(
+            //          "~/css/bootstrap.min.css",
+            //          "~/css/font-awesome.min.css",
+            //          "~/css/jquery-ui.min.css",
+            //          "~/css/responsive.css",
+            //          "~/css/style.css"));
         }
     }
 }

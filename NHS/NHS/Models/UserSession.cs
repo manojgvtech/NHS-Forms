@@ -23,6 +23,6 @@ namespace NHS.Models
         public Nullable<bool> IsMobileSession { get; set; }
         public string DeviceName { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

@@ -134,107 +134,132 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DataManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserManagemetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AvoidabilityScore.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CarePhase.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CareRating.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClinicalCoding.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\clsClinicalCodingModel.cs" />
+    <Compile Include="Models\clsCodingReviewModel.cs" />
+    <Compile Include="Models\clsFeedBackModel.cs" />
+    <Compile Include="Models\clsMedicalExaminerDecisionModel.cs" />
+    <Compile Include="Models\clsMedicalExaminerReviewModel.cs" />
+    <Compile Include="Models\clsOtherReferralModel.cs" />
+    <Compile Include="Models\clsPatientDetailsModel.cs" />
+    <Compile Include="Models\clsSJRFormInitialModel.cs" />
+    <Compile Include="Models\clsSJRFormProblemTypeModel.cs" />
+    <Compile Include="Models\clsSJROutComeModel.cs" />
+    <Compile Include="Models\clsSJROutcomesModel.cs" />
+    <Compile Include="Models\clsSJRReviewModel.cs" />
     <Compile Include="Models\CoronerReferralReason.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataManagement.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DischargeConsultant.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FeedBack.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicalExaminer.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicalExaminerDecision.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicalExaminerReview.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MortalitySurveillance.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NHSDbContext.Context.cs">
+    <Compile Include="Models\NHSDbmsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NHSDbContext.Context.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NHSDbContext.cs">
+    <Compile Include="Models\NHSDbmsModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NHSDbContext.Designer.cs">
+    <Compile Include="Models\NHSDbmsModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NHSDbContext.edmx</DependentUpon>
+      <DependentUpon>NHSDbmsModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\OtherReferral.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PatientDetail.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+    <Compile Include="Models\PatientDetails.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PatientMap.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ResponsePT.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+    <Compile Include="Models\ReviewStatus.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roles.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SJRFormInitial.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SJRFormProblemType.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SJROutcomes.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SJRReview.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SJRReviewSpeciality.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+    <Compile Include="Models\UserInRoles.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserInRole.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserSession.cs">
-      <DependentUpon>NHSDbContext.tt</DependentUpon>
+      <DependentUpon>NHSDbmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Log.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\datatables.min.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\images\ui-icons_444444_256x240.png" />
     <Content Include="css\jquery-ui.min.css" />
+    <Content Include="css\responsive.bootstrap.min.css" />
     <Content Include="css\responsive.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\zerowidthspaces.svg" />
+    <Content Include="images\amber.png" />
     <Content Include="images\arrow img.png" />
     <Content Include="images\arrow.png" />
     <Content Include="images\back-158491_640.png" />
@@ -259,15 +284,15 @@
     <Content Include="Global.asax" />
     <Content Include="images\RedC.png" />
     <Content Include="images\user.png" />
-    <Content Include="Models\NHSDbContext.Context.tt">
+    <Content Include="Models\NHSDbmsModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NHSDbContext.edmx</DependentUpon>
-      <LastGenOutput>NHSDbContext.Context.cs</LastGenOutput>
+      <DependentUpon>NHSDbmsModel.edmx</DependentUpon>
+      <LastGenOutput>NHSDbmsModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NHSDbContext.tt">
+    <Content Include="Models\NHSDbmsModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NHSDbContext.edmx</DependentUpon>
-      <LastGenOutput>NHSDbContext.cs</LastGenOutput>
+      <DependentUpon>NHSDbmsModel.edmx</DependentUpon>
+      <LastGenOutput>NHSDbmsModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -280,13 +305,16 @@
     <Content Include="fonts\zerowidthspaces.otf" />
     <Content Include="fonts\zerowidthspaces.ttf" />
     <Content Include="fonts\zerowidthspaces.woff" />
-    <EntityDeploy Include="Models\NHSDbContext.edmx">
+    <EntityDeploy Include="Models\NHSDbmsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NHSDbContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>NHSDbmsModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\NHSDbContext.edmx.diagram">
-      <DependentUpon>NHSDbContext.edmx</DependentUpon>
+    <Content Include="Models\NHSDbmsModel.edmx.diagram">
+      <DependentUpon>NHSDbmsModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\nhsforms - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\nhsforms - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -320,18 +348,20 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SJROutcome.cshtml" />
     <Content Include="Views\Home\MedicalExaminerDashboard.cshtml" />
-    <Content Include="Views\Home\CORSPatient.cshtml" />
+    <Content Include="Views\Home\MortalityReview.cshtml" />
     <Content Include="Views\Home\Stage2SJRformFirstStep.cshtml" />
     <Content Include="Views\Home\Stage2SJRFormSecondStep.cshtml" />
     <Content Include="Views\Home\Stage3SJRFormFirstStep.cshtml" />
     <Content Include="Views\Home\Stage3SJRFormSecondStep.cshtml" />
-    <Content Include="Views\Home\MedExamFormStep1.cshtml" />
-    <Content Include="Views\Home\MedExamFormStep2.cshtml" />
-    <Content Include="Views\Home\MedExamFormStep3.cshtml" />
-    <Content Include="Views\Home\MedExamFormStep4.cshtml" />
-    <Content Include="Views\Home\MedExamFormStep5.cshtml" />
-    <Content Include="Views\Home\MedExamFormStep6.cshtml" />
+    <Content Include="Views\Home\PatientDetails.cshtml" />
+    <Content Include="Views\Home\MedicalExaminerReview.cshtml" />
+    <Content Include="Views\Home\MedicalExaminerDecision.cshtml" />
+    <Content Include="Views\Home\SJRAssessmentTriage.cshtml" />
+    <Content Include="Views\Home\OtherReferrals.cshtml" />
+    <Content Include="Views\Home\PositiveFeedback.cshtml" />
     <Content Include="Views\UserManagemet\UserDetails.cshtml" />
+    <Content Include="Views\Home\PatientHistory.cshtml" />
+    <Content Include="Views\DataManagement\DataManagementDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,14 +17,14 @@ namespace NHS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ResponsePT()
         {
-            this.SJRFormProblemTypes = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes1 = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes2 = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes3 = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes4 = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes5 = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes6 = new HashSet<SJRFormProblemType>();
-            this.SJRFormProblemTypes7 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType1 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType2 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType3 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType4 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType5 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType6 = new HashSet<SJRFormProblemType>();
+            this.SJRFormProblemType7 = new HashSet<SJRFormProblemType>();
         }
     
         public int ResponseID { get; set; }
@@ -35,20 +35,20 @@ namespace NHS.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes1 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes2 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes3 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes4 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType4 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes5 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType5 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes6 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType6 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SJRFormProblemType> SJRFormProblemTypes7 { get; set; }
+        public virtual ICollection<SJRFormProblemType> SJRFormProblemType7 { get; set; }
     }
 }

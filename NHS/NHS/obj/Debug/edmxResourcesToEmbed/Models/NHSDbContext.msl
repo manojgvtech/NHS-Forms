@@ -198,6 +198,7 @@
     <EntitySetMapping Name="SJRFormInitials">
       <EntityTypeMapping TypeName="NHSModel.SJRFormInitial">
         <MappingFragment StoreEntitySet="SJRFormInitial">
+          <ScalarProperty Name="QualityDocumentation" ColumnName="QualityDocumentation" />
           <ScalarProperty Name="SJRFormInitial_ID" ColumnName="SJRFormInitial_ID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="InitialManagement" ColumnName="InitialManagement" />
@@ -356,7 +357,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PatientDetails">
-      <EntityTypeMapping TypeName="NHSModel.PatientDetail">
+      <EntityTypeMapping TypeName="NHSModel.PatientDetails">
         <MappingFragment StoreEntitySet="PatientDetails">
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />

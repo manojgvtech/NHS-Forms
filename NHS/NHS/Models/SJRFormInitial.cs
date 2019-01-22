@@ -31,12 +31,14 @@ namespace NHS.Models
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public Nullable<int> QualityDocumentationCode { get; set; }
     
         public virtual CareRating CareRating { get; set; }
         public virtual CareRating CareRating1 { get; set; }
         public virtual CareRating CareRating2 { get; set; }
         public virtual CareRating CareRating3 { get; set; }
         public virtual CareRating CareRating4 { get; set; }
-        public virtual PatientMap PatientMap { get; set; }
+        public virtual CareRating CareRating5 { get; set; }
+        public virtual PatientDetails PatientDetails { get; set; }
     }
 }

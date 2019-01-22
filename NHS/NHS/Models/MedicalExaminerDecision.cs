@@ -33,6 +33,6 @@ namespace NHS.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
         public virtual CoronerReferralReason CoronerReferralReason { get; set; }
-        public virtual PatientMap PatientMap { get; set; }
+        public virtual PatientDetails PatientDetails { get; set; }
     }
 }

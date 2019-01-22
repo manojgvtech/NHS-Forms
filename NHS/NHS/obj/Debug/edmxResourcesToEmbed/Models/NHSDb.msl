@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="NHSModelStoreContainer" CdmEntityContainer="NHSEntities">
-    <EntitySetMapping Name="AvoidabilityScores">
+    <EntitySetMapping Name="AvoidabilityScore">
       <EntityTypeMapping TypeName="NHSModel.AvoidabilityScore">
         <MappingFragment StoreEntitySet="AvoidabilityScore">
           <ScalarProperty Name="AvoidabilityScoreID" ColumnName="AvoidabilityScoreID" />
@@ -13,7 +13,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CarePhases">
+    <EntitySetMapping Name="CarePhase">
       <EntityTypeMapping TypeName="NHSModel.CarePhase">
         <MappingFragment StoreEntitySet="CarePhase">
           <ScalarProperty Name="CarePhaseID" ColumnName="CarePhaseID" />
@@ -25,7 +25,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CareRatings">
+    <EntitySetMapping Name="CareRating">
       <EntityTypeMapping TypeName="NHSModel.CareRating">
         <MappingFragment StoreEntitySet="CareRating">
           <ScalarProperty Name="CareRatingID" ColumnName="CareRatingID" />
@@ -37,7 +37,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CoronerReferralReasons">
+    <EntitySetMapping Name="ClinicalCoding">
+      <EntityTypeMapping TypeName="NHSModel.ClinicalCoding">
+        <MappingFragment StoreEntitySet="ClinicalCoding">
+          <ScalarProperty Name="ClinicalCodingID" ColumnName="ClinicalCodingID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="SpellNumber" ColumnName="SpellNumber" />
+          <ScalarProperty Name="FCENumber" ColumnName="FCENumber" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Diagnosiscode" ColumnName="Diagnosiscode" />
+          <ScalarProperty Name="DiagnosisDescription" ColumnName="DiagnosisDescription" />
+          <ScalarProperty Name="ComorbidityFlag" ColumnName="ComorbidityFlag" />
+          <ScalarProperty Name="ProcedureCode" ColumnName="ProcedureCode" />
+          <ScalarProperty Name="ProcedureDescription" ColumnName="ProcedureDescription" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CoronerReferralReason">
       <EntityTypeMapping TypeName="NHSModel.CoronerReferralReason">
         <MappingFragment StoreEntitySet="CoronerReferralReason">
           <ScalarProperty Name="Reason_ID" ColumnName="Reason_ID" />
@@ -49,7 +69,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FeedBacks">
+    <EntitySetMapping Name="DischargeConsultant">
+      <EntityTypeMapping TypeName="NHSModel.DischargeConsultant">
+        <MappingFragment StoreEntitySet="DischargeConsultant">
+          <ScalarProperty Name="DischargeConsultantCode" ColumnName="DischargeConsultantCode" />
+          <ScalarProperty Name="DischargeConsultantName" ColumnName="DischargeConsultantName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeedBack">
       <EntityTypeMapping TypeName="NHSModel.FeedBack">
         <MappingFragment StoreEntitySet="FeedBack">
           <ScalarProperty Name="FeedBack_ID" ColumnName="FeedBack_ID" />
@@ -63,7 +95,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MedicalExaminers">
+    <EntitySetMapping Name="MedicalExaminer">
       <EntityTypeMapping TypeName="NHSModel.MedicalExaminer">
         <MappingFragment StoreEntitySet="MedicalExaminer">
           <ScalarProperty Name="ME_ID" ColumnName="ME_ID" />
@@ -77,7 +109,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MedicalExaminerDecisions">
+    <EntitySetMapping Name="MedicalExaminerDecision">
       <EntityTypeMapping TypeName="NHSModel.MedicalExaminerDecision">
         <MappingFragment StoreEntitySet="MedicalExaminerDecision">
           <ScalarProperty Name="MED_ID" ColumnName="MED_ID" />
@@ -100,7 +132,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MedicalExaminerReviews">
+    <EntitySetMapping Name="MedicalExaminerReview">
       <EntityTypeMapping TypeName="NHSModel.MedicalExaminerReview">
         <MappingFragment StoreEntitySet="MedicalExaminerReview">
           <ScalarProperty Name="MEReviewId" ColumnName="MEReviewId" />
@@ -118,7 +150,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MortalitySurveillances">
+    <EntitySetMapping Name="MortalitySurveillance">
       <EntityTypeMapping TypeName="NHSModel.MortalitySurveillance">
         <MappingFragment StoreEntitySet="MortalitySurveillance">
           <ScalarProperty Name="MortalitySurveillance_ID" ColumnName="MortalitySurveillance_ID" />
@@ -135,7 +167,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OtherReferrals">
+    <EntitySetMapping Name="OtherReferral">
       <EntityTypeMapping TypeName="NHSModel.OtherReferral">
         <MappingFragment StoreEntitySet="OtherReferral">
           <ScalarProperty Name="OtherReferral_ID" ColumnName="OtherReferral_ID" />
@@ -159,7 +191,42 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PatientMaps">
+    <EntitySetMapping Name="PatientDetails">
+      <EntityTypeMapping TypeName="NHSModel.PatientDetails">
+        <MappingFragment StoreEntitySet="PatientDetails">
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="SpellNumber" ColumnName="SpellNumber" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="NHSNumber" ColumnName="NHSNumber" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="DateofAdmission" ColumnName="DateofAdmission" />
+          <ScalarProperty Name="TimeofAdmission" ColumnName="TimeofAdmission" />
+          <ScalarProperty Name="DischargeWard" ColumnName="DischargeWard" />
+          <ScalarProperty Name="DateofDeath" ColumnName="DateofDeath" />
+          <ScalarProperty Name="TimeofDeath" ColumnName="TimeofDeath" />
+          <ScalarProperty Name="WardofDeath" ColumnName="WardofDeath" />
+          <ScalarProperty Name="DischargeConsultantCode" ColumnName="DischargeConsultantCode" />
+          <ScalarProperty Name="DischargeConsutantName" ColumnName="DischargeConsutantName" />
+          <ScalarProperty Name="DischargeSpecialtyCode" ColumnName="DischargeSpecialtyCode" />
+          <ScalarProperty Name="DischargeSpeciality" ColumnName="DischargeSpeciality" />
+          <ScalarProperty Name="Caregroup" ColumnName="Caregroup" />
+          <ScalarProperty Name="AdmissionType" ColumnName="AdmissionType" />
+          <ScalarProperty Name="PrimaryDiagnosis" ColumnName="PrimaryDiagnosis" />
+          <ScalarProperty Name="PrimaryProcedure" ColumnName="PrimaryProcedure" />
+          <ScalarProperty Name="ComorbiditiesCount" ColumnName="ComorbiditiesCount" />
+          <ScalarProperty Name="SHMIGroup" ColumnName="SHMIGroup" />
+          <ScalarProperty Name="CodingIssueIdentified" ColumnName="CodingIssueIdentified" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientMap">
       <EntityTypeMapping TypeName="NHSModel.PatientMap">
         <MappingFragment StoreEntitySet="PatientMap">
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
@@ -171,8 +238,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ResponsePT">
+      <EntityTypeMapping TypeName="NHSModel.ResponsePT">
+        <MappingFragment StoreEntitySet="ResponsePT">
+          <ScalarProperty Name="ResponseID" ColumnName="ResponseID" />
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="NHSModel.Role">
+      <EntityTypeMapping TypeName="NHSModel.Roles">
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -183,7 +262,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SJRFormInitials">
+    <EntitySetMapping Name="SJRFormInitial">
       <EntityTypeMapping TypeName="NHSModel.SJRFormInitial">
         <MappingFragment StoreEntitySet="SJRFormInitial">
           <ScalarProperty Name="SJRFormInitial_ID" ColumnName="SJRFormInitial_ID" />
@@ -203,10 +282,11 @@
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="QualityDocumentationCode" ColumnName="QualityDocumentationCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SJRFormProblemTypes">
+    <EntitySetMapping Name="SJRFormProblemType">
       <EntityTypeMapping TypeName="NHSModel.SJRFormProblemType">
         <MappingFragment StoreEntitySet="SJRFormProblemType">
           <ScalarProperty Name="SJRFormProblemType_ID" ColumnName="SJRFormProblemType_ID" />
@@ -225,7 +305,6 @@
           <ScalarProperty Name="ResuscitationResponseID" ColumnName="ResuscitationResponseID" />
           <ScalarProperty Name="OthertypeResponseID" ColumnName="OthertypeResponseID" />
           <ScalarProperty Name="OthertypeCarePhaseID" ColumnName="OthertypeCarePhaseID" />
-          <ScalarProperty Name="ProblemOccurCarePhaseID" ColumnName="ProblemOccurCarePhaseID" />
           <ScalarProperty Name="AvoidabilityScoreID" ColumnName="AvoidabilityScoreID" />
           <ScalarProperty Name="Comments" ColumnName="Comments" />
           <ScalarProperty Name="Stage" ColumnName="Stage" />
@@ -237,13 +316,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SJROutcomes">
-      <EntityTypeMapping TypeName="NHSModel.SJROutcome">
-        <MappingFragment StoreEntitySet="SJROutcome">
+      <EntityTypeMapping TypeName="NHSModel.SJROutcomes">
+        <MappingFragment StoreEntitySet="SJROutcomes">
           <ScalarProperty Name="SJROutcome_ID" ColumnName="SJROutcome_ID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="Stage2SJRRequired" ColumnName="Stage2SJRRequired" />
-          <ScalarProperty Name="Stage2SJRdatesent" ColumnName="Stage2SJRdatesent" />
-          <ScalarProperty Name="Stage2SJRsentto" ColumnName="Stage2SJRsentto" />
+          <ScalarProperty Name="Stage2SJRDateSent" ColumnName="Stage2SJRDateSent" />
+          <ScalarProperty Name="Stage2SJRSentTo" ColumnName="Stage2SJRSentTo" />
           <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
           <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
           <ScalarProperty Name="Comments" ColumnName="Comments" />
@@ -254,7 +333,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SJRReviews">
+    <EntitySetMapping Name="SJRReview">
       <EntityTypeMapping TypeName="NHSModel.SJRReview">
         <MappingFragment StoreEntitySet="SJRReview">
           <ScalarProperty Name="SJRReview_ID" ColumnName="SJRReview_ID" />
@@ -274,7 +353,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SJRReviewSpecialities">
+    <EntitySetMapping Name="SJRReviewSpeciality">
       <EntityTypeMapping TypeName="NHSModel.SJRReviewSpeciality">
         <MappingFragment StoreEntitySet="SJRReviewSpeciality">
           <ScalarProperty Name="SJRReviewSpecialityID" ColumnName="SJRReviewSpecialityID" />
@@ -287,7 +366,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserInRoles">
-      <EntityTypeMapping TypeName="NHSModel.UserInRole">
+      <EntityTypeMapping TypeName="NHSModel.UserInRoles">
         <MappingFragment StoreEntitySet="UserInRoles">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -300,7 +379,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="NHSModel.User">
+      <EntityTypeMapping TypeName="NHSModel.Users">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -318,7 +397,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserSessions">
+    <EntitySetMapping Name="UserSession">
       <EntityTypeMapping TypeName="NHSModel.UserSession">
         <MappingFragment StoreEntitySet="UserSession">
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -332,15 +411,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ResponsePTs">
-      <EntityTypeMapping TypeName="NHSModel.ResponsePT">
-        <MappingFragment StoreEntitySet="ResponsePT">
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="Response" ColumnName="Response" />
-          <ScalarProperty Name="ResponseID" ColumnName="ResponseID" />
+    <EntitySetMapping Name="ReviewStatus">
+      <EntityTypeMapping TypeName="NHSModel.ReviewStatus">
+        <MappingFragment StoreEntitySet="ReviewStatus">
+          <ScalarProperty Name="CodingReview" ColumnName="CodingReview" />
+          <ScalarProperty Name="MortalityReview" ColumnName="MortalityReview" />
+          <ScalarProperty Name="SJRoutcome" ColumnName="SJRoutcome" />
+          <ScalarProperty Name="SJR2" ColumnName="SJR2" />
+          <ScalarProperty Name="SJR1" ColumnName="SJR1" />
+          <ScalarProperty Name="METriage" ColumnName="METriage" />
+          <ScalarProperty Name="Spellnumber" ColumnName="Spellnumber" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="ReviewStatusId" ColumnName="ReviewStatusId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

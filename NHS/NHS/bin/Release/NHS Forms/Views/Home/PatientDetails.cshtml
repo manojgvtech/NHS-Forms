@@ -1,0 +1,365 @@
+﻿@model NHS.Models.clsPatientDetailsModel
+
+@{
+    /**/
+
+    ViewBag.Title = "Patient details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .square {
+        height: 30px;
+        width: 100px;
+        background-color: forestgreen;
+    }
+</style>
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12 col-lg-12">
+            <div class="row" align="right">
+                <div class="col-md-12">
+                    <input type="image" src="~/images/Delete.png" width="30" height="30" alt="Submit" id="btnClose1" title="Close" />
+                </div>
+            </div>
+
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="active">
+                    <a href="/Home/PatientDetails">
+                        <h4 class="list-group-item-heading">
+                            Patient details
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/MedicalExaminerReview">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Review
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/MedicalExaminerDecision">
+                        <h4 class="list-group-item-heading">
+                            Medical Examiner Decision
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/SJRAssessmentTriage">
+                        <h4 class="list-group-item-heading">
+                            SJR Assessment Triage
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/OtherReferrals">
+                        <h4 class="list-group-item-heading">
+                            Other Referrals
+                        </h4>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="/Home/PositiveFeedback">
+                        <h4 class="list-group-item-heading">
+                            Positive Feedback
+                        </h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row setup-content" id="step-1">
+        <div class="col-xs-12 col-lg-12">
+            <div class="lable_title">
+                <h2>Patient Details (to be pulled from EPR) </h2>
+            </div>
+            @using (Html.BeginForm("PatientDetails", "Home", FormMethod.Post, new { @id = "my_form" }))
+            {
+                AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.PatientName, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.PatientName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.PatientName, "", new { @class = "text-danger" })*@
+                            @Html.HiddenFor(model => model.objclPatientDetails.PatientId)
+                            @Html.HiddenFor(model => model.CilinicalCoding)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.NHSNumber, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.NHSNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.MRN, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.Age, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.Age, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.Age, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.Gender, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.Gender, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.DropDownListFor(x => x.objclPatientDetails.Gender, new List<SelectListItem>
+        {
+                            new SelectListItem() {Text = "Select Gender", Value="-1"},
+                            new SelectListItem() {Text = "Male", Value="Male"},
+                            new SelectListItem() {Text = "Female", Value="Female"}
+        }, new { @class = "form-control" })*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.DischargeWard, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.DischargeWard, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.DischargeWard, "", new { @class = "text-danger" })*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.DischargeConsutantName, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.DischargeConsutantName, new { htmlAttributes = new { @class = "form-control", @readonly="readonly", @style = "border:0"  } })
+                            @*@Html.ValidationMessageFor(model => model.objclDischargeConsultant.DischargeConsultantName, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.AdmissionType, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.AdmissionType, new { htmlAttributes = new { @class = "form-control", @readonly="readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.EmergencyAdmission, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.DateofAdmission, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.DateofAdmission, new { htmlAttributes = new { @class = "form-control input_datepicker", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.DateofAdmission, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.TimeofAdmission, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.TimeofAdmission, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.TimeofAdmission, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.DateofDeath, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.DateofDeath, new { htmlAttributes = new { @class = "form-control input_datepicker", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.DateofDeath, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.TimeofDeath, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.TimeofDeath, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.TimeofDeath, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row_bar">
+                            @Html.LabelFor(model => model.objclPatientDetails.PrimaryDiagnosis, new { @class = "label_part" })
+                            @Html.EditorFor(model => model.objclPatientDetails.PrimaryDiagnosis, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "border:0" } })
+                            @*@Html.ValidationMessageFor(model => model.objclPatientDetails.PrimaryDiagnosis, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row_bar">
+                            <label class="label_part">Charlson Index Comorbities : 1</label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-md-6">
+                       
+                        <button type="button" class="btn btn-primary btn-block" id="myBtnProcedures">Procedures(@ViewBag.CilinicalCodingCount)</button>
+                        
+                        </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-block" id="myBtnSecondaryDiagnoses">Secondary Diagnoses(@ViewBag.CilinicalCodingCount)</button>
+                    </div>
+                    <br /><br />
+                    <div class="col-md-4">
+                        @*<label class="label_part">Coding issue identified?</label>*@
+                        @Html.LabelFor(model => model.objclPatientDetails.CodingIssueIdentified, new { @class = "label_part" })
+                    </div>
+                    <div class="col-md-0">
+                        @Html.CheckBoxFor(model => model.objclPatientDetails.CodingIssueIdentified, new { htmlAttributes = new { @class = "form-control" } })<span> Yes </span>
+                    </div>
+                    @*<div class="col-md-1">
+                            <span>No </span> @Html.CheckBoxFor(model => model.objclPatientDetails.CodingIssueIdentified, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>*@
+
+                    <br />
+                    <br />
+                    <div class="col-md-12" id="dvPatientDetailsCimment">
+                        @Html.LabelFor(model => model.objclPatientDetails.Comments, new { @class = "label_part" })
+                        @Html.TextAreaFor(model => model.objclPatientDetails.Comments, 5, 200, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.objclPatientDetails.Comments, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button id="BtnNext" type="submit" name="BtnNext" class="btn btn-primary btn-lg">Save & Next</button>
+                </div>
+            }
+            @*</form>*@
+        </div>
+    </div>
+    <br />
+    <br />
+
+</div>
+
+<div class="modal fade" id="myModalProcedures">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Coding-Diagnosis & Procedure</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <table class="table table-bordered" id="assets-data-table">
+                    <tr bgcolor="blue" style="color:white;">
+                        <th style="text-align:center">Procedure</th>
+                    </tr>
+                    <tbody>                      
+                        @foreach (var item in ViewBag.CilinicalCodingDropdown)
+                        {
+                            <tr style="color:black;color:black" bgcolor="cadetblue">
+                                <th style="text-align:center">@item.ProcedureDescription </th>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalSecondaryDiagnoses">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Coding-Diagnosis & Procedure</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-bordered" id="assets-data-table">
+                    <tr bgcolor="blue" style="color:white;">
+                        <th style="text-align:center">CoMorbidities  </th>
+                        <th style="text-align:center">Diagnosis Position</th>
+                        <th style="text-align:center">Diagnosis</th>
+
+                    </tr>
+                    <tbody>
+                        @foreach (var item in ViewBag.CilinicalCodingDropdown)
+                        {
+                            <tr style="color:black;color:black" bgcolor="cadetblue">
+                                <td><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+                                <td>
+                                    <div class="square" style="text-align:center">@item.Position</div>
+                                </td>
+                                <td>@item.DiagnosisDescription</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>*@
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modelClose1">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Messsage</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-section" style="text-align:left">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row_bar">
+                                <div>Doy you want to Save Record ?</div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" name="btnCloseYes" id="btnClose1Yes">Yes</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btnModelClose1" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //$('#dvPatientDetailsCimment').hide();
+        $("#myBtnProcedures").click(function () {
+            $("#myModalProcedures").modal();
+        });
+        $("#myBtnSecondaryDiagnoses").click(function () {
+            $("#myModalSecondaryDiagnoses").modal();
+        });
+        $("#btnClose1").click(function () {
+            $("#modelClose1").modal();
+        });
+    });
+</script>
+<script type="text/javascript">
+$(function () {
+    $("#btnModelClose1").click(function(){
+window.location.href = "@Url.Action("CORSPatient", "Home")";
+    });
+
+
+});
+</script>
+
+
+

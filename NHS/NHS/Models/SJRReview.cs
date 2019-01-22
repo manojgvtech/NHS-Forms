@@ -29,7 +29,7 @@ namespace NHS.Models
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
-        public virtual PatientMap PatientMap { get; set; }
+        public virtual PatientDetails PatientDetails { get; set; }
         public virtual SJRReviewSpeciality SJRReviewSpeciality { get; set; }
     }
 }

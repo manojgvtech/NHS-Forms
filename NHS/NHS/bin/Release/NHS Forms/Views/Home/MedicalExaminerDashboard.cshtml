@@ -1,0 +1,172 @@
+﻿@model NHS.Models.clPatientDetailsDashbord
+@{
+    ViewBag.Title = "Medical Examiner Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-md-10">
+
+
+            <div class="row">
+                <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="Search Text" style="text-align:center">
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" id="BtnSearch">Advance Search</button>
+                </div>
+            </div>
+            <form action="/Home/MedicalExaminerDashboard" method="post">
+            <div class="row" id="divSearch" style="display:none;">
+                <br />
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="row_bar">
+                                <input class="form-control input_datepicker" type="text" id="txtStartDate" name="txtStartDate" placeholder="Start Date">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row_bar">
+                                <input class="form-control input_datepicker" type="text" id="txtEndDate" name="txtEndDate" placeholder="End Date">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row_bar">
+                                <select class="form-control" id="ddlSpecialityReviewName" name="ddlSpecialityReviewName">
+                                    <option>Select</option>l
+                                    @*@foreach (var item in ViewBag.sjrReviewSpecialityDropdown)
+                                    {
+                                        <option value="@item.SJRReviewSpecialityID">@item.Name</option>
+                                    }*@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row_bar">
+                                <select class="form-control" id="ddlWardDeath" name="ddlWardDeath">
+                                    <option>Select</option>
+                                    @*@foreach (var item in ViewBag.wardDeathDropdown)
+                                    {
+                                        <option value="@item.DischargeWard">@item.DischargeWard</option>
+                                    }*@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row_bar">
+                                <select class="form-control" id="ddlDischargeConsultant" name="ddlDischargeConsultant">
+                                    <option>
+                                        Select 
+                                    </option>
+                                    @*@foreach (var item in ViewBag.dischargeConsultantDropdown)
+                                    {
+                                        <option value="@item.DischargeConsultantCode">@item.DischargeConsultantName</option>
+                                    }*@
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-left:10px">
+                    <div class="col-md-1">
+                        @*<button id="btnSave" type="submit" class="btn btn-primary btn-lg" name="btnSearch">Search </button>*@
+                        <button type="submit" class="btn btn-primary" id="btnSearch" name="btnSearch">Search</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-primary" id="btnDivHide">Close</button>
+                    </div>
+                </div>
+                <br />
+            </div>
+            </form>
+
+        </div>
+        <div class="col-md-2">
+            <div class="row_bar">
+                <div class="card">
+                    <div class="card-header">Activity Found</div>
+                    <div class="card-body text-center" style="padding: 5px;" val>@Model.PatientDtls.Count</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+
+<br />
+<br />
+<table class="table table-bordered" id="assets-data-table">
+    <tr bgcolor="#005db3" style="color:white;">
+        <th>Patient Id</th>
+        <th>Patient Name</th>
+        <th>DOB</th>
+        <th>Date of Admission</th>
+        <th>Date of Death</th>
+        <th>Ward of Death</th>
+        <th>Discharge Consultant</th>
+        <th>Discharge Speciality</th>
+        <th>Admission Type</th>
+        <th>Medical Examiner Triage Review</th>
+        <th>SJR Review Status</th>
+        <th>SJR Review 2 Status</th>
+        <th>Coding Review Status</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model.PatientDtls)
+        {           
+        <tr style="color:black;color:black" bgcolor="cadetblue">                    
+            <td>@Html.ActionLink(Convert.ToString(item.PatientId), "CORSPatient", new { Id = item.PatientId, PName =  item.PatientName, DOB = item.DOB })</td>
+            <td>@item.PatientName</td>
+            <td>@item.DOB</td>
+            <td>@item.DateofAdmission</td>
+            <td>@item.DateofDeath</td>
+            <td>@item.DischargeWard</td>
+            <td>@item.DischargeConsutantName</td>
+            <td>@item.DischargeSpeciality</td>
+            <td>@item.AdmissionType</td>
+            <td style="text-align:center"><a href="/Home/PatientDetails"><img src="~/images/RedC.png" width="27" height="27"></a></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+            <td style="text-align:center"><img src="~/images/GeryImg.png" width="27" height="27"></td>
+            <td style="text-align:center"><img src="~/images/GreenCircle.png" width="30" height="30"></td>
+        </tr>           
+        }
+       <tr>
+           <td colspan="13">
+               @for (int i = 1; i <= ViewBag.pcount; i++)
+               {
+                   <a href='@Url.Action("MedicalExaminerDashboard", "home", new {pNo=i})' style="cursor:pointer;">@i >></a>
+               }
+           </td>
+       </tr>
+    </tbody>
+</table>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#btnDivHide").click(function () {
+            document.getElementById("divSearch").style.display = "none";
+        });
+        $("#BtnSearch").click(function () {
+            document.getElementById("divSearch").style.display = "block";
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+$(function () {
+    $("#btnSearch").click(function(){
+window.location.href = "@Url.Action("MedicalExaminerDashboard", "Home")";
+    });
+
+
+});
+</script>
+
+

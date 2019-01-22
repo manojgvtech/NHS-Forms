@@ -246,6 +246,7 @@
     <NavigationProperty Name="CareRating3" Relationship="Self.FK__SJRFormIn__Ongoi__6D0D32F4" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="CareRating4" Relationship="Self.FK__SJRFormIn__OverA__6A30C649" FromRole="SJRFormInitial" ToRole="CareRating" />
     <NavigationProperty Name="PatientMap" Relationship="Self.FK__SJRFormIn__Patie__6EF57B66" FromRole="SJRFormInitial" ToRole="PatientMap" />
+    <Property Name="QualityDocumentation" Type="Int32" />
   </EntityType>
   <EntityType Name="SJRFormProblemType">
     <Key>
@@ -938,10 +939,10 @@
       <End Role="UserSession" EntitySet="UserSessions" />
     </AssociationSet>
     <EntitySet Name="DischargeConsultants" EntityType="NHSModel.DischargeConsultant" />
-    <EntitySet Name="PatientDetails" EntityType="NHSModel.PatientDetail" />
+    <EntitySet Name="PatientDetails" EntityType="NHSModel.PatientDetails" />
     <AssociationSet Name="FK__PatientDe__Disch__2B0A656D" Association="NHSModel.FK__PatientDe__Disch__2B0A656D">
       <End Role="DischargeConsultant" EntitySet="DischargeConsultants" />
-      <End Role="PatientDetail" EntitySet="PatientDetails" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="DischargeConsultant">
@@ -954,9 +955,9 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="DischargeConsultant" ToRole="PatientDetail" />
+    <NavigationProperty Name="PatientDetails" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="DischargeConsultant" ToRole="PatientDetails" />
   </EntityType>
-  <EntityType Name="PatientDetail">
+  <EntityType Name="PatientDetails">
     <Key>
       <PropertyRef Name="PatientId" />
     </Key>
@@ -969,9 +970,9 @@
     <Property Name="DischargeWard" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="DischargeConsultantCode" Type="Int32" />
     <Property Name="EmergencyAdmission" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="TimeofAdmission" Type="DateTime" Precision="3" />
+    <Property Name="TimeofAdmission" Type="Time" Precision="7" />
     <Property Name="DateofDeath" Type="DateTime" Precision="3" />
-    <Property Name="TimeofDeath" Type="DateTime" Precision="3" />
+    <Property Name="TimeofDeath" Type="Time" Precision="7" />
     <Property Name="PrimaryDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CodingIssueIdentified" Type="Boolean" />
     <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -979,16 +980,16 @@
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="DischargeConsultant" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="PatientDetail" ToRole="DischargeConsultant" />
+    <NavigationProperty Name="DischargeConsultant" Relationship="NHSModel.FK__PatientDe__Disch__2B0A656D" FromRole="PatientDetails" ToRole="DischargeConsultant" />
   </EntityType>
   <Association Name="FK__PatientDe__Disch__2B0A656D">
     <End Type="NHSModel.DischargeConsultant" Role="DischargeConsultant" Multiplicity="0..1" />
-    <End Type="NHSModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
+    <End Type="NHSModel.PatientDetails" Role="PatientDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DischargeConsultant">
         <PropertyRef Name="DischargeConsultantCode" />
       </Principal>
-      <Dependent Role="PatientDetail">
+      <Dependent Role="PatientDetails">
         <PropertyRef Name="DischargeConsultantCode" />
       </Dependent>
     </ReferentialConstraint>
