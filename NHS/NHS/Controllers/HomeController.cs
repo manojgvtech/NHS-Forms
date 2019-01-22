@@ -1453,12 +1453,8 @@ namespace NHS.Controllers
                     ent.SaveChanges();
 
                     Session["sessionPatientDetailsModel"] = clsPatientDetailsModel;
-                    Response.Redirect("/Home/MedicalExaminerReview", false);
-
-                  
+                    Response.Redirect("/Home/MedicalExaminerReview", false);                 
                 }
-
-
             }
             catch (Exception ex)
             {
