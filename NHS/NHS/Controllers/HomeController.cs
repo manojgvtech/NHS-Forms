@@ -1379,11 +1379,11 @@ namespace NHS.Controllers
                                              where revStatus.PatientID == intPId
                                              select revStatus).FirstOrDefault();
 
-                if (reviewStatus != null )
+                if (reviewStatus != null)
                 {
                     int intPID = Convert.ToInt32(Session["sessionPatientId"]);
 
-                 
+
 
                     PatientDetails patientDetail = (from pDetails in ent.PatientDetails
                                                     where pDetails.PatientId == intPID
@@ -1400,8 +1400,8 @@ namespace NHS.Controllers
 
 
                     ReviewStatus reviewStatusUp = (from revStatus in ent.ReviewStatus
-                                                 where revStatus.PatientID == intPID
-                                                 select revStatus).FirstOrDefault();
+                                                   where revStatus.PatientID == intPID
+                                                   select revStatus).FirstOrDefault();
 
                     reviewStatusUp.PatientID = intPID;
                     // 1 for Amber
@@ -1423,7 +1423,7 @@ namespace NHS.Controllers
 
 
                     int intPID = Convert.ToInt32(Session["sessionPatientId"]);
-                   
+
 
                     PatientDetails patientDetail = (from pDetails in ent.PatientDetails
                                                     where pDetails.PatientId == intPID
@@ -1453,7 +1453,7 @@ namespace NHS.Controllers
                     ent.SaveChanges();
 
                     Session["sessionPatientDetailsModel"] = clsPatientDetailsModel;
-                    Response.Redirect("/Home/MedicalExaminerReview", false);                 
+                    Response.Redirect("/Home/MedicalExaminerReview", false);
                 }
             }
             catch (Exception ex)
@@ -1676,7 +1676,10 @@ namespace NHS.Controllers
                         medicalExaminerDecision.CornerReferral = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferral;
                         medicalExaminerDecision.HospitalPostMortem = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.HospitalPostMortem;
                         medicalExaminerDecision.CoronerReferralReasonID = intCoronerReferralReasonsId;
-                        medicalExaminerDecision.CauseOfDeath = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath;
+                        medicalExaminerDecision.CauseOfDeath1 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath1;
+                        medicalExaminerDecision.CauseOfDeath2 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath2;
+                        medicalExaminerDecision.CauseOfDeath3 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath3;
+                        medicalExaminerDecision.CauseOfDeath4 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath4;
                         medicalExaminerDecision.DeathCertificate = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.DeathCertificate;
                         medicalExaminerDecision.CornerReferralComplete = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferralComplete;
                         medicalExaminerDecision.CoronerDecisionInquest = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionInquest;
@@ -1727,8 +1730,10 @@ namespace NHS.Controllers
                         medicalExaminerDecision.MCCDissue = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.MCCDissue;
                         medicalExaminerDecision.CornerReferral = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferral;
                         medicalExaminerDecision.HospitalPostMortem = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.HospitalPostMortem;
-
-                        medicalExaminerDecision.CauseOfDeath = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath;
+                        medicalExaminerDecision.CauseOfDeath1 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath1;
+                        medicalExaminerDecision.CauseOfDeath2 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath2;
+                        medicalExaminerDecision.CauseOfDeath3 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath3;
+                        medicalExaminerDecision.CauseOfDeath4 = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CauseOfDeath4;
                         medicalExaminerDecision.DeathCertificate = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.DeathCertificate;
                         medicalExaminerDecision.CornerReferralComplete = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CornerReferralComplete;
                         medicalExaminerDecision.CoronerDecisionInquest = clsMedicalExaminerDecisionModel.objclsMedicalExaminerDecision.CoronerDecisionInquest;
@@ -2215,7 +2220,7 @@ namespace NHS.Controllers
                                                             SJR1 = objrevstatus.SJR1,
                                                             SJR2 = objrevstatus.SJR2,
                                                             SJRoutcome = objrevstatus.SJRoutcome,
-                                                             FullSJRRequired = objReview.FullSJRRequired
+                                                            FullSJRRequired = objReview.FullSJRRequired
 
                                                         }).ToList();
 
@@ -2258,9 +2263,22 @@ namespace NHS.Controllers
                        //DOB = DOB,
                        PatientName = PName,
                        DOB = DOB,
-                       FullSJRRequired=objReview.FullSJRRequired
+                       FullSJRRequired = objReview.FullSJRRequired
 
                    }).FirstOrDefault();
+
+            if (obj == null)
+            {
+                obj = (from x in ent.PatientDetails
+                       where x.PatientId == pId
+                       select new clsCodingReview
+                       {
+                           PatientId = x.PatientId,
+                           PatientName = PName,
+                           DOB = DOB
+                       }).FirstOrDefault();
+            }
+
 
             return View(obj);
         }

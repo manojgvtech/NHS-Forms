@@ -31,7 +31,10 @@ namespace NHS.Models
         public bool HospitalPostMortem { get; set; }
         public Nullable<int> CoronerReferralReasonID { get; set; }
         [Display(Name = "Cause of Death")]
-        public string CauseOfDeath { get; set; }
+        public string CauseOfDeath1 { get; set; }
+        public string CauseOfDeath2 { get; set; }
+        public string CauseOfDeath3 { get; set; }
+        public string CauseOfDeath4 { get; set; }
         public bool DeathCertificate { get; set; }
         public bool CornerReferralComplete { get; set; }
         public bool CoronerDecisionInquest { get; set; }

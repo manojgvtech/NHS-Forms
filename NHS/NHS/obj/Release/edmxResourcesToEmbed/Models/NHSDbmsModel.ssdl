@@ -121,7 +121,10 @@
     <Property Name="CornerReferral" Type="bit" />
     <Property Name="HospitalPostMortem" Type="bit" />
     <Property Name="CoronerReferralReasonID" Type="int" />
-    <Property Name="CauseOfDeath" Type="varchar(max)" />
+    <Property Name="CauseOfDeath1" Type="varchar(max)" />
+    <Property Name="CauseOfDeath2" Type="varchar(max)" />
+    <Property Name="CauseOfDeath3" Type="varchar(max)" />
+    <Property Name="CauseOfDeath4" Type="varchar(max)" />
     <Property Name="DeathCertificate" Type="bit" />
     <Property Name="CornerReferralComplete" Type="bit" />
     <Property Name="CoronerDecisionInquest" Type="bit" />

@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="NHSModel.DischargeConsultant" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NHSModel.FeedBack" Width="1.5" PointX="3" PointY="23.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NHSModel.MedicalExaminer" Width="1.5" PointX="3.75" PointY="51.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NHSModel.MedicalExaminerDecision" Width="1.5" PointX="3" PointY="29.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NHSModel.MedicalExaminerReview" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NHSModel.MortalitySurveillance" Width="1.5" PointX="3" PointY="37" IsExpanded="true" />
         <EntityTypeShape EntityType="NHSModel.OtherReferral" Width="1.5" PointX="3" PointY="41" IsExpanded="true" />
@@ -44,10 +43,8 @@
         <AssociationConnector Association="NHSModel.FK__SJRFormIn__OverA__6A30C649" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__SJRFormIn__Quali__3D2915A8" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__ClinicalC__Patie__498EEC8D" ManuallyRouted="false" />
-        <AssociationConnector Association="NHSModel.FK__MedicalEx__Coron__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__FeedBack__Patien__73852659" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__MedicalEx__ME_ID__70DDC3D8" ManuallyRouted="false" />
-        <AssociationConnector Association="NHSModel.FK__MedicalEx__Patie__70A8B9AE" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__MedicalEx__Patie__6FB49575" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__Mortality__Patie__7755B73D" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK__OtherRefe__Patie__72910220" ManuallyRouted="false" />
@@ -68,6 +65,9 @@
         <AssociationConnector Association="NHSModel.FK__SJRReview__SJRRe__75A278F5" ManuallyRouted="false" />
         <AssociationConnector Association="NHSModel.FK_Session_User" ManuallyRouted="false" />
         <EntityTypeShape EntityType="NHSModel.DataManagement" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="NHSModel.MedicalExaminerDecision" Width="1.5" PointX="3" PointY="27.375" />
+        <AssociationConnector Association="NHSModel.FK__MedicalEx__Coron__73BA3083" />
+        <AssociationConnector Association="NHSModel.FK__MedicalEx__Patie__70A8B9AE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,7 +19,6 @@ namespace NHS.Models
         {
             this.ClinicalCoding = new HashSet<ClinicalCoding>();
             this.FeedBack = new HashSet<FeedBack>();
-            this.MedicalExaminerDecision = new HashSet<MedicalExaminerDecision>();
             this.MedicalExaminerReview = new HashSet<MedicalExaminerReview>();
             this.MortalitySurveillance = new HashSet<MortalitySurveillance>();
             this.OtherReferral = new HashSet<OtherReferral>();
@@ -28,6 +27,7 @@ namespace NHS.Models
             this.SJRFormProblemType = new HashSet<SJRFormProblemType>();
             this.SJROutcomes = new HashSet<SJROutcomes>();
             this.SJRReview = new HashSet<SJRReview>();
+            this.MedicalExaminerDecision = new HashSet<MedicalExaminerDecision>();
         }
     
         public int PatientId { get; set; }
@@ -65,8 +65,6 @@ namespace NHS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FeedBack> FeedBack { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedicalExaminerDecision> MedicalExaminerDecision { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedicalExaminerReview> MedicalExaminerReview { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MortalitySurveillance> MortalitySurveillance { get; set; }
@@ -82,5 +80,7 @@ namespace NHS.Models
         public virtual ICollection<SJROutcomes> SJROutcomes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SJRReview> SJRReview { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicalExaminerDecision> MedicalExaminerDecision { get; set; }
     }
 }

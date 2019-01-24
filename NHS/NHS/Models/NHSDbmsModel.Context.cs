@@ -33,7 +33,6 @@ namespace NHS.Models
         public virtual DbSet<DischargeConsultant> DischargeConsultant { get; set; }
         public virtual DbSet<FeedBack> FeedBack { get; set; }
         public virtual DbSet<MedicalExaminer> MedicalExaminer { get; set; }
-        public virtual DbSet<MedicalExaminerDecision> MedicalExaminerDecision { get; set; }
         public virtual DbSet<MedicalExaminerReview> MedicalExaminerReview { get; set; }
         public virtual DbSet<MortalitySurveillance> MortalitySurveillance { get; set; }
         public virtual DbSet<OtherReferral> OtherReferral { get; set; }
@@ -51,5 +50,6 @@ namespace NHS.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserSession> UserSession { get; set; }
         public virtual DbSet<DataManagement> DataManagement { get; set; }
+        public virtual DbSet<MedicalExaminerDecision> MedicalExaminerDecision { get; set; }
     }
 }

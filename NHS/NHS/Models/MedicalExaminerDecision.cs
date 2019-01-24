@@ -20,7 +20,10 @@ namespace NHS.Models
         public Nullable<bool> CornerReferral { get; set; }
         public Nullable<bool> HospitalPostMortem { get; set; }
         public Nullable<int> CoronerReferralReasonID { get; set; }
-        public string CauseOfDeath { get; set; }
+        public string CauseOfDeath1 { get; set; }
+        public string CauseOfDeath2 { get; set; }
+        public string CauseOfDeath3 { get; set; }
+        public string CauseOfDeath4 { get; set; }
         public Nullable<bool> DeathCertificate { get; set; }
         public Nullable<bool> CornerReferralComplete { get; set; }
         public Nullable<bool> CoronerDecisionInquest { get; set; }
